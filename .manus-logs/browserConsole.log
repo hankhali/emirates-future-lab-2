@@ -52,3 +52,21 @@
 [2026-04-28T18:36:47.457Z] {"timestamp":1777401405449,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
 [2026-04-28T18:36:47.457Z] {"timestamp":1777401405524,"level":"DEBUG","args":["[vite] connected."],"stack":null}
 [2026-04-28T18:36:57.453Z] {"timestamp":1777401417028,"level":"LOG","args":["Selected: zayed"],"stack":null}
+[2026-04-28T18:39:23.351Z] {"timestamp":1777401561343,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T18:39:23.352Z] {"timestamp":1777401561364,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T18:39:25.350Z] {"timestamp":1777401563988,"level":"LOG","args":["Selected: sheika"],"stack":null}
+[2026-04-28T18:40:06.804Z] {"timestamp":1777401604796,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T18:40:06.804Z] {"timestamp":1777401604807,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T18:40:08.803Z] {"timestamp":1777401608189,"level":"LOG","args":["Selected: sheika"],"stack":null}
+[2026-04-28T18:41:48.148Z] {"timestamp":1777401705277,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T18:41:48.148Z] {"timestamp":1777401705283,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T18:41:51.280Z] {"timestamp":1777401710328,"level":"LOG","args":["Selected: sheika"],"stack":null}
+[2026-04-28T18:45:18.149Z] {"timestamp":1777401915565,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T18:45:18.149Z] {"timestamp":1777401915569,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T18:45:50.149Z] {"timestamp":1777401947322,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T18:45:50.149Z] {"timestamp":1777401947330,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T18:46:16.292Z] {"timestamp":1777401974290,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T18:46:16.292Z] {"timestamp":1777401974295,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T18:46:40.297Z] {"timestamp":1777401999851,"level":"LOG","args":["Selected: sheika"],"stack":null}
+[2026-04-28T18:46:53.541Z] {"timestamp":1777402011532,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T18:46:53.541Z] {"timestamp":1777402011555,"level":"DEBUG","args":["[vite] connected."],"stack":null}

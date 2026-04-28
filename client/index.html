@@ -6,17 +6,23 @@
     <title>Emirates Future Lab | UAE Sustainability & AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #010818;
-            --green-primary: #00ffaa;
-            --green-gradient: linear-gradient(90deg, #00ffaa, #00ddff);
-            --blue-primary: #0066ff;
-            --blue-light: #44aaff;
-            --muted: rgba(255, 255, 255, 0.5);
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --bg-deep: #0a1628;
+            --green-primary: #10b981;
+            --green-light: #d1fae5;
+            --green-gradient: linear-gradient(135deg, #10b981, #059669);
+            --blue-primary: #0366d6;
+            --blue-dark: #0550ae;
+            --blue-light: #54aeff;
+            --accent: #7c3aed;
+            --muted: rgba(255, 255, 255, 0.6);
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.25);
         }
 
         * {
@@ -36,7 +42,9 @@
             height: 100vh;
             overflow: hidden;
             color: white;
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
 
@@ -85,13 +93,13 @@
         }
 
         .hero-hitbox.sheikha {
-            border-color: rgba(135, 255, 158, 0.75);
-            box-shadow: 0 0 26px rgba(0, 255, 170, 0.25), inset 0 0 16px rgba(0, 255, 170, 0.12);
+            border-color: rgba(16, 185, 129, 0.6);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2), inset 0 0 12px rgba(16, 185, 129, 0.08);
         }
 
         .hero-hitbox.zayed {
-            border-color: rgba(130, 205, 255, 0.78);
-            box-shadow: 0 0 26px rgba(0, 150, 255, 0.25), inset 0 0 16px rgba(0, 150, 255, 0.12);
+            border-color: rgba(3, 102, 214, 0.6);
+            box-shadow: 0 0 20px rgba(3, 102, 214, 0.2), inset 0 0 12px rgba(3, 102, 214, 0.08);
         }
 
         .hero-hitbox.active {
@@ -116,12 +124,13 @@
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.8);
-            border: 2px solid rgba(0, 255, 170, 0.5);
-            border-radius: 12px;
-            padding: 16px 32px;
+            border: 1.5px solid rgba(16, 185, 129, 0.4);
+            border-radius: 8px;
+            padding: 12px 24px;
             color: white;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 14px;
+            font-weight: 500;
             z-index: 10000;
             animation: slideDown 0.5s ease, slideUp 0.5s ease 2.5s forwards;
         }
@@ -237,30 +246,35 @@
 
         .signup-badge {
             display: inline-block;
-            background: rgba(0, 255, 170, 0.1);
-            border: 1px solid rgba(0, 255, 170, 0.3);
-            color: #00ffaa;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 11px;
-            letter-spacing: 2px;
-            border-radius: 50px;
-            padding: 5px 14px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #10b981;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border-radius: 6px;
+            padding: 6px 12px;
             text-transform: uppercase;
         }
 
         .signup-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 26px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
             color: white;
             margin-top: 12px;
             margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
 
         .signup-subtitle {
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.4);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
             margin-bottom: 28px;
+            line-height: 1.5;
         }
 
         .form-group {
@@ -270,26 +284,27 @@
 
         .form-group label {
             display: block;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 8px;
+            text-transform: none;
+            letter-spacing: 0;
         }
 
         .form-group input,
         .form-group select {
             width: 100%;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 12px 14px;
             color: white;
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 14px;
             box-sizing: border-box;
             outline: none;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .form-group input::placeholder,
@@ -299,8 +314,8 @@
 
         .form-group input:focus,
         .form-group select:focus {
-            border-color: rgba(0, 255, 170, 0.5);
-            box-shadow: 0 0 20px rgba(0, 255, 170, 0.08);
+            border-color: rgba(16, 185, 129, 0.6);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
         }
 
         .form-group.error input,
@@ -341,38 +356,39 @@
 
         .xp-line {
             font-size: 12px;
-            color: rgba(200, 255, 200, 0.5);
+            color: rgba(16, 185, 129, 0.6);
             text-align: center;
             margin: 10px 0 18px;
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
         }
 
         .submit-btn {
             width: 100%;
-            height: 52px;
-            border-radius: 14px;
+            height: 48px;
+            border-radius: 8px;
             border: none;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             position: relative;
             overflow: hidden;
-            text-transform: uppercase;
+            text-transform: none;
         }
 
         .submit-btn.sheika-theme {
-            background: linear-gradient(135deg, #00c97a, #00ffaa);
-            color: #001a0e;
-            box-shadow: 0 0 30px rgba(0, 255, 170, 0.25);
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            box-shadow: var(--shadow-md);
         }
 
         .submit-btn.zayed-theme {
-            background: linear-gradient(135deg, #0055dd, #00ccff);
+            background: linear-gradient(135deg, #0366d6, #0550ae);
             color: white;
-            box-shadow: 0 0 30px rgba(0, 102, 255, 0.25);
+            box-shadow: var(--shadow-md);
         }
 
         .submit-btn:hover:not(:disabled) {
@@ -424,18 +440,19 @@
             text-align: center;
             font-size: 13px;
             color: rgba(255, 255, 255, 0.6);
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         .signin-link a {
-            color: #00ffaa;
+            color: #10b981;
             cursor: pointer;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease;
+            font-weight: 600;
         }
 
         .signin-link a:hover {
-            color: #00ddff;
+            color: #059669;
         }
 
         /* Loading Screen */
@@ -473,8 +490,9 @@
         }
 
         .loading-text {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 28px;
+            font-weight: 700;
             color: white;
             text-align: center;
             margin-bottom: 20px;
@@ -483,9 +501,10 @@
         }
 
         .loading-guide {
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 16px;
-            color: rgba(0, 255, 170, 0.8);
+            font-weight: 500;
+            color: rgba(16, 185, 129, 0.8);
             margin-bottom: 40px;
             position: relative;
             z-index: 1;
@@ -606,62 +625,68 @@
         .mission-preview {
             width: 100%;
             max-width: 600px;
-            background: rgba(5, 15, 35, 0.80);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
+            background: rgba(10, 22, 40, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
             padding: 30px;
             text-align: center;
             backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-md);
         }
 
         .mission-title {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 22px;
+            font-weight: 700;
             color: white;
             margin-bottom: 12px;
+            letter-spacing: -0.3px;
         }
 
         .mission-subtitle {
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 14px;
+            font-weight: 400;
             color: rgba(255, 255, 255, 0.6);
             margin-bottom: 20px;
+            line-height: 1.5;
         }
 
         .xp-reward {
             display: inline-block;
-            background: rgba(0, 255, 170, 0.1);
-            border: 1px solid rgba(0, 255, 170, 0.3);
-            color: #00ffaa;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
             padding: 8px 16px;
-            border-radius: 50px;
+            border-radius: 6px;
             font-size: 13px;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
             margin-bottom: 20px;
         }
 
         .continue-btn {
-            padding: 14px 40px;
-            background: linear-gradient(135deg, #00c97a, #00ffaa);
-            color: #001a0e;
+            padding: 12px 36px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
             border: none;
-            border-radius: 50px;
-            font-family: 'Orbitron', sans-serif;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
             font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1px;
+            font-weight: 600;
+            letter-spacing: 0;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 30px rgba(0, 255, 170, 0.25);
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-md);
         }
 
         .continue-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 50px rgba(0, 255, 170, 0.4);
+            box-shadow: var(--shadow-lg);
         }
 
         .continue-btn.zayed {
-            background: linear-gradient(135deg, #0055dd, #00ccff);
+            background: linear-gradient(135deg, #0366d6, #0550ae);
             color: white;
         }
 
@@ -724,28 +749,33 @@
         }
 
         .dashboard-header h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 36px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
             color: white;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
         }
 
         .dashboard-header p {
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 16px;
+            font-weight: 400;
             color: rgba(255, 255, 255, 0.6);
             margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         .guide-welcome {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 18px;
-            color: #00ffaa;
-            letter-spacing: 1px;
+            font-weight: 600;
+            color: #10b981;
+            letter-spacing: 0;
         }
 
         .guide-welcome.zayed {
-            color: #00ccff;
+            color: #0366d6;
         }
 
         .missions-grid {
@@ -758,21 +788,24 @@
             margin-bottom: 40px !important;
             padding: 0 20px !important;
             box-sizing: border-box !important;
+            align-items: stretch !important;
         }
 
         .mission-card {
-            background: rgba(5, 20, 40, 0.85) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            border-radius: 16px !important;
+            background: rgba(10, 22, 40, 0.9) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 12px !important;
             overflow: hidden !important;
             cursor: pointer !important;
-            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+            transition: all 0.25s ease !important;
             position: relative !important;
             opacity: 1 !important;
             display: flex !important;
             flex-direction: column !important;
             width: 100% !important;
-            height: fit-content !important;
+            height: 100% !important;
+            min-height: 390px !important;
+            box-shadow: var(--shadow-sm) !important;
         }
 
         @keyframes slideInCard {
@@ -793,17 +826,29 @@
         .mission-card:nth-child(5) { animation-delay: 0.5s; }
 
         .mission-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 0 30px rgba(0, 255, 170, 0.2);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(255, 255, 255, 0.15) !important;
         }
 
         .mission-card.start-here {
-            border: 2px solid #00ffaa;
-            box-shadow: 0 0 30px rgba(0, 255, 170, 0.25);
+            border: 1.5px solid #10b981 !important;
+            box-shadow: 0 0 24px rgba(16, 185, 129, 0.15), var(--shadow-md) !important;
         }
 
         .mission-card.start-here:hover {
-            box-shadow: 0 0 60px rgba(0, 255, 170, 0.3);
+            box-shadow: 0 0 32px rgba(16, 185, 129, 0.25), var(--shadow-lg) !important;
+        }
+
+        .mission-card.locked {
+            opacity: 0.78 !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            cursor: not-allowed !important;
+        }
+
+        .mission-card.locked:hover {
+            transform: none !important;
+            box-shadow: none !important;
         }
 
         .mission-image {
@@ -832,22 +877,29 @@
 
         .mission-badge {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 255, 170, 0.2);
-            border: 1px solid rgba(0, 255, 170, 0.5);
-            color: #00ffaa;
-            padding: 4px 12px;
-            border-radius: 50px;
+            top: 12px;
+            right: 12px;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #10b981;
+            padding: 5px 10px;
+            border-radius: 6px;
             font-size: 11px;
-            font-weight: 700;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.4px;
         }
 
         .mission-badge.start {
-            background: rgba(0, 255, 170, 0.3);
+            background: rgba(16, 185, 129, 0.25);
             animation: pulse 2s infinite;
+        }
+
+        .mission-badge.locked {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .milestone-content {
@@ -863,25 +915,36 @@
             display: flex !important;
             flex-direction: column !important;
             gap: 0 !important;
-            flex-grow: 0 !important;
-            min-height: auto !important;
+            flex-grow: 1 !important;
+            min-height: 170px !important;
             max-width: 100% !important;
             margin: 0 !important;
         }
 
         .mission-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
-            color: white;
-            margin-bottom: 4px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
             font-weight: 700;
+            color: white;
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
         }
 
         .mission-topic {
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: none;
+            letter-spacing: 0;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .mission-duration {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
             margin-bottom: 10px;
         }
 
@@ -894,13 +957,14 @@
         }
 
         .mission-xp {
-            background: rgba(0, 255, 170, 0.1);
-            border: 1px solid rgba(0, 255, 170, 0.3);
-            color: #00ffaa;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
             padding: 4px 10px;
-            border-radius: 50px;
-            font-size: 10px;
-            font-weight: 700;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
             white-space: nowrap;
         }
 
@@ -912,35 +976,37 @@
 
         .mission-button {
             width: 100% !important;
-            height: 40px !important;
-            background: linear-gradient(135deg, #00c97a, #00ffaa) !important;
-            color: #001a0e !important;
+            height: 44px !important;
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+            color: white !important;
             border: none !important;
             border-radius: 8px !important;
-            font-family: 'Orbitron', sans-serif !important;
-            font-size: 11px !important;
-            font-weight: 700 !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
             cursor: pointer !important;
-            transition: all 0.3s ease !important;
-            letter-spacing: 1px !important;
-            text-transform: uppercase !important;
-            margin-top: 12px !important;
+            transition: all 0.2s ease !important;
+            letter-spacing: 0 !important;
+            text-transform: none !important;
+            margin-top: auto !important;
+            box-shadow: var(--shadow-sm) !important;
         }
 
         .mission-button:hover {
-            box-shadow: 0 0 20px rgba(0, 255, 170, 0.3);
-            transform: scale(1.02);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
         }
 
         .mission-button.locked {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.4);
-            cursor: not-allowed;
+            background: rgba(255, 255, 255, 0.08) !important;
+            color: rgba(255, 255, 255, 0.5) !important;
+            cursor: not-allowed !important;
+            box-shadow: none !important;
         }
 
         .mission-button.locked:hover {
-            box-shadow: none;
-            transform: scale(1);
+            box-shadow: none !important;
+            transform: none !important;
         }
 
         .dashboard-footer {
@@ -990,42 +1056,44 @@
             justify-content: space-between;
             align-items: center;
             padding: 16px 24px;
-            background: rgba(5, 20, 40, 0.6);
+            background: rgba(10, 22, 40, 0.8);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
             z-index: 2;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         .mission-back-btn {
-            font-size: 11px;
-            color: #00ffaa;
+            font-size: 13px;
+            font-weight: 600;
+            color: #10b981;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 6px;
-            letter-spacing: 1px;
-            transition: opacity 0.3s ease;
+            letter-spacing: 0;
+            transition: opacity 0.2s ease;
         }
 
         .mission-back-btn:hover {
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
         .mission-top-title {
-            font-size: 16px;
+            font-size: 15px;
+            font-weight: 600;
             white-space: nowrap;
             flex: 1;
             text-align: center;
             color: white;
-            font-weight: 700;
         }
 
         .mission-xp-counter {
-            font-size: 12px;
-            color: #00ffaa;
-            letter-spacing: 1px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #10b981;
+            letter-spacing: 0;
         }
 
         .mission-progress-bar {
@@ -1037,7 +1105,7 @@
 
         .mission-progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #00ffaa, #00ddff);
+            background: linear-gradient(90deg, #10b981, #0366d6);
             width: 0%;
             transition: width 0.4s ease;
         }
@@ -1046,37 +1114,39 @@
             display: flex;
             gap: 24px;
             padding: 20px 24px;
-            background: rgba(5, 20, 40, 0.5);
+            background: rgba(10, 22, 40, 0.6);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
             z-index: 2;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
             overflow-x: auto;
         }
 
         .mission-tab {
             background: transparent;
             border: none;
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             padding: 8px 0;
             border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 13px;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
             white-space: nowrap;
-            letter-spacing: 1px;
+            letter-spacing: 0;
         }
 
         .mission-tab.active {
-            color: #00ffaa;
-            border-bottom-color: #00ffaa;
+            color: #10b981;
+            border-bottom-color: #10b981;
         }
 
         .mission-tab:hover {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .mission-content {
@@ -1230,16 +1300,16 @@
         }
 
         .learn-card-reveal:hover {
-            background: rgba(0, 255, 170, 0.25);
-            box-shadow: 0 0 10px rgba(0, 255, 170, 0.3);
+            background: rgba(16, 185, 129, 0.25);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
         }
 
         .learn-card-fact {
             display: none;
-            background: rgba(0, 255, 170, 0.08);
-            border-left: 3px solid #00ffaa;
+            background: rgba(16, 185, 129, 0.08);
+            border-left: 3px solid #10b981;
             padding: 12px 14px;
-            border-radius: 8px;
+            border-radius: 6px;
             margin-top: 12px;
             font-size: 13px;
             color: rgba(255, 255, 255, 0.8);
@@ -1262,8 +1332,8 @@
             top: 0;
             width: 4px;
             height: 100%;
-            background: linear-gradient(#00ffaa, #00ddff);
-            border-radius: 20px 0 0 20px;
+            background: linear-gradient(#10b981, #0366d6);
+            border-radius: 12px 0 0 12px;
         }
 
         .learn-card:nth-child(1) { animation-delay: 0ms; }
@@ -1271,23 +1341,28 @@
         .learn-card:nth-child(3) { animation-delay: 300ms; }
 
         .learn-card-number {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 11px;
-            color: rgba(0, 255, 170, 0.5);
-            letter-spacing: 2px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(16, 185, 129, 0.7);
+            letter-spacing: 0.5px;
             margin-bottom: 8px;
+            text-transform: uppercase;
         }
 
         .learn-card-title {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 16px;
+            font-weight: 700;
             color: white;
             margin-bottom: 8px;
-            font-weight: 700;
+            letter-spacing: -0.3px;
         }
 
         .learn-card-body {
+            font-family: 'Inter', sans-serif;
             font-size: 14px;
+            font-weight: 400;
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.7;
             margin-bottom: 14px;
@@ -1295,31 +1370,32 @@
 
         .learn-card-stat {
             display: inline-block;
-            background: rgba(0, 255, 170, 0.08);
-            border: 1px solid rgba(0, 255, 170, 0.2);
-            border-radius: 50px;
-            padding: 4px 14px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 6px;
+            padding: 6px 12px;
             font-size: 12px;
-            color: #00ffaa;
-            font-family: 'Exo 2', sans-serif;
+            font-weight: 600;
+            color: #10b981;
+            font-family: 'Inter', sans-serif;
         }
 
         .mission-next-btn {
-            background: linear-gradient(135deg, #00c97a, #00ffaa);
-            color: #001a0e;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
             border: none;
-            border-radius: 50px;
-            padding: 14px 32px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1px;
+            border-radius: 8px;
+            padding: 12px 28px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 30px rgba(0, 255, 170, 0.25);
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-md);
             position: relative;
             overflow: hidden;
-            text-transform: uppercase;
+            text-transform: none;
         }
 
         .mission-next-btn::before {
@@ -1335,7 +1411,7 @@
 
         .mission-next-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 50px rgba(0, 255, 170, 0.4);
+            box-shadow: var(--shadow-lg);
         }
 
         /* QUIZ TAB */
@@ -1345,26 +1421,30 @@
         }
 
         .quiz-question {
-            background: rgba(5, 20, 40, 0.75);
+            background: rgba(10, 22, 40, 0.9);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
+            border-radius: 12px;
             backdrop-filter: blur(16px);
             padding: 32px;
             animation: fadeUp 0.6s ease;
+            box-shadow: var(--shadow-sm);
         }
 
         .quiz-question-number {
             font-size: 12px;
-            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
             margin-bottom: 16px;
         }
 
         .quiz-question-text {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 18px;
+            font-weight: 700;
             color: white;
             margin-bottom: 24px;
             line-height: 1.5;
+            letter-spacing: -0.3px;
         }
 
         .quiz-options {
@@ -1375,19 +1455,19 @@
 
         .quiz-option {
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 14px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 14px 16px;
             display: flex;
             align-items: center;
             gap: 14px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .quiz-option:hover {
-            border-color: rgba(0, 255, 170, 0.3);
-            background: rgba(0, 255, 170, 0.05);
+            border-color: rgba(16, 185, 129, 0.4);
+            background: rgba(16, 185, 129, 0.05);
         }
 
         .quiz-option.disabled {
@@ -1398,30 +1478,31 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
             font-weight: 700;
             flex-shrink: 0;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .quiz-option-text {
             font-size: 14px;
+            font-weight: 500;
             color: rgba(255, 255, 255, 0.8);
         }
 
         .quiz-option.correct {
-            border-color: rgba(0, 255, 170, 0.8);
-            background: rgba(0, 255, 170, 0.1);
+            border-color: rgba(16, 185, 129, 0.8);
+            background: rgba(16, 185, 129, 0.1);
         }
 
         .quiz-option.correct .quiz-option-letter {
-            background: #00ffaa;
-            color: #001a0e;
+            background: #10b981;
+            color: white;
         }
 
         .quiz-option.wrong {
@@ -1433,15 +1514,16 @@
         .quiz-feedback {
             margin-top: 16px;
             font-size: 14px;
+            font-weight: 500;
             padding: 12px 16px;
             border-radius: 8px;
             text-align: center;
         }
 
         .quiz-feedback.correct {
-            background: rgba(0, 255, 170, 0.15);
-            color: #00ffaa;
-            border: 1px solid rgba(0, 255, 170, 0.3);
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
 
         .quiz-feedback.wrong {
@@ -1452,10 +1534,10 @@
 
         .xp-earned {
             position: absolute;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 18px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 16px;
             font-weight: 700;
-            color: #00ffaa;
+            color: #10b981;
             pointer-events: none;
             animation: floatUp 1.5s ease-out forwards;
         }
@@ -2035,7 +2117,7 @@
         <div class="dashboard-container">
             <div class="dashboard-header">
                 <h1>Your Learning Journey</h1>
-                <p>Complete missions, earn XP, and become a sustainability leader</p>
+                <p>Pick a mission, learn new ideas, and earn stars!</p>
                 <div class="guide-welcome" id="guide-welcome-msg">Let's go, Explorer!</div>
             </div>
 
@@ -2044,7 +2126,7 @@
             </div>
 
             <div class="dashboard-footer">
-                Complete all missions to unlock the ultimate challenge! 🚀
+                Finish these 3 missions first, then more missions will unlock! ⭐
             </div>
         </div>
     </div>
@@ -2595,8 +2677,9 @@
             missionsGrid.innerHTML = '';
 
             missionsData.forEach((mission, idx) => {
+                const locked = idx >= 3;
                 const missionCard = document.createElement('div');
-                missionCard.className = `mission-card ${idx === 0 ? 'start-here' : ''}`;
+                missionCard.className = `mission-card ${idx === 0 ? 'start-here' : ''} ${locked ? 'locked' : ''}`;
                 
                 const imagePath = `/mission-${mission.id}.png`;
                 
@@ -2606,21 +2689,23 @@
                         <div style="display: flex; position: absolute; width: 100%; height: 100%; align-items: center; justify-content: center; font-size: 50px; z-index: 5;">${mission.badge.icon}</div>
                     </div>
                     ${idx === 0 ? '<div class="mission-badge start">START HERE!</div>' : ''}
+                    ${locked ? '<div class="mission-badge locked">LOCKED</div>' : ''}
                     <div class="mission-content">
                         <h3 class="mission-title">${mission.title}</h3>
-                        <p class="mission-topic" style="font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 12px;">${mission.badge.name}</p>
+                        <p class="mission-topic">${mission.badge.name}</p>
+                        <p class="mission-duration">⏱️ About 10 minutes</p>
                         <div class="mission-stats">
                             <div class="mission-xp">⭐ ${mission.xpTotal} XP</div>
                             <div class="mission-difficulty">⭐⭐⭐</div>
                         </div>
-                        <button class="mission-button" type="button">
-                            START MISSION
+                        <button class="mission-button ${locked ? 'locked' : ''}" type="button" ${locked ? 'disabled' : ''}>
+                            ${locked ? 'Locked' : 'Start Mission'}
                         </button>
                     </div>
                 `;
 
                 const button = missionCard.querySelector('.mission-button');
-                if (button) {
+                if (button && !locked) {
                     button.addEventListener('click', (e) => {
                         e.preventDefault();
                         e.stopPropagation();
@@ -2635,10 +2720,10 @@
         function updateGuideWelcome() {
             const guideMsgEl = document.getElementById('guide-welcome-msg');
             if (chosenGuide === 'sheika') {
-                guideMsgEl.textContent = "Ready to save the planet, Explorer?";
+                guideMsgEl.textContent = "Let’s help our planet together!";
                 guideMsgEl.classList.remove('zayed');
             } else {
-                guideMsgEl.textContent = "Time to innovate and discover, Expert!";
+                guideMsgEl.textContent = "Let’s build cool ideas together!";
                 guideMsgEl.classList.add('zayed');
             }
         }
@@ -2850,7 +2935,7 @@
             },
             {
                 id: 4,
-                title: "AI & Ethics",
+                title: "Using AI the Right Way",
                 color: "#aa66ff",
                 xpTotal: 45,
                 learn: [
@@ -2917,7 +3002,7 @@
             },
             {
                 id: 5,
-                title: "Carbon Footprint",
+                title: "My Earth Impact",
                 color: "#ff6644",
                 xpTotal: 45,
                 learn: [
