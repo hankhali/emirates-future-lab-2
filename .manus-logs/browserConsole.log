@@ -209,3 +209,118 @@
 [2026-04-28T22:12:09.889Z] {"timestamp":1777414328271,"level":"LOG","args":["Dropped","dubai","on","fujairah"],"stack":null}
 [2026-04-28T22:12:11.890Z] {"timestamp":1777414331410,"level":"LOG","args":["Dropped","sharjah","on","umm-al-quwain"],"stack":null}
 [2026-04-28T22:12:15.889Z] {"timestamp":1777414334347,"level":"LOG","args":["Dropped","umm-al-quwain","on","ras-al-khaimah"],"stack":null}
+[2026-04-28T22:15:22.479Z] {"timestamp":1777414395765,"level":"LOG","args":["[vite] server connection lost. Polling for restart..."],"stack":null}
+[2026-04-28T22:15:30.998Z] {"timestamp":1777414528986,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:15:30.998Z] {"timestamp":1777414529090,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:15:58.993Z] {"timestamp":1777414557323,"level":"LOG","args":["Selected: sheika"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590350,"level":"LOG","args":["Initializing bonus game, tokens:","7","placeholders:","7"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590350,"level":"LOG","args":["Added drag events to:","Abu Dhabi"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590350,"level":"LOG","args":["Added drag events to:","Dubai"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590350,"level":"LOG","args":["Added drag events to:","Sharjah"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590350,"level":"LOG","args":["Added drag events to:","Ajman"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590350,"level":"LOG","args":["Added drag events to:","Umm Al Quwain"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590350,"level":"LOG","args":["Added drag events to:","Ras Al Khaimah"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590350,"level":"LOG","args":["Added drag events to:","Fujairah"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590350,"level":"LOG","args":["Added drop events to placeholder:","abu-dhabi"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590350,"level":"LOG","args":["Added drop events to placeholder:","dubai"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590350,"level":"LOG","args":["Added drop events to placeholder:","sharjah"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590350,"level":"LOG","args":["Added drop events to placeholder:","ajman"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590351,"level":"LOG","args":["Added drop events to placeholder:","umm-al-quwain"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590351,"level":"LOG","args":["Added drop events to placeholder:","ras-al-khaimah"],"stack":null}
+[2026-04-28T22:16:30.949Z] {"timestamp":1777414590351,"level":"LOG","args":["Added drop events to placeholder:","fujairah"],"stack":null}
+[2026-04-28T22:16:34.952Z] {"timestamp":1777414594323,"level":"LOG","args":["Dropped","umm-al-quwain","on","fujairah"],"stack":null}
+[2026-04-28T23:00:42.167Z] {"timestamp":1777417239920,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T23:00:42.167Z] {"timestamp":1777417240039,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T23:02:25.169Z] {"timestamp":1777417342490,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T23:02:25.169Z] {"timestamp":1777417342498,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T23:02:26.491Z] {"timestamp":1777417344477,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T23:02:26.491Z] {"timestamp":1777417344525,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T23:02:30.481Z] {"timestamp":1777417349977,"level":"LOG","args":["Selected: sheika"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Initializing bonus game, tokens:","7","placeholders:","7"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drag events to:","Abu Dhabi"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drag events to:","Dubai"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drag events to:","Sharjah"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drag events to:","Ajman"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drag events to:","Umm Al Quwain"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drag events to:","Ras Al Khaimah"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drag events to:","Fujairah"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drop events to placeholder:","abu-dhabi"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drop events to placeholder:","dubai"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drop events to placeholder:","sharjah"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drop events to placeholder:","ajman"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drop events to placeholder:","umm-al-quwain"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drop events to placeholder:","ras-al-khaimah"],"stack":null}
+[2026-04-28T23:03:24.490Z] {"timestamp":1777417402573,"level":"LOG","args":["Added drop events to placeholder:","fujairah"],"stack":null}
+[2026-04-28T23:03:28.488Z] {"timestamp":1777417406912,"level":"LOG","args":["Dropped","ajman","on","fujairah"],"stack":null}
+[2026-04-28T23:05:22.167Z] {"timestamp":1777417519708,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T23:05:22.167Z] {"timestamp":1777417519717,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T23:05:22.974Z] {"timestamp":1777417520967,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T23:05:22.974Z] {"timestamp":1777417520975,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T23:05:34.168Z] {"timestamp":1777417531537,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T23:05:34.168Z] {"timestamp":1777417531613,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T23:05:34.176Z] {"timestamp":1777417532172,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T23:05:34.176Z] {"timestamp":1777417532180,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T23:05:53.660Z] {"timestamp":1777417551847,"level":"LOG","args":["Selected: zayed"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Initializing bonus game, tokens:","7","placeholders:","7"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drag events to:","Abu Dhabi"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drag events to:","Dubai"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drag events to:","Sharjah"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drag events to:","Ajman"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drag events to:","Umm Al Quwain"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drag events to:","Ras Al Khaimah"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drag events to:","Fujairah"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drop events to placeholder:","abu-dhabi"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drop events to placeholder:","dubai"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drop events to placeholder:","sharjah"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drop events to placeholder:","ajman"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drop events to placeholder:","umm-al-quwain"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drop events to placeholder:","ras-al-khaimah"],"stack":null}
+[2026-04-28T23:06:37.681Z] {"timestamp":1777417597630,"level":"LOG","args":["Added drop events to placeholder:","fujairah"],"stack":null}
+[2026-04-28T23:06:41.686Z] {"timestamp":1777417600433,"level":"LOG","args":["Dropped","abu-dhabi","on","abu-dhabi"],"stack":null}
+[2026-04-28T23:06:47.688Z] {"timestamp":1777417606950,"level":"LOG","args":["Dropped","dubai","on","umm-al-quwain"],"stack":null}
+[2026-04-28T23:06:49.691Z] {"timestamp":1777417608983,"level":"LOG","args":["Dropped","dubai","on","dubai"],"stack":null}
+[2026-04-28T23:06:53.693Z] {"timestamp":1777417612303,"level":"LOG","args":["Dropped","sharjah","on","fujairah"],"stack":null}
+[2026-04-28T23:06:55.694Z] {"timestamp":1777417615503,"level":"LOG","args":["Dropped","sharjah","on","sharjah"],"stack":null}
+[2026-04-28T23:06:59.695Z] {"timestamp":1777417618868,"level":"LOG","args":["Dropped","ajman","on","ras-al-khaimah"],"stack":null}
+[2026-04-28T23:07:01.696Z] {"timestamp":1777417620900,"level":"LOG","args":["Dropped","ajman","on","umm-al-quwain"],"stack":null}
+[2026-04-28T23:07:05.696Z] {"timestamp":1777417625088,"level":"LOG","args":["Dropped","ajman","on","fujairah"],"stack":null}
+[2026-04-28T23:07:07.695Z] {"timestamp":1777417627351,"level":"LOG","args":["Dropped","fujairah","on","fujairah"],"stack":null}
+[2026-04-28T23:07:11.696Z] {"timestamp":1777417630266,"level":"LOG","args":["Dropped","ras-al-khaimah","on","ras-al-khaimah"],"stack":null}
+[2026-04-28T23:07:13.697Z] {"timestamp":1777417632985,"level":"LOG","args":["Dropped","umm-al-quwain","on","umm-al-quwain"],"stack":null}
+[2026-04-28T23:07:15.795Z] {"timestamp":1777417634750,"level":"LOG","args":["Dropped","ajman","on","ajman"],"stack":null}
+[2026-04-28T23:08:11.217Z] {"timestamp":1777417688821,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T23:08:11.217Z] {"timestamp":1777417688838,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T23:08:12.023Z] {"timestamp":1777417690016,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T23:08:12.023Z] {"timestamp":1777417690024,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T23:08:22.195Z] {"timestamp":1777417700193,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T23:08:22.195Z] {"timestamp":1777417700226,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T23:08:24.197Z] {"timestamp":1777417703716,"level":"LOG","args":["Selected: zayed"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746167,"level":"LOG","args":["Initializing bonus game, tokens:","7","placeholders:","7"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746169,"level":"LOG","args":["Added drag events to:","Abu Dhabi"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746169,"level":"LOG","args":["Added drag events to:","Dubai"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746169,"level":"LOG","args":["Added drag events to:","Sharjah"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746170,"level":"LOG","args":["Added drag events to:","Ajman"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746170,"level":"LOG","args":["Added drag events to:","Umm Al Quwain"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746170,"level":"LOG","args":["Added drag events to:","Ras Al Khaimah"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746170,"level":"LOG","args":["Added drag events to:","Fujairah"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746170,"level":"LOG","args":["Added drop events to placeholder:","abu-dhabi"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746170,"level":"LOG","args":["Added drop events to placeholder:","dubai"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746170,"level":"LOG","args":["Added drop events to placeholder:","sharjah"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746170,"level":"LOG","args":["Added drop events to placeholder:","ajman"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746170,"level":"LOG","args":["Added drop events to placeholder:","umm-al-quwain"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746170,"level":"LOG","args":["Added drop events to placeholder:","ras-al-khaimah"],"stack":null}
+[2026-04-28T23:09:06.213Z] {"timestamp":1777417746170,"level":"LOG","args":["Added drop events to placeholder:","fujairah"],"stack":null}
+[2026-04-28T23:09:10.212Z] {"timestamp":1777417749705,"level":"LOG","args":["Dropped","abu-dhabi","on","abu-dhabi"],"stack":null}
+[2026-04-28T23:09:16.212Z] {"timestamp":1777417754247,"level":"LOG","args":["Dropped","dubai","on","dubai"],"stack":null}
+[2026-04-28T23:09:18.213Z] {"timestamp":1777417757267,"level":"LOG","args":["Dropped","sharjah","on","fujairah"],"stack":null}
+[2026-04-28T23:09:20.214Z] {"timestamp":1777417759145,"level":"LOG","args":["Dropped","sharjah","on","ajman"],"stack":null}
+[2026-04-28T23:09:22.214Z] {"timestamp":1777417761633,"level":"LOG","args":["Dropped","sharjah","on","umm-al-quwain"],"stack":null}
+[2026-04-28T23:09:24.214Z] {"timestamp":1777417763617,"level":"LOG","args":["Dropped","sharjah","on","ras-al-khaimah"],"stack":null}
+[2026-04-28T23:09:26.215Z] {"timestamp":1777417765720,"level":"LOG","args":["Dropped","sharjah","on","fujairah"],"stack":null}
+[2026-04-28T23:09:30.214Z] {"timestamp":1777417769804,"level":"LOG","args":["Dropped","fujairah","on","fujairah"],"stack":null}
+[2026-04-28T23:09:34.216Z] {"timestamp":1777417772515,"level":"LOG","args":["Dropped","sharjah","on","sharjah"],"stack":null}
+[2026-04-28T23:09:36.215Z] {"timestamp":1777417775419,"level":"LOG","args":["Dropped","ras-al-khaimah","on","ajman"],"stack":null}
+[2026-04-28T23:09:38.215Z] {"timestamp":1777417777227,"level":"LOG","args":["Dropped","ras-al-khaimah","on","umm-al-quwain"],"stack":null}
+[2026-04-28T23:09:40.215Z] {"timestamp":1777417779125,"level":"LOG","args":["Dropped","ras-al-khaimah","on","ras-al-khaimah"],"stack":null}
+[2026-04-28T23:09:42.216Z] {"timestamp":1777417780963,"level":"LOG","args":["Dropped","umm-al-quwain","on","umm-al-quwain"],"stack":null}
+[2026-04-28T23:09:44.220Z] {"timestamp":1777417782937,"level":"LOG","args":["Dropped","ajman","on","ajman"],"stack":null}
