@@ -134,3 +134,78 @@
 [2026-04-28T19:53:21.545Z] {"timestamp":1777405999542,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
 [2026-04-28T19:53:21.546Z] {"timestamp":1777405999555,"level":"DEBUG","args":["[vite] connected."],"stack":null}
 [2026-04-28T19:53:21.546Z] {"timestamp":1777406001052,"level":"LOG","args":["Selected: sheika"],"stack":null}
+[2026-04-28T20:56:25.607Z] {"timestamp":1777409783593,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T20:56:25.607Z] {"timestamp":1777409783707,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T20:56:25.607Z] {"timestamp":1777409784849,"level":"LOG","args":["Selected: sheika"],"stack":null}
+[2026-04-28T21:59:01.167Z] {"timestamp":1777413539159,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T21:59:01.167Z] {"timestamp":1777413539176,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T21:59:31.164Z] {"timestamp":1777413569220,"level":"LOG","args":["Selected: sheika"],"stack":null}
+[2026-04-28T22:01:49.456Z] {"timestamp":1777413706745,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:01:49.456Z] {"timestamp":1777413706761,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:02:03.455Z] {"timestamp":1777413720658,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:02:39.456Z] {"timestamp":1777413756622,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:02:39.456Z] {"timestamp":1777413756627,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:03:09.209Z] {"timestamp":1777413786639,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:03:09.209Z] {"timestamp":1777413786642,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:03:26.643Z] {"timestamp":1777413806407,"level":"LOG","args":["Selected: zayed"],"stack":null}
+[2026-04-28T22:04:36.457Z] {"timestamp":1777413873648,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:04:36.457Z] {"timestamp":1777413873650,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:04:50.457Z] {"timestamp":1777413887631,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:04:50.457Z] {"timestamp":1777413887639,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:05:02.457Z] {"timestamp":1777413899619,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:05:02.457Z] {"timestamp":1777413899623,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:05:21.623Z] {"timestamp":1777413920528,"level":"LOG","args":["Selected: zayed"],"stack":null}
+[2026-04-28T22:07:12.457Z] {"timestamp":1777414029638,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:07:12.457Z] {"timestamp":1777414029642,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:07:20.457Z] {"timestamp":1777414037645,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:07:20.457Z] {"timestamp":1777414037656,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:07:49.603Z] {"timestamp":1777414065656,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:07:49.603Z] {"timestamp":1777414065661,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:08:11.672Z] {"timestamp":1777414089887,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:08:11.672Z] {"timestamp":1777414089903,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:08:15.765Z] {"timestamp":1777414091808,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:08:15.765Z] {"timestamp":1777414091818,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:08:34.558Z] {"timestamp":1777414110599,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:08:34.558Z] {"timestamp":1777414110605,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:08:43.806Z] {"timestamp":1777414119841,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:08:43.806Z] {"timestamp":1777414119848,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:09:05.620Z] {"timestamp":1777414141664,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:09:05.620Z] {"timestamp":1777414141667,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:09:23.669Z] {"timestamp":1777414161922,"level":"LOG","args":["Selected: zayed"],"stack":null}
+[2026-04-28T22:09:41.669Z] {"timestamp":1777414180085,"level":"LOG","args":["Initializing bonus game, tokens:","7","map container:","true"],"stack":null}
+[2026-04-28T22:09:41.669Z] {"timestamp":1777414180086,"level":"LOG","args":["Added drag events to:","Abu Dhabi"],"stack":null}
+[2026-04-28T22:09:41.669Z] {"timestamp":1777414180086,"level":"LOG","args":["Added drag events to:","Dubai"],"stack":null}
+[2026-04-28T22:09:41.669Z] {"timestamp":1777414180086,"level":"LOG","args":["Added drag events to:","Sharjah"],"stack":null}
+[2026-04-28T22:09:41.669Z] {"timestamp":1777414180086,"level":"LOG","args":["Added drag events to:","Ajman"],"stack":null}
+[2026-04-28T22:09:41.669Z] {"timestamp":1777414180086,"level":"LOG","args":["Added drag events to:","Umm Al Quwain"],"stack":null}
+[2026-04-28T22:09:41.669Z] {"timestamp":1777414180086,"level":"LOG","args":["Added drag events to:","Ras Al Khaimah"],"stack":null}
+[2026-04-28T22:09:41.669Z] {"timestamp":1777414180086,"level":"LOG","args":["Added drag events to:","Fujairah"],"stack":null}
+[2026-04-28T22:09:41.669Z] {"timestamp":1777414180086,"level":"LOG","args":["Added drop events to map container"],"stack":null}
+[2026-04-28T22:10:58.212Z] {"timestamp":1777414256200,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:10:58.212Z] {"timestamp":1777414256432,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:11:08.013Z] {"timestamp":1777414265843,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:11:08.013Z] {"timestamp":1777414265856,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:11:22.464Z] {"timestamp":1777414279963,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:11:22.464Z] {"timestamp":1777414279977,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:11:33.891Z] {"timestamp":1777414291885,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T22:11:33.891Z] {"timestamp":1777414292103,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T22:11:49.900Z] {"timestamp":1777414308173,"level":"LOG","args":["Selected: zayed"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323946,"level":"LOG","args":["Initializing bonus game, tokens:","7","placeholders:","7"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323947,"level":"LOG","args":["Added drag events to:","Abu Dhabi"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323947,"level":"LOG","args":["Added drag events to:","Dubai"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323947,"level":"LOG","args":["Added drag events to:","Sharjah"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323947,"level":"LOG","args":["Added drag events to:","Ajman"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323947,"level":"LOG","args":["Added drag events to:","Umm Al Quwain"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323947,"level":"LOG","args":["Added drag events to:","Ras Al Khaimah"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323947,"level":"LOG","args":["Added drag events to:","Fujairah"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323948,"level":"LOG","args":["Added drop events to placeholder:","abu-dhabi"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323948,"level":"LOG","args":["Added drop events to placeholder:","dubai"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323948,"level":"LOG","args":["Added drop events to placeholder:","sharjah"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323948,"level":"LOG","args":["Added drop events to placeholder:","ajman"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323948,"level":"LOG","args":["Added drop events to placeholder:","umm-al-quwain"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323948,"level":"LOG","args":["Added drop events to placeholder:","ras-al-khaimah"],"stack":null}
+[2026-04-28T22:12:05.903Z] {"timestamp":1777414323948,"level":"LOG","args":["Added drop events to placeholder:","fujairah"],"stack":null}
+[2026-04-28T22:12:07.889Z] {"timestamp":1777414326502,"level":"LOG","args":["Dropped","abu-dhabi","on","abu-dhabi"],"stack":null}
+[2026-04-28T22:12:09.889Z] {"timestamp":1777414328271,"level":"LOG","args":["Dropped","dubai","on","fujairah"],"stack":null}
+[2026-04-28T22:12:11.890Z] {"timestamp":1777414331410,"level":"LOG","args":["Dropped","sharjah","on","umm-al-quwain"],"stack":null}
+[2026-04-28T22:12:15.889Z] {"timestamp":1777414334347,"level":"LOG","args":["Dropped","umm-al-quwain","on","ras-al-khaimah"],"stack":null}

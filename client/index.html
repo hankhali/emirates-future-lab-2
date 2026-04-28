@@ -1112,17 +1112,18 @@
 
         .mission-tabs {
             display: flex;
-            gap: 24px;
-            padding: 20px 24px;
+            gap: 32px;
+            padding: 24px 32px;
             background: rgba(10, 22, 40, 0.6);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
             z-index: 2;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 15px;
             font-weight: 600;
             overflow-x: auto;
+            justify-content: center;
         }
 
         .mission-tab {
@@ -1130,25 +1131,24 @@
             border: none;
             color: rgba(255, 255, 255, 0.5);
             cursor: pointer;
-            padding: 8px 0;
+            padding: 12px 16px;
             border-bottom: 2px solid transparent;
-            transition: all 0.2s ease;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 15px;
             font-weight: 600;
             white-space: nowrap;
-            letter-spacing: 0;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .mission-tab:hover {
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .mission-tab.active {
             color: #00ffaa;
             border-bottom-color: #00ffaa;
-        }
-
-        .mission-tab[data-tab="learn"].active {
-            color: #00ffaa;
-            border-bottom-color: #00ffaa;
-            text-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
         }
 
         .mission-tab[data-tab="learn"].completed {
@@ -2187,6 +2187,229 @@
             animation: fadeUp 0.6s ease;
         }
 
+        /* BONUS TAB - UAE Emirates Drag & Drop */
+        .bonus-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        .bonus-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .bonus-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            color: #00ffaa;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(0, 255, 170, 0.3);
+        }
+
+        .bonus-header p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .bonus-game-area {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .uae-map-container {
+            width: 100%;
+            max-width: 700px;
+            position: relative;
+            background: rgba(5, 20, 40, 0.5);
+            border: 2px solid rgba(0, 255, 170, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .uae-map-container.drag-over {
+            border-color: #00ffaa;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.3);
+        }
+
+        .uae-map-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            pointer-events: none;
+        }
+
+        .emirate-placeholder {
+            position: absolute;
+            width: 100px;
+            height: 50px;
+            border: 3px dashed rgba(0, 255, 170, 0.5);
+            border-radius: 12px;
+            background: rgba(0, 255, 170, 0.1);
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .emirate-placeholder:hover {
+            border-color: rgba(0, 255, 170, 0.8);
+            background: rgba(0, 255, 170, 0.2);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .emirate-placeholder.drag-over {
+            border-color: #00ffaa;
+            background: rgba(0, 255, 170, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 170, 0.5);
+            transform: translate(-50%, -50%) scale(1.15);
+        }
+
+        .emirate-placeholder.filled {
+            border-style: solid;
+            border-color: #00ffaa;
+            background: rgba(0, 255, 170, 0.4);
+        }
+
+        .placeholder-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: rgba(0, 255, 170, 0.6);
+        }
+
+        .emirate-placeholder.filled .placeholder-label {
+            display: none;
+        }
+
+        .placed-emirate-label {
+            position: absolute;
+            background: rgba(0, 255, 170, 0.9);
+            color: #001a0e;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            transform: translate(-50%, -50%);
+            animation: popIn 0.3s ease;
+            pointer-events: none;
+        }
+
+        @keyframes popIn {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            70% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .emirate-tokens {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            max-width: 700px;
+        }
+
+        .emirate-token {
+            background: linear-gradient(135deg, rgba(0, 255, 170, 0.15), rgba(0, 221, 255, 0.15));
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            border-radius: 12px;
+            padding: 14px 20px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            cursor: grab;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .emirate-token:hover {
+            background: linear-gradient(135deg, rgba(0, 255, 170, 0.25), rgba(0, 221, 255, 0.25));
+            border-color: rgba(0, 255, 170, 0.6);
+            transform: translateX(4px);
+            box-shadow: 0 4px 15px rgba(0, 255, 170, 0.2);
+        }
+
+        .emirate-token:active {
+            cursor: grabbing;
+        }
+
+        .emirate-token.dragging {
+            opacity: 0.5;
+            transform: scale(0.95);
+        }
+
+        .emirate-token.placed {
+            opacity: 0.3;
+            pointer-events: none;
+            text-decoration: line-through;
+        }
+
+        .bonus-progress {
+            text-align: center;
+            margin-top: 24px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .bonus-progress span {
+            color: #00ffaa;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .bonus-reward {
+            text-align: center;
+            margin-top: 32px;
+            padding: 32px;
+            background: rgba(0, 255, 170, 0.1);
+            border: 2px solid rgba(0, 255, 170, 0.4);
+            border-radius: 20px;
+            animation: fadeUp 0.6s ease;
+        }
+
+        .bonus-success-animation {
+            font-size: 48px;
+            margin-bottom: 16px;
+            animation: bounce 1s ease infinite;
+        }
+
+        .bonus-reward h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            color: #00ffaa;
+            margin-bottom: 8px;
+        }
+
+        .bonus-reward p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 16px;
+        }
+
+        .bonus-xp {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ffaa, #00ddff);
+            color: #001a0e;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 24px;
+            border-radius: 30px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
         .challenge-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 20px;
@@ -2764,9 +2987,10 @@
         <div class="mission-progress-bar" id="mission-progress-bar"></div>
 
         <div class="mission-tabs">
-            <button class="mission-tab active" data-tab="learn" onclick="switchTab('learn')">📖 Learn</button>
-            <button class="mission-tab" data-tab="quiz" onclick="switchTab('quiz')">❓ Quiz</button>
-            <button class="mission-tab" data-tab="challenge" onclick="switchTab('challenge')">🏆 Challenge</button>
+            <button class="mission-tab active" data-tab="learn" onclick="switchTab('learn')">Learn</button>
+            <button class="mission-tab" data-tab="quiz" onclick="switchTab('quiz')">Quiz</button>
+            <button class="mission-tab" data-tab="challenge" onclick="switchTab('challenge')">Challenge</button>
+            <button class="mission-tab" data-tab="bonus" onclick="switchTab('bonus')">Bonus</button>
         </div>
 
         <div class="mission-content">
@@ -2796,6 +3020,67 @@
             <!-- CHALLENGE TAB -->
             <div class="mission-tab-content" id="challenge-tab">
                 <div class="challenge-container" id="challenge-container"></div>
+            </div>
+
+            <!-- BONUS TAB - UAE Emirates Drag & Drop -->
+            <div class="mission-tab-content" id="bonus-tab">
+                <div class="bonus-container">
+                    <div class="bonus-header">
+                        <h2>🗺️ Map the Emirates!</h2>
+                        <p>Drag each emirate name to its correct location on the UAE map</p>
+                    </div>
+                    
+                    <div class="bonus-game-area">
+                        <!-- UAE Map with placeholder boxes -->
+                        <div class="uae-map-container" id="uae-map-container">
+                            <img src="/uae-map.png" alt="UAE Map" class="uae-map-image" id="uae-map-image">
+                            <!-- Placeholder boxes at emirate locations -->
+                            <div class="emirate-placeholder" data-emirate="abu-dhabi" style="left: 15%; top: 40%;">
+                                <span class="placeholder-label">?</span>
+                            </div>
+                            <div class="emirate-placeholder" data-emirate="dubai" style="left: 35%; top: 45%;">
+                                <span class="placeholder-label">?</span>
+                            </div>
+                            <div class="emirate-placeholder" data-emirate="sharjah" style="left: 42%; top: 38%;">
+                                <span class="placeholder-label">?</span>
+                            </div>
+                            <div class="emirate-placeholder" data-emirate="ajman" style="left: 40%; top: 32%;">
+                                <span class="placeholder-label">?</span>
+                            </div>
+                            <div class="emirate-placeholder" data-emirate="umm-al-quwain" style="left: 38%; top: 25%;">
+                                <span class="placeholder-label">?</span>
+                            </div>
+                            <div class="emirate-placeholder" data-emirate="ras-al-khaimah" style="left: 45%; top: 18%;">
+                                <span class="placeholder-label">?</span>
+                            </div>
+                            <div class="emirate-placeholder" data-emirate="fujairah" style="left: 55%; top: 35%;">
+                                <span class="placeholder-label">?</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Draggable Emirate Tokens -->
+                        <div class="emirate-tokens" id="emirate-tokens">
+                            <div class="emirate-token" draggable="true" data-emirate="abu-dhabi" data-x="15" data-y="40">Abu Dhabi</div>
+                            <div class="emirate-token" draggable="true" data-emirate="dubai" data-x="35" data-y="45">Dubai</div>
+                            <div class="emirate-token" draggable="true" data-emirate="sharjah" data-x="42" data-y="38">Sharjah</div>
+                            <div class="emirate-token" draggable="true" data-emirate="ajman" data-x="40" data-y="32">Ajman</div>
+                            <div class="emirate-token" draggable="true" data-emirate="umm-al-quwain" data-x="38" data-y="25">Umm Al Quwain</div>
+                            <div class="emirate-token" draggable="true" data-emirate="ras-al-khaimah" data-x="45" data-y="18">Ras Al Khaimah</div>
+                            <div class="emirate-token" draggable="true" data-emirate="fujairah" data-x="55" data-y="35">Fujairah</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bonus-progress">
+                        <span id="bonus-score">0</span> / 7 emirates placed correctly
+                    </div>
+                    
+                    <div class="bonus-reward" id="bonus-reward" style="display: none;">
+                        <div class="bonus-success-animation">🎉</div>
+                        <h3>Amazing Job!</h3>
+                        <p>You've mapped all 7 emirates!</p>
+                        <div class="bonus-xp">+20 Bonus XP</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -4125,7 +4410,7 @@
         function switchTab(tabName) {
             const tabs = document.querySelectorAll('.mission-tab');
             const contents = document.querySelectorAll('.mission-tab-content');
-            
+
             tabs.forEach(tab => {
                 if (tab.dataset.tab === tabName) {
                     tab.classList.add('active');
@@ -4140,6 +4425,100 @@
 
             document.getElementById(`${tabName}-tab`).classList.add('active');
             updateProgressBar();
+
+            // Initialize bonus game if switching to bonus tab
+            if (tabName === 'bonus') {
+                initBonusGame();
+            }
+        }
+
+        // BONUS GAME - UAE Emirates Drag & Drop
+        let bonusScore = 0;
+        let bonusInitialized = false;
+
+        function initBonusGame() {
+            if (bonusInitialized) return;
+            bonusInitialized = true;
+
+            const tokens = document.querySelectorAll('.emirate-token');
+            const placeholders = document.querySelectorAll('.emirate-placeholder');
+
+            console.log('Initializing bonus game, tokens:', tokens.length, 'placeholders:', placeholders.length);
+
+            tokens.forEach(token => {
+                token.addEventListener('dragstart', handleDragStart);
+                token.addEventListener('dragend', handleDragEnd);
+                console.log('Added drag events to:', token.textContent);
+            });
+
+            placeholders.forEach(placeholder => {
+                placeholder.addEventListener('dragover', handleDragOver);
+                placeholder.addEventListener('dragleave', handleDragLeave);
+                placeholder.addEventListener('drop', handleDropOnPlaceholder);
+                console.log('Added drop events to placeholder:', placeholder.dataset.emirate);
+            });
+        }
+
+        function handleDragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.dataset.emirate);
+            e.dataTransfer.setData('data-x', e.target.dataset.x);
+            e.dataTransfer.setData('data-y', e.target.dataset.y);
+            e.target.classList.add('dragging');
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDropOnPlaceholder(e) {
+            e.preventDefault();
+            const placeholder = e.currentTarget;
+            placeholder.classList.remove('drag-over');
+
+            const emirateId = e.dataTransfer.getData('text/plain');
+            const targetEmirate = placeholder.dataset.emirate;
+
+            console.log('Dropped', emirateId, 'on', targetEmirate);
+
+            if (emirateId === targetEmirate) {
+                // Correct match!
+                placeholder.classList.add('filled');
+                
+                // Add label inside placeholder
+                const label = document.createElement('div');
+                label.className = 'placed-emirate-label';
+                label.textContent = e.target.textContent;
+                placeholder.appendChild(label);
+
+                // Mark token as placed
+                const token = document.querySelector(`.emirate-token[data-emirate="${emirateId}"]`);
+                if (token) {
+                    token.classList.add('placed');
+                }
+
+                bonusScore++;
+                document.getElementById('bonus-score').textContent = bonusScore;
+
+                // Check if all emirates are placed
+                if (bonusScore === 7) {
+                    setTimeout(() => {
+                        document.getElementById('bonus-reward').style.display = 'block';
+                        // Add bonus XP
+                        missionXP += 20;
+                        updateProgressBar();
+                        triggerFlash('#00ffaa');
+                    }, 500);
+                }
+            }
         }
 
         function updateProgressBar() {
