@@ -1,0 +1,3288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emirates Future Lab | UAE Sustainability & AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #010818;
+            --green-primary: #00ffaa;
+            --green-gradient: linear-gradient(90deg, #00ffaa, #00ddff);
+            --blue-primary: #0066ff;
+            --blue-light: #44aaff;
+            --muted: rgba(255, 255, 255, 0.5);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            color: white;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+
+
+
+
+        @keyframes fadeUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            width: 100vw;
+            height: 100vh;
+            background-image: url('/hero-bg-new.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #starfield-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* Toast Notification */
+        .toast-notification {
+            position: fixed;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(0, 255, 170, 0.5);
+            border-radius: 12px;
+            padding: 16px 32px;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            z-index: 10000;
+            animation: slideDown 0.5s ease, slideUp 0.5s ease 2.5s forwards;
+        }
+
+        @keyframes slideDown {
+            from { transform: translate(-50%, -30px); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translate(-50%, 0); opacity: 1; }
+            to { transform: translate(-50%, -30px); opacity: 0; }
+        }
+
+
+
+        /* --- OVERLAY FLASH --- */
+        #flash-overlay {
+            position: fixed;
+            inset: 0;
+            background: white;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transition: opacity 0.6s ease;
+        }
+
+        /* --- SIGN UP SCREEN --- */
+        .signup-section {
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+        }
+
+        .signup-section.sheika-guide {
+            background-image: url('/signup-bg-sheika.png');
+        }
+
+        .signup-section.zayed-guide {
+            background-image: url('/signup-bg-zayed.png');
+        }
+
+        .signup-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(1, 8, 24, 0.45);
+            z-index: 1;
+        }
+
+        .signup-section.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 100;
+        }
+
+        .signup-section.active .signup-form-card {
+            animation: slideUpFade 0.4s ease 0.4s both;
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .signup-form-card {
+            position: absolute;
+            right: 18%;
+            top: 60px;
+            width: 420px;
+            max-height: calc(100vh - 120px);
+            background: rgba(5, 15, 35, 0.80);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            padding: 40px 44px;
+            z-index: 2;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .signup-form-card::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .signup-form-card::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .signup-form-card::-webkit-scrollbar-thumb {
+            background: rgba(0, 255, 170, 0.3);
+            border-radius: 3px;
+        }
+
+        .signup-form-card::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 255, 170, 0.5);
+        }
+
+        .signup-badge {
+            display: inline-block;
+            background: rgba(0, 255, 170, 0.1);
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            color: #00ffaa;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            padding: 5px 14px;
+            text-transform: uppercase;
+        }
+
+        .signup-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 26px;
+            color: white;
+            margin-top: 12px;
+            margin-bottom: 8px;
+        }
+
+        .signup-subtitle {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: white;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 14px;
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group select::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: rgba(0, 255, 170, 0.5);
+            box-shadow: 0 0 20px rgba(0, 255, 170, 0.08);
+        }
+
+        .form-group.error input,
+        .form-group.error select {
+            border-color: rgba(255, 80, 80, 0.5);
+        }
+
+        .form-group.error .error-message {
+            font-size: 12px;
+            color: #ff5050;
+            margin-top: 6px;
+            display: block;
+        }
+
+        .form-group .form-group-label-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 18px;
+            background: none;
+            border: none;
+            padding: 0;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .xp-line {
+            font-size: 12px;
+            color: rgba(200, 255, 200, 0.5);
+            text-align: center;
+            margin: 10px 0 18px;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        .submit-btn {
+            width: 100%;
+            height: 52px;
+            border-radius: 14px;
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        .submit-btn.sheika-theme {
+            background: linear-gradient(135deg, #00c97a, #00ffaa);
+            color: #001a0e;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.25);
+        }
+
+        .submit-btn.zayed-theme {
+            background: linear-gradient(135deg, #0055dd, #00ccff);
+            color: white;
+            box-shadow: 0 0 30px rgba(0, 102, 255, 0.25);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 18px 0;
+            gap: 12px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .divider-text {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .signin-link {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        .signin-link a {
+            color: #00ffaa;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .signin-link a:hover {
+            color: #00ddff;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            width: 100vw;
+            height: 100vh;
+            background-image: url('/welcome-bg.png');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-screen::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(1, 8, 24, 0.45);
+            z-index: 0;
+        }
+
+        .loading-screen.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .loading-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .loading-guide {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 16px;
+            color: rgba(0, 255, 170, 0.8);
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .loading-dots {
+            font-size: 24px;
+            letter-spacing: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dot {
+            display: inline-block;
+            animation: pulse 1.4s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse {
+            0%, 60%, 100% { opacity: 0.3; }
+            30% { opacity: 1; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .form-group.shake input,
+        .form-group.shake select {
+            animation: shake 0.4s ease;
+        }
+
+        /* --- WELCOME SCREEN (Screen 3) --- */
+        .welcome-screen {
+            width: 100vw;
+            height: 100vh;
+            background-image: url('/welcome-bg.png');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 150;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        .welcome-screen::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(1, 8, 24, 0.45);
+            z-index: 0;
+        }
+
+        .welcome-screen.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .welcome-container {
+            width: 90%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding: 60px 20px;
+            animation: fadeInUp 0.6s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .video-player {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: none;
+            box-shadow: none;
+            background: transparent;
+        }
+
+        .video-player video {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: transparent;
+            border-radius: 20px;
+        }
+
+        .mission-preview {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(5, 15, 35, 0.80);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+        }
+
+        .mission-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .mission-subtitle {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+        }
+
+        .xp-reward {
+            display: inline-block;
+            background: rgba(0, 255, 170, 0.1);
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            color: #00ffaa;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .continue-btn {
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #00c97a, #00ffaa);
+            color: #001a0e;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.25);
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 50px rgba(0, 255, 170, 0.4);
+        }
+
+        .continue-btn.zayed {
+            background: linear-gradient(135deg, #0055dd, #00ccff);
+            color: white;
+        }
+
+        /* --- DASHBOARD SCREEN (Screen 4) --- */
+        .dashboard-screen {
+            width: 100vw;
+            height: 100vh;
+            background-image: url('/welcome-bg.png');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 140;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .dashboard-screen::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(1, 8, 24, 0.45);
+            z-index: 0;
+        }
+
+        .dashboard-screen.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .dashboard-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dashboard-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-header p {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+        }
+
+        .guide-welcome {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            color: #00ffaa;
+            letter-spacing: 1px;
+        }
+
+        .guide-welcome.zayed {
+            color: #00ccff;
+        }
+
+        .missions-grid {
+            display: grid !important;
+            grid-template-columns: repeat(5, 1fr) !important;
+            gap: 16px !important;
+            width: 100% !important;
+            max-width: 1100px !important;
+            margin: 0 auto !important;
+            margin-bottom: 40px !important;
+            padding: 0 20px !important;
+            box-sizing: border-box !important;
+        }
+
+        .mission-card {
+            background: rgba(5, 20, 40, 0.85) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 16px !important;
+            overflow: hidden !important;
+            cursor: pointer !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+            position: relative !important;
+            opacity: 1 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            height: fit-content !important;
+        }
+
+        @keyframes slideInCard {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mission-card:nth-child(1) { animation-delay: 0.1s; }
+        .mission-card:nth-child(2) { animation-delay: 0.2s; }
+        .mission-card:nth-child(3) { animation-delay: 0.3s; }
+        .mission-card:nth-child(4) { animation-delay: 0.4s; }
+        .mission-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .mission-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.2);
+        }
+
+        .mission-card.start-here {
+            border: 2px solid #00ffaa;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.25);
+        }
+
+        .mission-card.start-here:hover {
+            box-shadow: 0 0 60px rgba(0, 255, 170, 0.3);
+        }
+
+        .mission-image {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, rgba(0, 255, 170, 0.1), rgba(0, 102, 255, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .mission-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .mission-image.placeholder {
+            font-size: 40px;
+        }
+
+        .mission-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 255, 170, 0.2);
+            border: 1px solid rgba(0, 255, 170, 0.5);
+            color: #00ffaa;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .mission-badge.start {
+            background: rgba(0, 255, 170, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .milestone-content {
+            padding: 16px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 0 !important;
+            flex-grow: 0 !important;
+        }
+
+        .missions-grid .mission-content {
+            padding: 16px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 0 !important;
+            flex-grow: 0 !important;
+            min-height: auto !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+        }
+
+        .mission-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            color: white;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .mission-topic {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .mission-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 6px;
+        }
+
+        .mission-xp {
+            background: rgba(0, 255, 170, 0.1);
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            color: #00ffaa;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .mission-difficulty {
+            font-size: 12px;
+            color: rgba(255, 200, 100, 0.8);
+            white-space: nowrap;
+        }
+
+        .mission-button {
+            width: 100% !important;
+            height: 40px !important;
+            background: linear-gradient(135deg, #00c97a, #00ffaa) !important;
+            color: #001a0e !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-family: 'Orbitron', sans-serif !important;
+            font-size: 11px !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            letter-spacing: 1px !important;
+            text-transform: uppercase !important;
+            margin-top: 12px !important;
+        }
+
+        .mission-button:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 170, 0.3);
+            transform: scale(1.02);
+        }
+
+        .mission-button.locked {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            cursor: not-allowed;
+        }
+
+        .mission-button.locked:hover {
+            box-shadow: none;
+            transform: scale(1);
+        }
+
+        .dashboard-footer {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- MISSION SCREEN (Screen 5) --- */
+        .mission-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('/mission-background.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            z-index: 150;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            overflow-y: auto;
+        }
+
+        .mission-screen::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(1, 8, 24, 0.7);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .mission-screen.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mission-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: rgba(5, 20, 40, 0.6);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            z-index: 2;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .mission-back-btn {
+            font-size: 11px;
+            color: #00ffaa;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+        }
+
+        .mission-back-btn:hover {
+            opacity: 0.7;
+        }
+
+        .mission-top-title {
+            font-size: 16px;
+            white-space: nowrap;
+            flex: 1;
+            text-align: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .mission-xp-counter {
+            font-size: 12px;
+            color: #00ffaa;
+            letter-spacing: 1px;
+        }
+
+        .mission-progress-bar {
+            height: 3px;
+            background: rgba(255, 255, 255, 0.08);
+            position: relative;
+            z-index: 2;
+        }
+
+        .mission-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffaa, #00ddff);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .mission-tabs {
+            display: flex;
+            gap: 24px;
+            padding: 20px 24px;
+            background: rgba(5, 20, 40, 0.5);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            z-index: 2;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            overflow-x: auto;
+        }
+
+        .mission-tab {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            white-space: nowrap;
+            letter-spacing: 1px;
+        }
+
+        .mission-tab.active {
+            color: #00ffaa;
+            border-bottom-color: #00ffaa;
+        }
+
+        .mission-tab:hover {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .mission-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .mission-tab-content {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .mission-tab-content.active {
+            opacity: 1;
+            pointer-events: auto;
+            max-height: 100%;
+        }
+
+        /* LEARN TAB */
+        .learn-carousel {
+            position: relative;
+            margin: 80px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1000px;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .learn-cards {
+            flex: 1;
+            max-width: 650px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 800px;
+        }
+
+        .learn-card {
+            background: rgba(5, 20, 40, 0.85);
+            border: 2px solid rgba(0, 255, 170, 0.2);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            padding: 32px 36px;
+            position: absolute;
+            width: 100%;
+            max-width: 600px;
+            opacity: 0;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            overflow: visible;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .learn-card.active {
+            opacity: 1;
+            z-index: 10;
+            animation: slideUpIn 0.6s ease forwards;
+            transform: translate(-50%, -50%);
+        }
+
+        .learn-card.hidden {
+            opacity: 0;
+            z-index: 0;
+            visibility: hidden;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes slideUpIn {
+            from { opacity: 0; transform: translate(-50%, -40%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .learn-carousel-button {
+            background: rgba(0, 255, 170, 0.2);
+            border: 2px solid rgba(0, 255, 170, 0.4);
+            color: #00ffaa;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 32px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .learn-carousel-button:hover:not(:disabled) {
+            background: rgba(0, 255, 170, 0.35);
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.5);
+            transform: scale(1.1);
+        }
+
+        .learn-carousel-button:disabled {
+            opacity: 0.2;
+            cursor: not-allowed;
+        }
+
+        .learn-carousel-counter {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: rgba(0, 255, 170, 0.6);
+            text-align: center;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        .learn-card-image {
+            width: calc(100% + 72px);
+            height: 280px;
+            margin: -32px -36px 24px -36px;
+            object-fit: cover;
+            border-radius: 22px 22px 0 0;
+            display: block;
+        }
+
+        .learn-card-reveal {
+            display: inline-block;
+            background: rgba(0, 255, 170, 0.15);
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            border-radius: 50px;
+            padding: 6px 14px;
+            font-size: 11px;
+            color: #00ffaa;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .learn-card-reveal:hover {
+            background: rgba(0, 255, 170, 0.25);
+            box-shadow: 0 0 10px rgba(0, 255, 170, 0.3);
+        }
+
+        .learn-card-fact {
+            display: none;
+            background: rgba(0, 255, 170, 0.08);
+            border-left: 3px solid #00ffaa;
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            animation: slideDown 0.3s ease;
+        }
+
+        .learn-card-fact.revealed {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .learn-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(#00ffaa, #00ddff);
+            border-radius: 20px 0 0 20px;
+        }
+
+        .learn-card:nth-child(1) { animation-delay: 0ms; }
+        .learn-card:nth-child(2) { animation-delay: 150ms; }
+        .learn-card:nth-child(3) { animation-delay: 300ms; }
+
+        .learn-card-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            color: rgba(0, 255, 170, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .learn-card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            color: white;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .learn-card-body {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .learn-card-stat {
+            display: inline-block;
+            background: rgba(0, 255, 170, 0.08);
+            border: 1px solid rgba(0, 255, 170, 0.2);
+            border-radius: 50px;
+            padding: 4px 14px;
+            font-size: 12px;
+            color: #00ffaa;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        .mission-next-btn {
+            background: linear-gradient(135deg, #00c97a, #00ffaa);
+            color: #001a0e;
+            border: none;
+            border-radius: 50px;
+            padding: 14px 32px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.25);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        .mission-next-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .mission-next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 50px rgba(0, 255, 170, 0.4);
+        }
+
+        /* QUIZ TAB */
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            background: rgba(5, 20, 40, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            backdrop-filter: blur(16px);
+            padding: 32px;
+            animation: fadeUp 0.6s ease;
+        }
+
+        .quiz-question-number {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 16px;
+        }
+
+        .quiz-question-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            color: white;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: rgba(0, 255, 170, 0.3);
+            background: rgba(0, 255, 170, 0.05);
+        }
+
+        .quiz-option.disabled {
+            pointer-events: none;
+        }
+
+        .quiz-option-letter {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .quiz-option.correct {
+            border-color: rgba(0, 255, 170, 0.8);
+            background: rgba(0, 255, 170, 0.1);
+        }
+
+        .quiz-option.correct .quiz-option-letter {
+            background: #00ffaa;
+            color: #001a0e;
+        }
+
+        .quiz-option.wrong {
+            border-color: rgba(255, 80, 80, 0.6);
+            background: rgba(255, 80, 80, 0.05);
+            animation: shake 0.5s;
+        }
+
+        .quiz-feedback {
+            margin-top: 16px;
+            font-size: 14px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .quiz-feedback.correct {
+            background: rgba(0, 255, 170, 0.15);
+            color: #00ffaa;
+            border: 1px solid rgba(0, 255, 170, 0.3);
+        }
+
+        .quiz-feedback.wrong {
+            background: rgba(255, 80, 80, 0.15);
+            color: #ff5050;
+            border: 1px solid rgba(255, 80, 80, 0.3);
+        }
+
+        .xp-earned {
+            position: absolute;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #00ffaa;
+            pointer-events: none;
+            animation: floatUp 1.5s ease-out forwards;
+        }
+
+        /* CHALLENGE TAB */
+        .challenge-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(5, 20, 40, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            backdrop-filter: blur(16px);
+            padding: 32px;
+            animation: fadeUp 0.6s ease;
+        }
+
+        .challenge-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            color: white;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .challenge-instruction {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 24px;
+        }
+
+        .drag-drop-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .drop-zone {
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            min-height: 200px;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .drop-zone.hover {
+            border-color: rgba(0, 255, 170, 0.5);
+            background: rgba(0, 255, 170, 0.05);
+        }
+
+        .drop-zone-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            font-weight: 700;
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            transform: none;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .draggable-item {
+            background: rgba(0, 255, 170, 0.1);
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: grab;
+            user-select: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            touch-action: none;
+        }
+
+        .draggable-item:active {
+            cursor: grabbing;
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+
+        .draggable-item.correct {
+            border-color: rgba(0, 255, 170, 0.8);
+            background: rgba(0, 255, 170, 0.2);
+        }
+
+        .draggable-item.wrong {
+            border-color: rgba(255, 80, 80, 0.6);
+            background: rgba(255, 80, 80, 0.1);
+            animation: bounce 0.5s;
+        }
+
+        .challenge-check-btn {
+            background: linear-gradient(135deg, #00c97a, #00ffaa);
+            color: #001a0e;
+            border: none;
+            border-radius: 50px;
+            padding: 14px 32px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.25);
+            text-transform: uppercase;
+            width: 100%;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .challenge-check-btn.enabled {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .challenge-check-btn:hover.enabled {
+            transform: translateY(-2px);
+            box-shadow: 0 0 50px rgba(0, 255, 170, 0.4);
+        }
+
+        .challenge-message {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .challenge-message.success {
+            color: #00ffaa;
+        }
+
+        .challenge-message.error {
+            color: #ff5050;
+        }
+
+        /* --- BADGE SCREEN (Screen 6) --- */
+        .badge-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('/mission-background.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            z-index: 160;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .badge-screen::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(1, 8, 24, 0.85);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .badge-screen.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .signup-section:not(.active),
+        .loading-screen:not(.active),
+        .welcome-screen:not(.active),
+        .dashboard-screen:not(.active),
+        .mission-screen:not(.active),
+        .badge-screen:not(.active) {
+            pointer-events: none !important;
+        }
+
+        .signup-section:not(.active) *,
+        .loading-screen:not(.active) *,
+        .welcome-screen:not(.active) *,
+        .dashboard-screen:not(.active) *,
+        .mission-screen:not(.active) *,
+        .badge-screen:not(.active) * {
+            pointer-events: none !important;
+        }
+
+        .confetti-container {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .badge-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .badge-reveal-ring {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #00ffaa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 60px rgba(0, 255, 170, 0.3);
+            animation: scaleIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            position: relative;
+        }
+
+        .badge-reveal-ring::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 1.5s ease-in-out 0.8s;
+        }
+
+        .badge-icon {
+            font-size: 80px;
+            animation: popIn 0.6s ease 0.4s both;
+        }
+
+        .badge-text-block {
+            animation: fadeUp 0.6s ease 0.6s both;
+        }
+
+        .badge-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: #00ffaa;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .badge-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            color: white;
+            margin-bottom: 8px;
+            text-shadow: 0 0 30px rgba(0, 255, 170, 0.3);
+            font-weight: 700;
+        }
+
+        .badge-subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .badge-xp-summary {
+            background: rgba(5, 20, 40, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            backdrop-filter: blur(16px);
+            padding: 20px 28px;
+            max-width: 320px;
+            animation: fadeUp 0.6s ease 0.8s both;
+            font-size: 13px;
+        }
+
+        .xp-summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .xp-check {
+            color: #00ffaa;
+            font-weight: 700;
+        }
+
+        .xp-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 8px 0;
+        }
+
+        .xp-total {
+            color: white;
+            font-weight: 700;
+        }
+
+        .xp-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 3px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+
+        .xp-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffaa, #00ddff);
+            width: 0%;
+            border-radius: 3px;
+            animation: fillXP 1s ease-out 1s forwards;
+        }
+
+        .badge-stars {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            animation: fadeUp 0.6s ease 1s both;
+        }
+
+        .star {
+            font-size: 32px;
+            color: rgba(255, 255, 255, 0.2);
+            animation: none;
+        }
+
+        .star.earned {
+            color: #FFD700;
+            animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+        }
+
+        .badge-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            animation: fadeUp 0.6s ease 1.2s both;
+            flex-wrap: wrap;
+        }
+
+        .badge-btn {
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .badge-back {
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            background: transparent;
+        }
+
+        .badge-back:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .badge-next {
+            background: linear-gradient(135deg, #00c97a, #00ffaa);
+            color: #001a0e;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.25);
+        }
+
+        .badge-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 50px rgba(0, 255, 170, 0.4);
+        }
+
+        .badge-character {
+            position: absolute;
+            bottom: 0;
+            height: 50vh;
+            width: 40%;
+            opacity: 0.4;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            pointer-events: none;
+        }
+
+        /* ANIMATIONS */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-60px); opacity: 0; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes fillXP {
+            from { width: 0%; }
+            to { width: var(--xp-percent, 100%); }
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="flash-overlay"></div>
+
+    <!-- HERO SCREEN -->
+    <section class="hero-section">
+        <canvas id="starfield-overlay"></canvas>
+    </section>
+
+    <!-- SIGN UP SCREEN -->
+    <section class="signup-section" id="signup-section">
+        <div class="signup-form-card">
+            <div class="signup-badge" id="badge-text">NEW EXPLORER</div>
+            <h1 class="signup-title" id="form-title">Create Your Account</h1>
+            <p class="signup-subtitle" id="form-subtitle">Join thousands of UAE explorers</p>
+
+            <form id="signup-form" onsubmit="handleFormSubmit(event)">
+                <!-- SIGN UP FORM FIELDS -->
+                <div id="signup-fields">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Enter your name" required>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div style="position: relative;">
+                            <input type="password" id="password" name="password" placeholder="Create a password" required>
+                            <button type="button" class="password-toggle" onclick="togglePasswordVisibility()">👁️</button>
+                        </div>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Grade</label>
+                        <select id="grade" name="grade" required>
+                            <option value="">Select your grade</option>
+                            <option value="4">Grade 4</option>
+                            <option value="8">Grade 8</option>
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="science">Science</option>
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
+                </div>
+
+                <!-- SIGN IN FORM FIELDS (hidden by default) -->
+                <div id="signin-fields" style="display: none;">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="signin-email" name="signin-email" placeholder="your@email.com">
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div style="position: relative;">
+                            <input type="password" id="signin-password" name="signin-password" placeholder="Enter your password">
+                            <button type="button" class="password-toggle" onclick="toggleSigninPasswordVisibility()">👁️</button>
+                        </div>
+                        <span class="error-message"></span>
+                    </div>
+                </div>
+
+                <div class="xp-line">⭐ Complete your profile to earn 50 XP</div>
+                <button type="submit" class="submit-btn" id="submit-btn">BEGIN MY JOURNEY →</button>
+                
+                <div class="divider">
+                    <span class="divider-text">or</span>
+                </div>
+
+                <div class="signin-link" id="toggle-link">
+                    Already an explorer? <a onclick="toggleSignupSignin()">Sign In</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- LOADING SCREEN -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-text">🚀 Mission Loading...</div>
+        <div class="loading-guide" id="loading-guide-name"></div>
+        <div class="loading-dots">
+            <span class="dot">●</span>
+            <span class="dot">●</span>
+            <span class="dot">●</span>
+        </div>
+    </div>
+
+    <!-- WELCOME SCREEN (Screen 3) -->
+    <div class="welcome-screen" id="welcome-screen">
+        <div class="welcome-container">
+            <div class="video-player">
+                <video id="guide-video" controls>
+                    <source src="/sheika-welcome.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <div class="mission-preview">
+                <h2 class="mission-title" id="mission-title">Your First Mission</h2>
+                <p class="mission-subtitle" id="mission-subtitle">Explore sustainable solutions in your community</p>
+                <div class="xp-reward">⭐ Earn 100 XP</div>
+                <button class="continue-btn" id="continue-btn" onclick="proceedToMissionMap()">LET'S BEGIN →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD SCREEN (Screen 4) -->
+    <div class="dashboard-screen" id="dashboard-screen">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <h1>Your Learning Journey</h1>
+                <p>Complete missions, earn XP, and become a sustainability leader</p>
+                <div class="guide-welcome" id="guide-welcome-msg">Let's go, Explorer!</div>
+            </div>
+
+            <div class="missions-grid" id="missions-grid">
+                <!-- Missions will be dynamically generated here -->
+            </div>
+
+            <div class="dashboard-footer">
+                Complete all missions to unlock the ultimate challenge! 🚀
+            </div>
+        </div>
+    </div>
+
+    <!-- MISSION SCREEN (Screen 5) -->
+    <div class="mission-screen" id="mission-screen">
+        <div class="mission-top-bar">
+            <div class="mission-back-btn" onclick="backToDashboard()">
+                ← <span>Dashboard</span>
+            </div>
+            <h2 id="mission-title" class="mission-top-title">Mission Title</h2>
+            <div class="mission-xp-counter">
+                ⭐ <span id="current-xp">0</span> / <span id="total-xp">45</span> XP
+            </div>
+        </div>
+        <div class="mission-progress-bar" id="mission-progress-bar"></div>
+
+        <div class="mission-tabs">
+            <button class="mission-tab active" data-tab="learn" onclick="switchTab('learn')">📖 Learn</button>
+            <button class="mission-tab" data-tab="quiz" onclick="switchTab('quiz')">❓ Quiz</button>
+            <button class="mission-tab" data-tab="challenge" onclick="switchTab('challenge')">🏆 Challenge</button>
+        </div>
+
+        <div class="mission-content">
+            <!-- LEARN TAB -->
+            <div class="mission-tab-content active" id="learn-tab">
+                <div class="learn-carousel">
+                    <button class="learn-carousel-button" id="learn-prev" onclick="prevLearnCard()">←</button>
+                    <div class="learn-cards" id="learn-cards"></div>
+                    <button class="learn-carousel-button" id="learn-next" onclick="nextLearnCard()">→</button>
+                </div>
+                <div class="learn-carousel-counter"><span id="learn-counter">1 / 3</span></div>
+                <button class="mission-next-btn" onclick="switchTab('quiz')">Next: Take the Quiz →</button>
+            </div>
+
+            <!-- QUIZ TAB -->
+            <div class="mission-tab-content" id="quiz-tab">
+                <div class="quiz-container" id="quiz-container"></div>
+            </div>
+
+            <!-- CHALLENGE TAB -->
+            <div class="mission-tab-content" id="challenge-tab">
+                <div class="challenge-container" id="challenge-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BADGE SCREEN (Screen 6) -->
+    <div class="badge-screen" id="badge-screen">
+        <div id="confetti-container" class="confetti-container"></div>
+        
+        <div class="badge-content">
+            <div class="badge-reveal-ring" id="badge-ring">
+                <div class="badge-icon" id="badge-icon">🌱</div>
+            </div>
+
+            <div class="badge-text-block" id="badge-text-block">
+                <div class="badge-label">Mission Complete!</div>
+                <h2 id="badge-name" class="badge-name">Green Pioneer</h2>
+                <p class="badge-subtitle">You've earned this badge!</p>
+            </div>
+
+            <div class="badge-xp-summary" id="badge-xp-summary">
+                <div class="xp-summary-row">
+                    <span>📖 Learn completed</span>
+                    <span class="xp-check">✓</span>
+                </div>
+                <div class="xp-summary-row">
+                    <span>❓ Quiz score</span>
+                    <span id="quiz-score-display">0 / 30 XP</span>
+                </div>
+                <div class="xp-summary-row">
+                    <span>🏆 Challenge</span>
+                    <span id="challenge-score-display">+25 XP</span>
+                </div>
+                <div class="xp-divider"></div>
+                <div class="xp-summary-row xp-total">
+                    <span>Total earned:</span>
+                    <span id="total-earned-xp">0 / 45 XP</span>
+                </div>
+                <div class="xp-bar">
+                    <div class="xp-bar-fill" id="xp-bar-fill"></div>
+                </div>
+            </div>
+
+            <div class="badge-stars" id="badge-stars">
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+            </div>
+
+            <div class="badge-buttons">
+                <button class="badge-btn badge-back" onclick="backToDashboard()">← Back to Map</button>
+                <button class="badge-btn badge-next" onclick="nextMission()">Next Mission →</button>
+            </div>
+        </div>
+
+        <div class="badge-character" id="badge-character"></div>
+    </div>
+
+    <script>
+        // --- HERO STARFIELD ---
+        const heroCanvas = document.getElementById('starfield-overlay');
+        const heroCtx = heroCanvas.getContext('2d');
+        const heroSection = document.querySelector('.hero-section');
+        let heroStars = [];
+        const numHeroStars = 150;
+        let mouseX = heroCanvas.width / 2;
+        let mouseY = heroCanvas.height / 2;
+        const sheikhaRegion = { x: 0.355, y: 0.545, width: 0.096, height: 0.21 };
+        const heroBgImage = new Image();
+
+        function getRegionRect(region) {
+            const sectionWidth = heroSection.offsetWidth;
+            const sectionHeight = heroSection.offsetHeight;
+
+            if (!heroBgImage.naturalWidth || !heroBgImage.naturalHeight) {
+                return {
+                    left: region.x * sectionWidth,
+                    top: region.y * sectionHeight,
+                    width: region.width * sectionWidth,
+                    height: region.height * sectionHeight,
+                };
+            }
+
+            const scale = Math.max(
+                sectionWidth / heroBgImage.naturalWidth,
+                sectionHeight / heroBgImage.naturalHeight
+            );
+
+            const renderedWidth = heroBgImage.naturalWidth * scale;
+            const renderedHeight = heroBgImage.naturalHeight * scale;
+            const offsetX = (sectionWidth - renderedWidth) / 2;
+            const offsetY = (sectionHeight - renderedHeight) / 2;
+
+            return {
+                left: offsetX + region.x * renderedWidth,
+                top: offsetY + region.y * renderedHeight,
+                width: region.width * renderedWidth,
+                height: region.height * renderedHeight,
+            };
+        }
+
+        function resizeHeroCanvas() {
+            heroCanvas.width = heroSection.offsetWidth;
+            heroCanvas.height = heroSection.offsetHeight;
+            initHeroStars();
+        }
+
+        function initHeroStars() {
+            heroStars = [];
+            for (let i = 0; i < numHeroStars; i++) {
+                heroStars.push({
+                    x: Math.random() * heroCanvas.width,
+                    y: Math.random() * heroCanvas.height,
+                    size: Math.random() * 1.2 + 0.5,
+                    opacity: Math.random() * 0.6 + 0.2,
+                    twinkleSpeed: Math.random() * 0.02 + 0.005,
+                    twinkleAmount: Math.random() * 0.3
+                });
+            }
+        }
+
+        function drawHeroStars() {
+            heroCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+            heroCtx.fillStyle = 'white';
+            heroStars.forEach(star => {
+                // Parallax
+                const offsetX = (mouseX - heroCanvas.width / 2) * 0.008;
+                const offsetY = (mouseY - heroCanvas.height / 2) * 0.008;
+                
+                // Twinkle
+                star.opacity += star.twinkleSpeed;
+                if (star.opacity > 1 - star.twinkleAmount || star.opacity < 0.2) {
+                    star.twinkleSpeed = -star.twinkleSpeed;
+                }
+
+                heroCtx.globalAlpha = star.opacity;
+                heroCtx.beginPath();
+                heroCtx.arc(star.x + offsetX, star.y + offsetY, star.size, 0, Math.PI * 2);
+                heroCtx.fill();
+            });
+            requestAnimationFrame(drawHeroStars);
+        }
+
+        window.addEventListener('resize', resizeHeroCanvas);
+        heroSection.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX - heroSection.getBoundingClientRect().left;
+            mouseY = e.clientY - heroSection.getBoundingClientRect().top;
+        });
+
+        heroSection.addEventListener('click', (e) => {
+            if (chosenGuide) {
+                return;
+            }
+
+            const bounds = heroSection.getBoundingClientRect();
+            const clickX = e.clientX - bounds.left;
+            const clickY = e.clientY - bounds.top;
+            const sheikhaRect = getRegionRect(sheikhaRegion);
+
+            if (
+                clickX >= sheikhaRect.left &&
+                clickX <= sheikhaRect.left + sheikhaRect.width &&
+                clickY >= sheikhaRect.top &&
+                clickY <= sheikhaRect.top + sheikhaRect.height
+            ) {
+                chooseGuide('sheika');
+            }
+        });
+
+        heroBgImage.src = '/hero-bg-new.png';
+        
+        resizeHeroCanvas();
+        drawHeroStars();
+
+        // --- GUIDE SELECTION ---
+        let chosenGuide = null;
+        let isSignin = false;
+
+        function chooseGuide(guide) {
+            chosenGuide = guide;
+            console.log(`Selected: ${guide}`);
+            const color = guide === 'sheika' ? 'rgba(0, 255, 170, 0.15)' : 'rgba(0, 150, 255, 0.15)';
+            triggerFlash(color);
+            
+            // Show toast notification
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            toast.textContent = `You chose ${guide.toUpperCase()}!`;
+            if (guide === 'zayed') {
+                toast.style.borderColor = 'rgba(0, 150, 255, 0.5)';
+                toast.style.color = '#00ccff';
+            }
+            document.body.appendChild(toast);
+            
+            // Store guide and transition to sign-up screen after a short delay
+            localStorage.setItem('chosenGuide', guide);
+            setTimeout(() => {
+                transitionToSignup(guide);
+            }, 1500);
+        }
+
+        function transitionToSignup(guide) {
+            const heroSection = document.querySelector('.hero-section');
+            const signupSection = document.getElementById('signup-section');
+            const submitBtn = document.getElementById('submit-btn');
+
+            // Add theming based on guide
+            if (guide === 'sheika') {
+                submitBtn.classList.add('sheika-theme');
+                submitBtn.classList.remove('zayed-theme');
+                signupSection.classList.add('sheika-guide');
+                signupSection.classList.remove('zayed-guide');
+            } else {
+                submitBtn.classList.add('zayed-theme');
+                submitBtn.classList.remove('sheika-theme');
+                signupSection.classList.remove('sheika-guide');
+                signupSection.classList.add('zayed-guide');
+            }
+
+            // Fade out hero, fade in sign-up
+            setTimeout(() => {
+                signupSection.classList.add('active');
+                heroSection.style.opacity = '0';
+                heroSection.style.pointerEvents = 'none';
+            }, 100);
+        }
+
+        // --- FORM HANDLING ---
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const button = event.target;
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                button.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                button.textContent = '👁️';
+            }
+        }
+
+        function toggleSigninPasswordVisibility() {
+            const passwordInput = document.getElementById('signin-password');
+            const button = event.target;
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                button.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                button.textContent = '👁️';
+            }
+        }
+
+        function toggleSignupSignin() {
+            isSignin = !isSignin;
+            const signupFields = document.getElementById('signup-fields');
+            const signinFields = document.getElementById('signin-fields');
+            const formTitle = document.getElementById('form-title');
+            const formSubtitle = document.getElementById('form-subtitle');
+            const badgeText = document.getElementById('badge-text');
+            const toggleLink = document.getElementById('toggle-link');
+            const submitBtn = document.getElementById('submit-btn');
+
+            if (isSignin) {
+                // Show Sign In form
+                signupFields.style.display = 'none';
+                signinFields.style.display = 'block';
+                formTitle.textContent = 'Welcome Back, Explorer';
+                formSubtitle.textContent = 'Continue your mission';
+                badgeText.textContent = 'RETURNING EXPLORER';
+                toggleLink.innerHTML = 'New explorer? <a onclick="toggleSignupSignin()">Create Account</a>';
+                submitBtn.textContent = 'CONTINUE MISSION →';
+
+                // Remove required from signup fields, add to signin fields
+                document.getElementById('fullname').removeAttribute('required');
+                document.getElementById('email').removeAttribute('required');
+                document.getElementById('password').removeAttribute('required');
+                document.getElementById('grade').removeAttribute('required');
+                document.getElementById('subject').removeAttribute('required');
+                document.getElementById('signin-email').setAttribute('required', 'required');
+                document.getElementById('signin-password').setAttribute('required', 'required');
+            } else {
+                // Show Sign Up form
+                signupFields.style.display = 'block';
+                signinFields.style.display = 'none';
+                formTitle.textContent = 'Create Your Account';
+                formSubtitle.textContent = 'Join thousands of UAE explorers';
+                badgeText.textContent = 'NEW EXPLORER';
+                toggleLink.innerHTML = 'Already an explorer? <a onclick="toggleSignupSignin()">Sign In</a>';
+                submitBtn.textContent = 'BEGIN MY JOURNEY →';
+
+                // Add required to signup fields, remove from signin fields
+                document.getElementById('fullname').setAttribute('required', 'required');
+                document.getElementById('email').setAttribute('required', 'required');
+                document.getElementById('password').setAttribute('required', 'required');
+                document.getElementById('grade').setAttribute('required', 'required');
+                document.getElementById('subject').setAttribute('required', 'required');
+                document.getElementById('signin-email').removeAttribute('required');
+                document.getElementById('signin-password').removeAttribute('required');
+            }
+
+            // Clear errors
+            clearAllErrors();
+        }
+
+        function validateField(fieldId, fieldLabel) {
+            const field = document.getElementById(fieldId);
+            const formGroup = field.closest('.form-group');
+            const errorSpan = formGroup.querySelector('.error-message');
+
+            // Accept any non-empty value
+            if (field.value.trim() === '') {
+                formGroup.classList.add('error', 'shake');
+                errorSpan.textContent = `${fieldLabel} is required`;
+                setTimeout(() => {
+                    formGroup.classList.remove('shake');
+                }, 400);
+                return false;
+            } else {
+                formGroup.classList.remove('error');
+                errorSpan.textContent = '';
+                return true;
+            }
+        }
+
+        function clearAllErrors() {
+            const allFormGroups = document.querySelectorAll('.form-group');
+            allFormGroups.forEach(group => {
+                group.classList.remove('error');
+                const errorSpan = group.querySelector('.error-message');
+                if (errorSpan) {
+                    errorSpan.textContent = '';
+                }
+            });
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            clearAllErrors();
+
+            let isValid = true;
+
+            if (isSignin) {
+                // Validate Sign In form
+                isValid = validateField('signin-email', 'Email') && isValid;
+                isValid = validateField('signin-password', 'Password') && isValid;
+            } else {
+                // Validate Sign Up form
+                isValid = validateField('fullname', 'Full Name') && isValid;
+                isValid = validateField('email', 'Email') && isValid;
+                isValid = validateField('password', 'Password') && isValid;
+                isValid = validateField('grade', 'Grade') && isValid;
+                isValid = validateField('subject', 'Subject') && isValid;
+            }
+
+            if (isValid) {
+                // Show loading state
+                const submitBtn = document.getElementById('submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = '...';
+                submitBtn.disabled = true;
+
+                // Wait 1.5s then show loading screen
+                setTimeout(() => {
+                    showLoadingScreen();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
+            }
+        }
+
+        function showLoadingScreen() {
+            const signupSection = document.getElementById('signup-section');
+            const loadingScreen = document.getElementById('loading-screen');
+            const loadingGuide = document.getElementById('loading-guide-name');
+
+            signupSection.classList.remove('active');
+            loadingGuide.textContent = `with ${chosenGuide.charAt(0).toUpperCase() + chosenGuide.slice(1)}`;
+            loadingScreen.classList.add('active');
+
+            // After 3 seconds, transition to welcome screen
+            setTimeout(() => {
+                transitionToWelcomeScreen();
+            }, 3000);
+        }
+
+        function transitionToWelcomeScreen() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const guideVideoSource = document.querySelector('#guide-video source');
+            const continueBtn = document.getElementById('continue-btn');
+
+            // Fade out loading screen
+            loadingScreen.classList.remove('active');
+
+            // Set video source based on chosen guide
+            if (chosenGuide === 'sheika') {
+                guideVideoSource.src = '/sheika-welcome.webm';
+                continueBtn.classList.remove('zayed');
+            } else {
+                guideVideoSource.src = '/zayed-welcome.webm'; // Will use same for now
+                continueBtn.classList.add('zayed');
+            }
+
+            // Show welcome screen
+            setTimeout(() => {
+                welcomeScreen.classList.add('active');
+                const video = document.getElementById('guide-video');
+                video.load();
+                video.play();
+            }, 300);
+        }
+
+        function proceedToMissionMap() {
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const dashboardScreen = document.getElementById('dashboard-screen');
+            
+            // Fade out welcome screen
+            welcomeScreen.classList.remove('active');
+            
+            // Show dashboard after a short delay
+            setTimeout(() => {
+                renderMissions();
+                updateGuideWelcome();
+                dashboardScreen.classList.add('active');
+            }, 400);
+        }
+
+        function renderMissions() {
+            const missionsGrid = document.getElementById('missions-grid');
+            missionsGrid.innerHTML = '';
+
+            missionsData.forEach((mission, idx) => {
+                const missionCard = document.createElement('div');
+                missionCard.className = `mission-card ${idx === 0 ? 'start-here' : ''}`;
+                
+                const imagePath = `/mission-${mission.id}.png`;
+                
+                missionCard.innerHTML = `
+                    <div class="mission-image placeholder">
+                        <img src="${imagePath}" alt="${mission.title}" onerror="this.style.display='none'">
+                        <div style="display: flex; position: absolute; width: 100%; height: 100%; align-items: center; justify-content: center; font-size: 50px; z-index: 5;">${mission.badge.icon}</div>
+                    </div>
+                    ${idx === 0 ? '<div class="mission-badge start">START HERE!</div>' : ''}
+                    <div class="mission-content">
+                        <h3 class="mission-title">${mission.title}</h3>
+                        <p class="mission-topic" style="font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 12px;">${mission.badge.name}</p>
+                        <div class="mission-stats">
+                            <div class="mission-xp">⭐ ${mission.xpTotal} XP</div>
+                            <div class="mission-difficulty">⭐⭐⭐</div>
+                        </div>
+                        <button class="mission-button" type="button">
+                            START MISSION
+                        </button>
+                    </div>
+                `;
+
+                const button = missionCard.querySelector('.mission-button');
+                if (button) {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        startMission(mission.id);
+                    });
+                }
+                
+                missionsGrid.appendChild(missionCard);
+            });
+        }
+
+        function updateGuideWelcome() {
+            const guideMsgEl = document.getElementById('guide-welcome-msg');
+            if (chosenGuide === 'sheika') {
+                guideMsgEl.textContent = "Ready to save the planet, Explorer?";
+                guideMsgEl.classList.remove('zayed');
+            } else {
+                guideMsgEl.textContent = "Time to innovate and discover, Expert!";
+                guideMsgEl.classList.add('zayed');
+            }
+        }
+
+        // --- MISSION DATA ---
+        let currentMissionId = null;
+        let currentQuestionIndex = 0;
+        let missionXP = 0;
+        let quizXP = 0;
+        let challengeXP = 0;
+        let challengeItemsPlaced = 0;
+        let currentDraggedItem = null;
+
+        const missionsData = [
+            {
+                id: 1,
+                title: "Sustainability in the UAE",
+                color: "#00ffaa",
+                xpTotal: 45,
+                learn: [
+                    {
+                        number: "01",
+                        title: "UAE's Green Future",
+                        body: "The UAE wants to help the planet by using more green energy. Solar panels, wind turbines, and smart buildings help clean the air.",
+                        fact: "🌍 Did you know? Masdar City is a super eco-friendly city that saves 40,000 tonnes of pollution every year!",
+                        image: "/card-1.png",
+                        statValue: 31,
+                        statLabel: "% Less Pollution by 2030"
+                    },
+                    {
+                        number: "02",
+                        title: "Smart Cities in Hot Deserts",
+                        body: "The desert is super hot! Smart coolers, smart roofs, and water-saving tricks help keep cities green and cool.",
+                        fact: "🌡️ Did you know? It gets so hot in summer that your hand could get burned by touching the ground!",
+                        image: "/card-2.png",
+                        statValue: 50,
+                        statLabel: "°C Summer Heat"
+                    },
+                    {
+                        number: "03",
+                        title: "YOU Can Help Save Earth!",
+                        body: "You can plant trees, recycle, use public buses, and save water. Every small action helps the planet!",
+                        fact: "🌱 Did you know? Planting one tree helps clean the air for 50 years!",
+                        image: "/card-3.png",
+                        statValue: 1000000,
+                        statLabel: " Youth Green Leaders"
+                    }
+                ],
+                quiz: [
+                    {
+                        question: "What percentage has the UAE committed to reducing carbon emissions by 2030?",
+                        options: ["15%", "21%", "31%", "45%"],
+                        correct: 2,
+                        explanation: "The UAE pledged a 31% reduction in carbon emissions as part of its National Climate Change Plan."
+                    },
+                    {
+                        question: "Where is Masdar City located?",
+                        options: ["Dubai", "Sharjah", "Abu Dhabi", "Fujairah"],
+                        correct: 2,
+                        explanation: "Masdar City is located in Abu Dhabi and is one of the world's most sustainable urban projects."
+                    },
+                    {
+                        question: "Which of these is a key sustainability challenge in the UAE?",
+                        options: ["Heavy rainfall", "Extreme desert heat", "Dense forests", "Cold winters"],
+                        correct: 1,
+                        explanation: "The UAE's extreme heat makes cooling buildings and cities one of the biggest sustainability challenges."
+                    }
+                ],
+                challenge: {
+                    title: "Sort It Out!",
+                    instruction: "Drag each action into the correct category — Sustainable or Not Sustainable.",
+                    items: [
+                        { id: 1, text: "Solar panels on rooftop", correct: "sustainable" },
+                        { id: 2, text: "Leaving AC on all night", correct: "not" },
+                        { id: 3, text: "Recycling plastic bottles", correct: "sustainable" },
+                        { id: 4, text: "Burning plastic waste", correct: "not" },
+                        { id: 5, text: "Using public transport", correct: "sustainable" }
+                    ]
+                },
+                badge: {
+                    name: "Green Pioneer",
+                    icon: "🌱",
+                    color: "#00ffaa"
+                }
+            },
+            {
+                id: 2,
+                title: "Renewable Energy",
+                color: "#FFD700",
+                xpTotal: 45,
+                learn: [
+                    {
+                        number: "01",
+                        title: "Mohammed bin Rashid Solar Park",
+                        body: "Dubai is home to the world's largest single-site solar park. The Mohammed bin Rashid Al Maktoum Solar Park will generate 5,000 MW of clean energy by 2030, powering hundreds of thousands of homes.",
+                        stat: "☀️ Will power 1.3 million homes by 2030"
+                    },
+                    {
+                        number: "02",
+                        title: "Nuclear Clean Energy",
+                        body: "The UAE became the first Arab country to operate a nuclear power plant. The Barakah Nuclear Power Plant in Abu Dhabi provides 25% of the UAE's electricity with zero carbon emissions.",
+                        stat: "⚡ Barakah offsets 21 million tonnes of CO₂ annually"
+                    },
+                    {
+                        number: "03",
+                        title: "Wind and Hydrogen Future",
+                        body: "The UAE is investing in offshore wind farms and green hydrogen production. Green hydrogen, made using solar power, could become one of the UAE's most important exports by 2050.",
+                        stat: "🌬️ UAE aims to produce 1.4 million tonnes of hydrogen by 2031"
+                    }
+                ],
+                quiz: [
+                    {
+                        question: "What is the target energy output of Dubai's solar park by 2030?",
+                        options: ["1,000 MW", "2,500 MW", "5,000 MW", "10,000 MW"],
+                        correct: 2,
+                        explanation: "The Mohammed bin Rashid Solar Park targets 5,000 MW of clean solar energy by 2030."
+                    },
+                    {
+                        question: "Which was the first Arab country to operate a nuclear power plant?",
+                        options: ["Saudi Arabia", "Egypt", "Qatar", "UAE"],
+                        correct: 3,
+                        explanation: "The UAE's Barakah plant made it the first Arab nation with an operational nuclear power plant."
+                    },
+                    {
+                        question: "What percentage of UAE electricity does Barakah provide?",
+                        options: ["5%", "10%", "25%", "50%"],
+                        correct: 2,
+                        explanation: "The Barakah Nuclear Power Plant currently provides around 25% of the UAE's total electricity needs."
+                    }
+                ],
+                challenge: {
+                    title: "Power the City!",
+                    instruction: "Sort these energy sources into Renewable or Non-Renewable.",
+                    items: [
+                        { id: 1, text: "Solar panels", correct: "sustainable" },
+                        { id: 2, text: "Coal power plant", correct: "not" },
+                        { id: 3, text: "Wind turbines", correct: "sustainable" },
+                        { id: 4, text: "Oil burning", correct: "not" },
+                        { id: 5, text: "Nuclear energy", correct: "sustainable" }
+                    ]
+                },
+                badge: {
+                    name: "Energy Champion",
+                    icon: "⚡",
+                    color: "#FFD700"
+                }
+            },
+            {
+                id: 3,
+                title: "Water Conservation",
+                color: "#00ccff",
+                xpTotal: 45,
+                learn: [
+                    {
+                        number: "01",
+                        title: "Water Scarcity in the UAE",
+                        body: "The UAE is one of the most water-scarce countries in the world. With almost no natural rivers or lakes, 99% of drinking water comes from energy-intensive desalination plants along the coast.",
+                        stat: "💧 UAE has only 33mm of rainfall per year on average"
+                    },
+                    {
+                        number: "02",
+                        title: "Smart Irrigation Technology",
+                        body: "UAE farms use AI-powered drip irrigation systems that deliver water directly to plant roots, reducing water waste by up to 70%. This technology is being exported to other water-scarce nations.",
+                        stat: "🌾 Smart irrigation saves 70% more water than traditional methods"
+                    },
+                    {
+                        number: "03",
+                        title: "Cloud Seeding Operations",
+                        body: "The UAE is a world leader in cloud seeding — a technology that stimulates rainfall artificially. The National Centre of Meteorology conducts over 300 cloud seeding missions per year.",
+                        stat: "🌧️ Cloud seeding increases UAE rainfall by up to 30%"
+                    }
+                ],
+                quiz: [
+                    {
+                        question: "What percentage of UAE drinking water comes from desalination?",
+                        options: ["50%", "75%", "90%", "99%"],
+                        correct: 3,
+                        explanation: "Because the UAE has almost no natural freshwater sources, 99% of drinking water is desalinated from the sea."
+                    },
+                    {
+                        question: "How much water can smart drip irrigation save compared to traditional methods?",
+                        options: ["20%", "40%", "70%", "90%"],
+                        correct: 2,
+                        explanation: "AI-powered drip irrigation systems deliver water directly to roots, saving up to 70% more water."
+                    },
+                    {
+                        question: "How many cloud seeding missions does the UAE conduct per year?",
+                        options: ["50", "150", "300", "500"],
+                        correct: 2,
+                        explanation: "The UAE's National Centre of Meteorology conducts over 300 cloud seeding flights annually."
+                    }
+                ],
+                challenge: {
+                    title: "Save Every Drop!",
+                    instruction: "Sort these habits into Water Saving or Water Wasting.",
+                    items: [
+                        { id: 1, text: "Fixing leaky taps", correct: "sustainable" },
+                        { id: 2, text: "30-minute showers", correct: "not" },
+                        { id: 3, text: "Drip irrigation", correct: "sustainable" },
+                        { id: 4, text: "Hosing pavements", correct: "not" },
+                        { id: 5, text: "Reusing greywater", correct: "sustainable" }
+                    ]
+                },
+                badge: {
+                    name: "Water Guardian",
+                    icon: "💧",
+                    color: "#00ccff"
+                }
+            },
+            {
+                id: 4,
+                title: "AI & Ethics",
+                color: "#aa66ff",
+                xpTotal: 45,
+                learn: [
+                    {
+                        number: "01",
+                        title: "UAE's National AI Strategy",
+                        body: "The UAE was the first country in the world to appoint a Minister of Artificial Intelligence. The UAE National AI Strategy 2031 aims to make the UAE a global leader in AI across all sectors.",
+                        stat: "🤖 AI could add $96 billion to UAE economy by 2030"
+                    },
+                    {
+                        number: "02",
+                        title: "AI in UAE Schools",
+                        body: "AI is already being used in UAE classrooms to personalise learning for each student, detect when students struggle, and recommend content at the right difficulty level automatically.",
+                        stat: "📚 UAE introduced AI as a school subject in 2019"
+                    },
+                    {
+                        number: "03",
+                        title: "Ethics of AI",
+                        body: "As AI grows more powerful, ensuring it is fair, transparent and safe becomes critical. The UAE has developed an AI Ethics Guidelines framework to make sure AI systems respect human rights and cultural values.",
+                        stat: "⚖️ UAE AI ethics covers fairness, privacy and accountability"
+                    }
+                ],
+                quiz: [
+                    {
+                        question: "What was the UAE the first country in the world to do regarding AI?",
+                        options: [
+                            "Build an AI robot",
+                            "Appoint a Minister of AI",
+                            "Replace teachers with AI",
+                            "Ban social media AI"
+                        ],
+                        correct: 1,
+                        explanation: "In 2017 the UAE appointed the world's first Minister of Artificial Intelligence, Omar Al Olama."
+                    },
+                    {
+                        question: "When did the UAE introduce AI as a school subject?",
+                        options: ["2015", "2017", "2019", "2021"],
+                        correct: 2,
+                        explanation: "The UAE introduced Artificial Intelligence as an official school subject in 2019."
+                    },
+                    {
+                        question: "Which of these is a key principle of AI Ethics?",
+                        options: ["Speed", "Profit", "Fairness", "Complexity"],
+                        correct: 2,
+                        explanation: "Fairness is a core principle — AI systems must treat all people equally regardless of background."
+                    }
+                ],
+                challenge: {
+                    title: "Ethical or Not?",
+                    instruction: "Sort these AI uses into Ethical or Unethical.",
+                    items: [
+                        { id: 1, text: "AI grading papers fairly", correct: "sustainable" },
+                        { id: 2, text: "AI spying on students", correct: "not" },
+                        { id: 3, text: "AI helping doctors diagnose", correct: "sustainable" },
+                        { id: 4, text: "AI spreading fake news", correct: "not" },
+                        { id: 5, text: "AI personalising learning", correct: "sustainable" }
+                    ]
+                },
+                badge: {
+                    name: "Ethics Guardian",
+                    icon: "🤖",
+                    color: "#aa66ff"
+                }
+            },
+            {
+                id: 5,
+                title: "Carbon Footprint",
+                color: "#ff6644",
+                xpTotal: 45,
+                learn: [
+                    {
+                        number: "01",
+                        title: "What Is a Carbon Footprint?",
+                        body: "A carbon footprint measures the total greenhouse gases produced by human activities. In the UAE, the average person produces around 20 tonnes of CO₂ per year — one of the highest rates in the world due to energy and cooling needs.",
+                        stat: "🌍 Global average is 4 tonnes per person per year"
+                    },
+                    {
+                        number: "02",
+                        title: "UAE Net Zero 2050",
+                        body: "The UAE was the first Middle Eastern country to commit to Net Zero emissions by 2050. This means balancing the amount of carbon produced with the amount removed — a massive national transformation.",
+                        stat: "🎯 UAE Net Zero target set at COP26 in 2021"
+                    },
+                    {
+                        number: "03",
+                        title: "What You Can Do",
+                        body: "Small daily actions add up. Taking public transport, eating less meat, reducing screen time on high-energy devices, and buying local products all reduce your personal carbon footprint significantly.",
+                        stat: "🚌 Public transport cuts your carbon footprint by 45%"
+                    }
+                ],
+                quiz: [
+                    {
+                        question: "How much CO₂ does the average UAE resident produce per year?",
+                        options: ["4 tonnes", "10 tonnes", "20 tonnes", "50 tonnes"],
+                        correct: 2,
+                        explanation: "UAE residents produce around 20 tonnes of CO₂ per year, well above the global average of 4 tonnes."
+                    },
+                    {
+                        question: "What does Net Zero mean?",
+                        options: [
+                            "Producing zero electricity",
+                            "Balancing carbon produced with carbon removed",
+                            "Using no fossil fuels",
+                            "Planting one tree per person"
+                        ],
+                        correct: 1,
+                        explanation: "Net Zero means the total carbon emitted equals the total carbon removed, resulting in no net addition to the atmosphere."
+                    },
+                    {
+                        question: "By how much does using public transport reduce your carbon footprint?",
+                        options: ["10%", "25%", "45%", "80%"],
+                        correct: 2,
+                        explanation: "Switching to public transport instead of private cars can cut your personal carbon footprint by up to 45%."
+                    }
+                ],
+                challenge: {
+                    title: "Carbon Cutter!",
+                    instruction: "Sort these activities into Low Carbon or High Carbon.",
+                    items: [
+                        { id: 1, text: "Taking the Metro", correct: "sustainable" },
+                        { id: 2, text: "Flying for short trips", correct: "not" },
+                        { id: 3, text: "Eating local vegetables", correct: "sustainable" },
+                        { id: 4, text: "Leaving devices on standby", correct: "not" },
+                        { id: 5, text: "Using solar power at home", correct: "sustainable" }
+                    ]
+                },
+                badge: {
+                    name: "Carbon Warrior",
+                    icon: "🌍",
+                    color: "#ff6644"
+                }
+            }
+        ];
+
+        function startMission(missionId) {
+            const mission = missionsData.find(m => m.id === missionId);
+            if (mission && !mission.locked) {
+                currentMissionId = missionId;
+                missionXP = 0;
+                quizXP = 0;
+                challengeXP = 0;
+                currentQuestionIndex = 0;
+                challengeItemsPlaced = 0;
+                
+                // Hide dashboard, show mission screen
+                document.getElementById('dashboard-screen').classList.remove('active');
+                document.getElementById('mission-screen').classList.add('active');
+                
+                // Load mission content
+                loadMissionContent(mission);
+                
+                // Switch to Learn tab
+                switchTab('learn');
+            }
+        }
+
+        function loadMissionContent(mission) {
+            // Update top bar
+            document.getElementById('mission-title').textContent = mission.title;
+            document.getElementById('total-xp').textContent = mission.xpTotal;
+            
+            // Load Learn cards as carousel
+            const learnCardsContainer = document.getElementById('learn-cards');
+            learnCardsContainer.innerHTML = '';
+            currentLearnCardIndex = 0;
+            mission.learn.forEach((card, idx) => {
+                const cardEl = document.createElement('div');
+                cardEl.className = `learn-card ${idx === 0 ? 'active' : 'hidden'}`;
+                const factId = `fact-${card.number}`;
+                cardEl.innerHTML = `
+                    ${card.image ? `<img src="${card.image}" alt="${card.title}" class="learn-card-image">` : ''}
+                    <div class="learn-card-number">${card.number}</div>
+                    <h3 class="learn-card-title">${card.title}</h3>
+                    <p class="learn-card-body">${card.body}</p>
+                    <button class="learn-card-reveal" onclick="toggleFact('${factId}')">💡 Fun Fact</button>
+                    <div class="learn-card-fact" id="${factId}">${card.fact}</div>
+                    <span class="learn-card-stat"><span class="stat-number" data-target="${card.statValue || 0}">0</span>${card.statLabel}</span>
+                `;
+                learnCardsContainer.appendChild(cardEl);
+            });
+            updateLearnCarouselUI(mission.learn.length);
+            startLearnStatAnimation();
+
+            // Load Quiz
+            loadQuiz(mission);
+
+            // Load Challenge
+            loadChallenge(mission);
+        }
+
+        let currentLearnCardIndex = 0;
+        let currentMissionLearnCards = [];
+
+        function toggleFact(factId) {
+            const factEl = document.getElementById(factId);
+            if (factEl) factEl.classList.toggle('revealed');
+        }
+
+        function updateLearnCarouselUI(totalCards) {
+            const cards = document.querySelectorAll('.learn-card');
+            cards.forEach((card, idx) => {
+                card.classList.remove('active', 'hidden');
+                if (idx === currentLearnCardIndex) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            document.getElementById('learn-counter').textContent = `${currentLearnCardIndex + 1} / ${totalCards}`;
+            document.getElementById('learn-prev').disabled = currentLearnCardIndex === 0;
+            document.getElementById('learn-next').disabled = currentLearnCardIndex === totalCards - 1;
+            startLearnStatAnimation();
+        }
+
+        function nextLearnCard() {
+            const totalCards = document.querySelectorAll('.learn-card').length;
+            if (currentLearnCardIndex < totalCards - 1) {
+                currentLearnCardIndex++;
+                updateLearnCarouselUI(totalCards);
+            }
+        }
+
+        function prevLearnCard() {
+            if (currentLearnCardIndex > 0) {
+                currentLearnCardIndex--;
+                updateLearnCarouselUI(document.querySelectorAll('.learn-card').length);
+            }
+        }
+
+        function startLearnStatAnimation() {
+            const activeCard = document.querySelectorAll('.learn-card.active')[0];
+            if (!activeCard) return;
+            const statEl = activeCard.querySelector('.stat-number');
+            if (statEl && !statEl.animated) {
+                const target = parseInt(statEl.dataset.target) || 0;
+                let current = 0;
+                const increment = target / 30;
+                statEl.textContent = '0';
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) { statEl.textContent = target; clearInterval(timer); statEl.animated = true; }
+                    else { statEl.textContent = Math.floor(current); }
+                }, 50);
+            }
+        }
+
+        function switchTab(tabName) {
+            const tabs = document.querySelectorAll('.mission-tab');
+            const contents = document.querySelectorAll('.mission-tab-content');
+            
+            tabs.forEach(tab => {
+                if (tab.dataset.tab === tabName) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            const totalXP = missionXP + quizXP + challengeXP;
+            const mission = missionsData.find(m => m.id === currentMissionId);
+            const percent = (totalXP / mission.xpTotal) * 100;
+            
+            document.getElementById('mission-progress-bar').innerHTML =
+                `<div class="mission-progress-fill" style="width: ${percent}%"></div>`;
+            document.getElementById('current-xp').textContent = totalXP;
+        }
+
+        function loadQuiz(mission) {
+            currentQuestionIndex = 0;
+            renderQuizQuestion(mission);
+        }
+
+        function renderQuizQuestion(mission) {
+            const container = document.getElementById('quiz-container');
+            const q = mission.quiz[currentQuestionIndex];
+            
+            container.innerHTML = `
+                <div class="quiz-question">
+                    <div class="quiz-question-number">Question ${currentQuestionIndex + 1} of ${mission.quiz.length}</div>
+                    <h3 class="quiz-question-text">${q.question}</h3>
+                    <div class="quiz-options" id="quiz-options">
+                    </div>
+                </div>
+            `;
+
+            const optionsContainer = container.querySelector('#quiz-options');
+            q.options.forEach((opt, idx) => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'quiz-option';
+                optionEl.innerHTML = `
+                    <div class="quiz-option-letter">${String.fromCharCode(65 + idx)}</div>
+                    <span class="quiz-option-text">${opt}</span>
+                `;
+                optionEl.addEventListener('click', () => {
+                    handleQuizAnswer(idx, q.correct, q.explanation);
+                });
+                optionsContainer.appendChild(optionEl);
+            });
+        }
+
+        function handleQuizAnswer(selectedIdx, correctIdx, explanation) {
+            const mission = missionsData.find(m => m.id === currentMissionId);
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.classList.add('disabled'));
+
+            const isCorrect = selectedIdx === correctIdx;
+            options[selectedIdx].classList.add(isCorrect ? 'correct' : 'wrong');
+            if (!isCorrect) options[correctIdx].classList.add('correct');
+
+            const feedbackEl = document.createElement('div');
+            feedbackEl.className = `quiz-feedback ${isCorrect ? 'correct' : 'wrong'}`;
+            feedbackEl.innerHTML = isCorrect ? `✓ Correct! ${explanation}` : `✗ Not quite. The correct answer was Option ${String.fromCharCode(65 + correctIdx)}.`;
+            document.querySelector('.quiz-question').appendChild(feedbackEl);
+
+            if (isCorrect) {
+                quizXP += 10;
+                const xpEl = document.createElement('div');
+                xpEl.className = 'xp-earned';
+                xpEl.textContent = '+10 XP';
+                xpEl.style.position = 'absolute';
+                xpEl.style.left = options[selectedIdx].offsetLeft + 'px';
+                xpEl.style.top = options[selectedIdx].offsetTop + 'px';
+                options[selectedIdx].parentElement.appendChild(xpEl);
+            }
+
+            updateProgressBar();
+
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < mission.quiz.length) {
+                    renderQuizQuestion(mission);
+                } else {
+                    showQuizSummary(mission);
+                }
+            }, 1500);
+        }
+
+        function showQuizSummary(mission) {
+            const stars = quizXP === 30 ? 3 : quizXP === 20 ? 2 : 1;
+            document.getElementById('quiz-container').innerHTML = `
+                <div class="quiz-question">
+                    <div class="quiz-question-text" style="text-align: center; margin-bottom: 24px;">
+                        You scored ${quizXP}/30 XP this round
+                    </div>
+                    <div style="text-align: center; font-size: 24px; margin-bottom: 24px;">
+                        ${Array(stars).fill('⭐').join('')}${Array(3 - stars).fill('☆').join('')}
+                    </div>
+                    <button class="mission-next-btn" onclick="switchTab('challenge')" style="width: 100%;">
+                        Continue to Challenge →
+                    </button>
+                </div>
+            `;
+        }
+
+        function loadChallenge(mission) {
+            const container = document.getElementById('challenge-container');
+            const challenge = mission.challenge;
+            challengeItemsPlaced = 0;
+            currentDraggedItem = null;
+
+            container.innerHTML = `
+                <h3 class="challenge-title">${challenge.title}</h3>
+                <p class="challenge-instruction">${challenge.instruction}</p>
+                <div class="drag-drop-container">
+                    <div class="drop-zone" data-zone="sustainable" ondrop="dropItem(event)" ondragover="dragOver(event)">
+                        <span class="drop-zone-label">Sustainable ♻️</span>
+                    </div>
+                    <div class="drop-zone" data-zone="not" ondrop="dropItem(event)" ondragover="dragOver(event)">
+                        <span class="drop-zone-label">Not Sustainable ❌</span>
+                    </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;" id="items-container">
+                    ${challenge.items.map(item => `
+                        <div class="draggable-item" draggable="true" data-id="${item.id}" data-correct="${item.correct}" ondragstart="dragStart(event)">
+                            ${item.text}
+                        </div>
+                    `).join('')}
+                </div>
+                <button class="challenge-check-btn" onclick="checkChallenge()">
+                    Check Answers
+                </button>
+                <div class="challenge-message" id="challenge-message"></div>
+            `;
+        }
+
+        function dragStart(e) {
+            currentDraggedItem = e.currentTarget;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', e.currentTarget.dataset.id || '');
+        }
+
+        function dragOver(e) {
+            e.preventDefault();
+            e.dropEffect = 'move';
+            const zone = e.target.closest('.drop-zone');
+            if (zone) zone.classList.add('hover');
+        }
+
+        function dropItem(e) {
+            e.preventDefault();
+            const zone = e.target.closest('.drop-zone');
+            if (!zone || !currentDraggedItem) return;
+            zone.classList.remove('hover');
+
+            const item = currentDraggedItem;
+            const correctZone = item.dataset.correct;
+            const dropZone = zone.dataset.zone;
+
+            if (correctZone === dropZone) {
+                item.classList.add('correct');
+                item.draggable = false;
+                zone.appendChild(item);
+                challengeItemsPlaced++;
+            } else {
+                item.classList.add('wrong');
+                setTimeout(() => item.classList.remove('wrong'), 500);
+            }
+
+            currentDraggedItem = null;
+
+            const mission = missionsData.find(m => m.id === currentMissionId);
+            const totalItems = mission.challenge.items.length;
+            const btn = document.querySelector('.challenge-check-btn');
+            if (challengeItemsPlaced === totalItems) {
+                btn.classList.add('enabled');
+            }
+        }
+
+        function checkChallenge() {
+            const mission = missionsData.find(m => m.id === currentMissionId);
+            const items = document.querySelectorAll('.draggable-item');
+            let allCorrect = true;
+
+            items.forEach(item => {
+                if (!item.classList.contains('correct')) {
+                    allCorrect = false;
+                    item.classList.add('wrong');
+                }
+            });
+
+            const msgEl = document.getElementById('challenge-message');
+            if (allCorrect) {
+                challengeXP = 25;
+                msgEl.className = 'challenge-message success';
+                msgEl.innerHTML = `🎉 Mission Complete! +25 XP earned!`;
+                updateProgressBar();
+
+                // Confetti
+                createConfetti();
+
+                setTimeout(() => {
+                    showBadgeScreen(mission);
+                }, 1500);
+            } else {
+                msgEl.className = 'challenge-message error';
+                msgEl.textContent = 'Some items need correction. Try again!';
+                setTimeout(() => msgEl.textContent = '', 2000);
+            }
+        }
+
+        function createConfetti() {
+            const container = document.querySelector('.confetti-container') || document.body;
+            const colors = ['#00ffaa', '#FFD700', '#00ccff', '#aa66ff', '#ff6644'];
+            
+            for (let i = 0; i < 40; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = `fall ${Math.random() * 1.5 + 1.5}s linear forwards`;
+                container.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        function showBadgeScreen(mission) {
+            // Hide mission screen, show badge screen
+            document.getElementById('mission-screen').classList.remove('active');
+            document.getElementById('badge-screen').classList.add('active');
+
+            const badge = mission.badge;
+            document.getElementById('badge-icon').textContent = badge.icon;
+            document.getElementById('badge-name').textContent = badge.name;
+            document.getElementById('badge-ring').style.boxShadow = `0 0 60px ${badge.color}`;
+            document.getElementById('badge-ring').style.borderColor = badge.color;
+
+            const totalXP = missionXP + quizXP + challengeXP;
+            const percent = (totalXP / mission.xpTotal) * 100;
+            document.getElementById('quiz-score-display').textContent = `${quizXP} / 30 XP`;
+            document.getElementById('total-earned-xp').textContent = `${totalXP} / ${mission.xpTotal} XP`;
+            document.getElementById('xp-bar-fill').style.setProperty('--xp-percent', `${percent}%`);
+
+            const starElements = document.querySelectorAll('.badge-stars .star');
+            const earnedStars = totalXP === mission.xpTotal ? 3 : totalXP >= mission.xpTotal * 0.66 ? 2 : 1;
+            
+            starElements.forEach((star, idx) => {
+                if (idx < earnedStars) {
+                    setTimeout(() => {
+                        star.classList.add('earned');
+                        star.style.animationDelay = `${idx * 0.2}s`;
+                    }, 1200 + idx * 200);
+                }
+            });
+
+            // Store progress
+            let completed = JSON.parse(localStorage.getItem('completedMissions') || '[]');
+            if (!completed.includes(mission.id)) {
+                completed.push(mission.id);
+                localStorage.setItem('completedMissions', JSON.stringify(completed));
+            }
+            
+            let totalEarned = parseInt(localStorage.getItem('totalXP') || '0');
+            totalEarned += totalXP;
+            localStorage.setItem('totalXP', totalEarned.toString());
+        }
+
+        function backToDashboard() {
+            document.getElementById('mission-screen').classList.remove('active');
+            document.getElementById('badge-screen').classList.remove('active');
+            document.getElementById('dashboard-screen').classList.add('active');
+        }
+
+        function nextMission() {
+            const nextId = currentMissionId + 1;
+            if (nextId <= 5) {
+                startMission(nextId);
+            } else {
+                alert('All missions complete! You are a sustainability champion! 🏆');
+                backToDashboard();
+            }
+        }
+
+
+        // --- FLASH OVERLAY ---
+        function triggerFlash(color) {
+            const overlay = document.getElementById('flash-overlay');
+            overlay.style.backgroundColor = color;
+            overlay.style.opacity = '1';
+            setTimeout(() => {
+                overlay.style.opacity = '0';
+            }, 600);
+        }
+
+
+    </script>
+</body>
+</html>
