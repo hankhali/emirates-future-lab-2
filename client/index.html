@@ -68,6 +68,47 @@
             pointer-events: none;
         }
 
+        .hero-hitbox-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        .hero-hitbox {
+            position: absolute;
+            border-radius: 22px;
+            border: 2px solid transparent;
+            opacity: 0;
+            transform: scale(0.98);
+            transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .hero-hitbox.sheikha {
+            border-color: rgba(135, 255, 158, 0.75);
+            box-shadow: 0 0 26px rgba(0, 255, 170, 0.25), inset 0 0 16px rgba(0, 255, 170, 0.12);
+        }
+
+        .hero-hitbox.zayed {
+            border-color: rgba(130, 205, 255, 0.78);
+            box-shadow: 0 0 26px rgba(0, 150, 255, 0.25), inset 0 0 16px rgba(0, 150, 255, 0.12);
+        }
+
+        .hero-hitbox.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-hitbox.clicked {
+            animation: hitboxPulse 0.45s ease;
+        }
+
+        @keyframes hitboxPulse {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.035); }
+            100% { transform: scale(1); }
+        }
+
         /* Toast Notification */
         .toast-notification {
             position: fixed;
@@ -1876,6 +1917,10 @@
     <!-- HERO SCREEN -->
     <section class="hero-section">
         <canvas id="starfield-overlay"></canvas>
+        <div class="hero-hitbox-layer" aria-hidden="true">
+            <div id="hero-hitbox-sheikha" class="hero-hitbox sheikha"></div>
+            <div id="hero-hitbox-zayed" class="hero-hitbox zayed"></div>
+        </div>
     </section>
 
     <!-- SIGN UP SCREEN -->
@@ -2105,13 +2150,66 @@
         const heroCanvas = document.getElementById('starfield-overlay');
         const heroCtx = heroCanvas.getContext('2d');
         const heroSection = document.querySelector('.hero-section');
+        const sheikhaHitbox = document.getElementById('hero-hitbox-sheikha');
+        const zayedHitbox = document.getElementById('hero-hitbox-zayed');
         let heroStars = [];
         const numHeroStars = 150;
         let mouseX = heroCanvas.width / 2;
         let mouseY = heroCanvas.height / 2;
-        const sheikhaRegion = { x: 0.355, y: 0.545, width: 0.096, height: 0.21 };
-        const zayedRegion = { x: 0.549, y: 0.545, width: 0.096, height: 0.21 };
+        let hoveredGuide = null;
+        const sheikhaRegion = { x: 0.37, y: 0.54, width: 0.105, height: 0.19 };
+        const zayedRegion = { x: 0.525, y: 0.535, width: 0.092, height: 0.18 };
         const heroBgImage = new Image();
+
+        function isInsideRect(x, y, rect) {
+            return (
+                x >= rect.left &&
+                x <= rect.left + rect.width &&
+                y >= rect.top &&
+                y <= rect.top + rect.height
+            );
+        }
+
+        function setHitboxRect(el, rect) {
+            if (!el) return;
+            el.style.left = `${rect.left}px`;
+            el.style.top = `${rect.top}px`;
+            el.style.width = `${rect.width}px`;
+            el.style.height = `${rect.height}px`;
+        }
+
+        function updateGuideHoverFeedback() {
+            if (!heroSection || !sheikhaHitbox || !zayedHitbox) {
+                return;
+            }
+
+            const sheikhaRect = getRegionRect(sheikhaRegion);
+            const zayedRect = getRegionRect(zayedRegion);
+
+            setHitboxRect(sheikhaHitbox, sheikhaRect);
+            setHitboxRect(zayedHitbox, zayedRect);
+
+            const nextHoveredGuide = isInsideRect(mouseX, mouseY, sheikhaRect)
+                ? 'sheika'
+                : isInsideRect(mouseX, mouseY, zayedRect)
+                    ? 'zayed'
+                    : null;
+
+            hoveredGuide = nextHoveredGuide;
+            heroSection.style.cursor = hoveredGuide ? 'pointer' : 'default';
+
+            sheikhaHitbox.classList.toggle('active', hoveredGuide === 'sheika');
+            zayedHitbox.classList.toggle('active', hoveredGuide === 'zayed');
+        }
+
+        function pulseHitbox(guide) {
+            const target = guide === 'sheika' ? sheikhaHitbox : zayedHitbox;
+            if (!target) return;
+            target.classList.remove('clicked');
+            void target.offsetWidth;
+            target.classList.add('active', 'clicked');
+            setTimeout(() => target.classList.remove('clicked'), 450);
+        }
 
         function getRegionRect(region) {
             const sectionWidth = heroSection.offsetWidth;
@@ -2148,6 +2246,7 @@
             heroCanvas.width = heroSection.offsetWidth;
             heroCanvas.height = heroSection.offsetHeight;
             initHeroStars();
+            updateGuideHoverFeedback();
         }
 
         function initHeroStars() {
@@ -2190,6 +2289,14 @@
         heroSection.addEventListener('mousemove', (e) => {
             mouseX = e.clientX - heroSection.getBoundingClientRect().left;
             mouseY = e.clientY - heroSection.getBoundingClientRect().top;
+            updateGuideHoverFeedback();
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            hoveredGuide = null;
+            heroSection.style.cursor = 'default';
+            if (sheikhaHitbox) sheikhaHitbox.classList.remove('active');
+            if (zayedHitbox) zayedHitbox.classList.remove('active');
         });
 
         heroSection.addEventListener('click', (e) => {
@@ -2209,6 +2316,7 @@
                 clickY >= sheikhaRect.top &&
                 clickY <= sheikhaRect.top + sheikhaRect.height
             ) {
+                pulseHitbox('sheika');
                 chooseGuide('sheika');
                 return;
             }
@@ -2219,6 +2327,7 @@
                 clickY >= zayedRect.top &&
                 clickY <= zayedRect.top + zayedRect.height
             ) {
+                pulseHitbox('zayed');
                 chooseGuide('zayed');
             }
         });
