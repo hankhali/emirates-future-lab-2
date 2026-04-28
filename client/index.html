@@ -1266,7 +1266,7 @@
         .learn-card-image-wrapper {
             position: relative;
             width: 100%;
-            height: 220px;
+            height: 280px;
             overflow: hidden;
         }
 
@@ -1466,6 +1466,31 @@
             box-shadow: 0 0 40px rgba(0, 255, 170, 0.6);
         }
 
+        /* Mission Next Button (Quiz -> Challenge) */
+        .mission-next-btn {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 24px auto 0;
+            background: linear-gradient(135deg, #00ffaa, #00cc88);
+            color: #051428;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 28px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.4);
+        }
+
+        .mission-next-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 0 40px rgba(0, 255, 170, 0.6);
+        }
+
         .learn-cta-button-content {
             display: flex;
             align-items: center;
@@ -1483,60 +1508,394 @@
             50% { transform: translateX(4px); }
         }
 
-        /* QUIZ TAB */
+        /* PREMIUM INTERACTIVE EFFECTS */
+
+        /* Effect 1: 3D Card Tilt */
+        .learn-card {
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .learn-card.tilting {
+            transition: transform 0.1s ease;
+        }
+
+        .learn-card.resetting {
+            transition: transform 0.5s ease;
+        }
+
+        .card-glare {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .learn-card:hover .card-glare {
+            opacity: 1;
+        }
+
+        /* Effect 2: Image Parallax Window */
+        .learn-card-image-wrapper {
+            overflow: hidden;
+        }
+
+        .learn-card-image {
+            transform: scale(1.12);
+            will-change: transform;
+        }
+
+        .learn-card-image.parallaxing {
+            transition: transform 0.15s ease;
+        }
+
+        .learn-card-image.resetting {
+            transition: transform 0.6s ease;
+        }
+
+        /* Effect 3: Glowing Hotspots */
+        .image-hotspot {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(0, 255, 170, 0.3);
+            border: 2px solid #00ffaa;
+            cursor: pointer;
+            z-index: 5;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .image-hotspot::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 255, 170, 0.5);
+            animation: hotspot-pulse 2s ease-out infinite;
+        }
+
+        @keyframes hotspot-pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        .image-hotspot:hover {
+            transform: translate(-50%, -50%) scale(1.15);
+            background: rgba(0, 255, 170, 0.5);
+        }
+
+        .hotspot-tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            background: rgba(5, 20, 40, 0.95);
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 180px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .hotspot-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(0, 255, 170, 0.3);
+        }
+
+        .image-hotspot:hover .hotspot-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Effect 4: Magnetic Fun Fact Reveal */
+        .fun-fact-zone {
+            position: relative;
+            margin: 16px 0;
+        }
+
+        .fun-fact-content {
+            background: rgba(255, 200, 0, 0.15);
+            border: 1px solid rgba(255, 200, 0, 0.4);
+            border-radius: 12px;
+            padding: 12px 16px;
+        }
+
+        .fun-fact-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(5, 20, 40, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            z-index: 10;
+            transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
+            cursor: pointer;
+        }
+
+        .fun-fact-overlay-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+        }
+
+        .fun-fact-cursor {
+            font-size: 16px;
+            animation: cursor-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes cursor-pulse {
+            0%, 100% { opacity: 0.4; transform: translate(0, 0); }
+            50% { opacity: 1; transform: translate(2px, -2px); }
+        }
+
+        .fun-fact-zone.revealed .fun-fact-overlay {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .fun-fact-zone.revealed {
+            box-shadow: 0 0 20px rgba(0, 255, 170, 0.2);
+        }
+
+        /* Effect 5: Animated Stat Counter */
+        .stat-number.animating {
+            color: #00ffaa;
+            text-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
+        }
+
+        /* Effect 6: Card Entrance Animation */
+        @keyframes card-enter {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .learn-card.entering {
+            animation: card-enter 0.6s cubic-bezier(0.34, 1.2, 0.64, 1) both forwards;
+        }
+
+        .learn-card:nth-child(1).entering { animation-delay: 0ms; }
+        .learn-card:nth-child(2).entering { animation-delay: 150ms; }
+        .learn-card:nth-child(3).entering { animation-delay: 300ms; }
+
+        /* QUIZ TAB - Game Show Design */
         .quiz-container {
-            max-width: 600px;
+            max-width: 640px;
             margin: 0 auto;
+        }
+
+        @keyframes question-enter {
+            from { opacity: 0; transform: translateX(60px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .quiz-question {
             background: rgba(10, 22, 40, 0.9);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
+            border-radius: 20px;
             backdrop-filter: blur(16px);
-            padding: 32px;
-            animation: fadeUp 0.6s ease;
-            box-shadow: var(--shadow-sm);
+            padding: 36px 40px;
+            animation: question-enter 0.4s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 255, 170, 0.05);
+        }
+
+        .quiz-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
         }
 
         .quiz-question-number {
-            font-size: 12px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 16px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .quiz-score-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .quiz-score-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .quiz-score-dot.correct {
+            background: #00ffaa;
+            box-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
+            animation: dot-pop 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
+        }
+
+        .quiz-score-dot.wrong {
+            background: rgba(255, 100, 100, 0.8);
+            animation: dot-pop 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
+        }
+
+        @keyframes dot-pop {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .quiz-question-text-wrapper {
+            display: flex;
+            align-items: stretch;
+            margin-bottom: 28px;
+            gap: 16px;
+        }
+
+        .quiz-question-line {
+            width: 4px;
+            min-height: 100%;
+            background: linear-gradient(to bottom, #00ffaa, transparent);
+            border-radius: 4px;
+            flex-shrink: 0;
         }
 
         .quiz-question-text {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 600;
             color: white;
-            margin-bottom: 24px;
             line-height: 1.5;
-            letter-spacing: -0.3px;
+            max-width: 580px;
+            letter-spacing: -0.2px;
         }
 
+        /* Timer Bar */
+        .quiz-timer-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .quiz-timer-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .quiz-timer-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, #00ffaa, #00ddff);
+            border-radius: 4px;
+            animation: timer-shrink 30s linear forwards;
+        }
+
+        .quiz-timer-fill.warning {
+            background: rgba(255, 100, 100, 0.8);
+            animation: timer-shrink 10s linear forwards, timer-pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes timer-shrink {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+
+        @keyframes timer-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .quiz-timer-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            color: #00ffaa;
+            font-weight: 600;
+            min-width: 36px;
+            text-align: right;
+        }
+
+        .quiz-timer-text.warning {
+            color: rgba(255, 100, 100, 0.8);
+        }
+
+        .quiz-xp-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(255, 200, 0, 0.1);
+            border: 1px solid rgba(255, 200, 0, 0.3);
+            border-radius: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255, 200, 0, 0.9);
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-xp-pill.bonus {
+            background: rgba(0, 255, 170, 0.15);
+            border-color: rgba(0, 255, 170, 0.5);
+            color: #00ffaa;
+            animation: xp-pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes xp-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Answer Buttons */
         .quiz-options {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
         .quiz-option {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 8px;
-            padding: 14px 16px;
+            height: 64px;
+            border-radius: 14px;
+            padding: 0 20px;
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
             cursor: pointer;
             transition: all 0.2s ease;
-        }
-
-        .quiz-option:hover {
-            border-color: rgba(16, 185, 129, 0.4);
-            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid;
         }
 
         .quiz-option.disabled {
@@ -1544,71 +1903,276 @@
         }
 
         .quiz-option-letter {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
             font-weight: 700;
             flex-shrink: 0;
             transition: all 0.2s ease;
         }
 
         .quiz-option-text {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
         }
 
+        /* Button A - Blue */
+        .quiz-option[data-option="0"] {
+            background: rgba(59, 130, 246, 0.08);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .quiz-option[data-option="0"] .quiz-option-letter {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+        }
+
+        .quiz-option[data-option="0"]:hover:not(.disabled):not(.correct):not(.wrong) {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.6);
+            transform: translateX(6px);
+            box-shadow: -4px 0 20px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Button B - Purple */
+        .quiz-option[data-option="1"] {
+            background: rgba(139, 92, 246, 0.08);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .quiz-option[data-option="1"] .quiz-option-letter {
+            background: rgba(139, 92, 246, 0.2);
+            color: #a78bfa;
+        }
+
+        .quiz-option[data-option="1"]:hover:not(.disabled):not(.correct):not(.wrong) {
+            background: rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.6);
+            transform: translateX(6px);
+            box-shadow: -4px 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Button C - Orange */
+        .quiz-option[data-option="2"] {
+            background: rgba(249, 115, 22, 0.08);
+            border-color: rgba(249, 115, 22, 0.3);
+        }
+
+        .quiz-option[data-option="2"] .quiz-option-letter {
+            background: rgba(249, 115, 22, 0.2);
+            color: #fb923c;
+        }
+
+        .quiz-option[data-option="2"]:hover:not(.disabled):not(.correct):not(.wrong) {
+            background: rgba(249, 115, 22, 0.15);
+            border-color: rgba(249, 115, 22, 0.6);
+            transform: translateX(6px);
+            box-shadow: -4px 0 20px rgba(249, 115, 22, 0.2);
+        }
+
+        /* Button D - Green */
+        .quiz-option[data-option="3"] {
+            background: rgba(0, 255, 170, 0.06);
+            border-color: rgba(0, 255, 170, 0.2);
+        }
+
+        .quiz-option[data-option="3"] .quiz-option-letter {
+            background: rgba(0, 255, 170, 0.1);
+            color: #00ffaa;
+        }
+
+        .quiz-option[data-option="3"]:hover:not(.disabled):not(.correct):not(.wrong) {
+            background: rgba(0, 255, 170, 0.12);
+            border-color: rgba(0, 255, 170, 0.5);
+            transform: translateX(6px);
+            box-shadow: -4px 0 20px rgba(0, 255, 170, 0.2);
+        }
+
+        /* Correct Answer State */
         .quiz-option.correct {
-            border-color: rgba(16, 185, 129, 0.8);
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(0, 255, 170, 0.2) !important;
+            border: 2px solid #00ffaa !important;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.4);
+            transform: scale(1.02);
         }
 
         .quiz-option.correct .quiz-option-letter {
-            background: #10b981;
+            background: #00ffaa !important;
+            color: #001a0e !important;
+        }
+
+        .quiz-option.correct .quiz-option-text {
             color: white;
         }
 
+        /* Wrong Answer State */
         .quiz-option.wrong {
-            border-color: rgba(255, 80, 80, 0.6);
-            background: rgba(255, 80, 80, 0.05);
-            animation: shake 0.5s;
+            background: rgba(255, 80, 80, 0.15) !important;
+            border: 2px solid rgba(255, 80, 80, 0.6) !important;
+            animation: shake 0.5s ease;
         }
 
-        .quiz-feedback {
-            margin-top: 16px;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 12px 16px;
-            border-radius: 8px;
-            text-align: center;
+        .quiz-option.wrong .quiz-option-letter {
+            background: rgba(255, 80, 80, 0.3) !important;
+            color: rgba(255, 100, 100, 0.9) !important;
         }
 
-        .quiz-feedback.correct {
-            background: rgba(16, 185, 129, 0.15);
-            color: #10b981;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-
-        .quiz-feedback.wrong {
-            background: rgba(255, 80, 80, 0.15);
-            color: #ff5050;
-            border: 1px solid rgba(255, 80, 80, 0.3);
-        }
-
-        .xp-earned {
-            position: absolute;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            color: #10b981;
+        .quiz-option.faded {
+            opacity: 0.3;
             pointer-events: none;
-            animation: floatUp 1.5s ease-out forwards;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-5px); }
+            80% { transform: translateX(5px); }
+        }
+
+        /* XP Float Animation */
+        @keyframes xp-float {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-60px); }
+        }
+
+        .xp-float {
+            position: absolute;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #00ffaa;
+            pointer-events: none;
+            animation: xp-float 1s ease forwards;
+            z-index: 100;
+        }
+
+        /* Explanation Card */
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quiz-explanation {
+            margin-top: 20px;
+            padding: 14px 18px;
+            background: rgba(0, 255, 170, 0.05);
+            border-left: 3px solid #00ffaa;
+            border-radius: 0 12px 12px 0;
+            animation: slide-up 0.4s ease both;
+            animation-delay: 0.4s;
+        }
+
+        .quiz-explanation.wrong {
+            background: rgba(255, 80, 80, 0.05);
+            border-left-color: rgba(255, 80, 80, 0.6);
+        }
+
+        .quiz-explanation-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quiz-explanation-label.correct {
+            color: #00ffaa;
+        }
+
+        .quiz-explanation-label.wrong {
+            color: rgba(255, 100, 100, 0.8);
+        }
+
+        .quiz-explanation-text {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+
+        .correct-answer-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 4px;
+            font-style: italic;
+        }
+
+        /* Motivational Line */
+        .quiz-motivation {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.25);
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* Quiz Summary */
+        .quiz-summary {
+            background: rgba(10, 22, 40, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            backdrop-filter: blur(16px);
+            padding: 48px 40px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 255, 170, 0.05);
+        }
+
+        .quiz-summary-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .quiz-stars {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .quiz-star {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00ffaa, #00ddff);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: star-pop 0.5s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+        }
+
+        .quiz-star.empty {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .quiz-star:nth-child(1) { animation-delay: 0ms; }
+        .quiz-star:nth-child(2) { animation-delay: 150ms; }
+        .quiz-star:nth-child(3) { animation-delay: 300ms; }
+
+        @keyframes star-pop {
+            0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+            60% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+
+        .quiz-score-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 28px;
+        }
+
+        .quiz-score-xp {
+            color: #00ffaa;
+            font-weight: 700;
         }
 
         /* CHALLENGE TAB */
@@ -2102,22 +2666,8 @@
                         </div>
                         <span class="error-message"></span>
                     </div>
-                    <div class="form-group">
-                        <label>Grade</label>
-                        <select id="grade" name="grade" required>
-                            <option value="">Select your grade</option>
-                            <option value="4">Grade 4</option>
-                            <option value="8">Grade 8</option>
-                        </select>
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Subject</label>
-                        <select id="subject" name="subject" required>
-                            <option value="science">Science</option>
-                        </select>
-                        <span class="error-message"></span>
-                    </div>
+                    <input type="hidden" id="grade" name="grade" value="4">
+                    <input type="hidden" id="subject" name="subject" value="science">
                 </div>
 
                 <!-- SIGN IN FORM FIELDS (hidden by default) -->
@@ -2667,12 +3217,10 @@
                 isValid = validateField('signin-email', 'Email') && isValid;
                 isValid = validateField('signin-password', 'Password') && isValid;
             } else {
-                // Validate Sign Up form
+                // Validate Sign Up form (grade and subject are hidden, fixed values)
                 isValid = validateField('fullname', 'Full Name') && isValid;
                 isValid = validateField('email', 'Email') && isValid;
                 isValid = validateField('password', 'Password') && isValid;
-                isValid = validateField('grade', 'Grade') && isValid;
-                isValid = validateField('subject', 'Subject') && isValid;
             }
 
             if (isValid) {
@@ -2827,7 +3375,11 @@
                         fact: "🌍 Did you know? Masdar City is a super eco-friendly city that saves 40,000 tonnes of pollution every year!",
                         image: "/card-1.png",
                         statValue: 31,
-                        statLabel: "% Less Pollution by 2030"
+                        statLabel: "% Less Pollution by 2030",
+                        hotspots: [
+                            { left: 25, top: 60, text: "Solar panels power 500 homes" },
+                            { left: 70, top: 45, text: "Wind turbines = zero pollution" }
+                        ]
                     },
                     {
                         number: "02",
@@ -2836,7 +3388,11 @@
                         fact: "🌡️ Did you know? It gets so hot in summer that your hand could get burned by touching the ground!",
                         image: "/card-2.png",
                         statValue: 50,
-                        statLabel: "°C Summer Heat"
+                        statLabel: "°C Summer Heat",
+                        hotspots: [
+                            { left: 40, top: 50, text: "Masdar City, Abu Dhabi" },
+                            { left: 75, top: 35, text: "100% renewable energy used here" }
+                        ]
                     },
                     {
                         number: "03",
@@ -2845,7 +3401,11 @@
                         fact: "🌱 Did you know? Planting one tree helps clean the air for 50 years!",
                         image: "/card-3.png",
                         statValue: 1000000,
-                        statLabel: " Youth Green Leaders"
+                        statLabel: " Youth Green Leaders",
+                        hotspots: [
+                            { left: 30, top: 55, text: "Recycling saves 2.5kg CO₂ per bag" },
+                            { left: 65, top: 40, text: "LED bulbs use 75% less energy" }
+                        ]
                     }
                 ],
                 quiz: [
@@ -2895,19 +3455,31 @@
                         number: "01",
                         title: "Mohammed bin Rashid Solar Park",
                         body: "Dubai is home to the world's largest single-site solar park. The Mohammed bin Rashid Al Maktoum Solar Park will generate 5,000 MW of clean energy by 2030, powering hundreds of thousands of homes.",
-                        stat: "☀️ Will power 1.3 million homes by 2030"
+                        stat: "☀️ Will power 1.3 million homes by 2030",
+                        hotspots: [
+                            { left: 30, top: 50, text: "Each panel generates 400 watts" },
+                            { left: 68, top: 42, text: "Dubai Solar Park covers 214 km²" }
+                        ]
                     },
                     {
                         number: "02",
                         title: "Nuclear Clean Energy",
                         body: "The UAE became the first Arab country to operate a nuclear power plant. The Barakah Nuclear Power Plant in Abu Dhabi provides 25% of the UAE's electricity with zero carbon emissions.",
-                        stat: "⚡ Barakah offsets 21 million tonnes of CO₂ annually"
+                        stat: "⚡ Barakah offsets 21 million tonnes of CO₂ annually",
+                        hotspots: [
+                            { left: 35, top: 48, text: "Barakah has 4 reactor units" },
+                            { left: 72, top: 38, text: "Powers 25% of all UAE homes" }
+                        ]
                     },
                     {
                         number: "03",
                         title: "Wind and Hydrogen Future",
                         body: "The UAE is investing in offshore wind farms and green hydrogen production. Green hydrogen, made using solar power, could become one of the UAE's most important exports by 2050.",
-                        stat: "🌬️ UAE aims to produce 1.4 million tonnes of hydrogen by 2031"
+                        stat: "🌬️ UAE aims to produce 1.4 million tonnes of hydrogen by 2031",
+                        hotspots: [
+                            { left: 28, top: 52, text: "Turbine spins at 20 RPM" },
+                            { left: 65, top: 35, text: "Blades stretch 80 meters long" }
+                        ]
                     }
                 ],
                 quiz: [
@@ -2957,19 +3529,31 @@
                         number: "01",
                         title: "Water Scarcity in the UAE",
                         body: "The UAE is one of the most water-scarce countries in the world. With almost no natural rivers or lakes, 99% of drinking water comes from energy-intensive desalination plants along the coast.",
-                        stat: "💧 UAE has only 33mm of rainfall per year on average"
+                        stat: "💧 UAE has only 33mm of rainfall per year on average",
+                        hotspots: [
+                            { left: 32, top: 55, text: "Gulf water desalinated daily" },
+                            { left: 70, top: 40, text: "UAE has 70+ desalination plants" }
+                        ]
                     },
                     {
                         number: "02",
                         title: "Smart Irrigation Technology",
                         body: "UAE farms use AI-powered drip irrigation systems that deliver water directly to plant roots, reducing water waste by up to 70%. This technology is being exported to other water-scarce nations.",
-                        stat: "🌾 Smart irrigation saves 70% more water than traditional methods"
+                        stat: "🌾 Smart irrigation saves 70% more water than traditional methods",
+                        hotspots: [
+                            { left: 38, top: 50, text: "Sensors check soil moisture" },
+                            { left: 72, top: 42, text: "Drip saves 70% more water" }
+                        ]
                     },
                     {
                         number: "03",
                         title: "Cloud Seeding Operations",
                         body: "The UAE is a world leader in cloud seeding — a technology that stimulates rainfall artificially. The National Centre of Meteorology conducts over 300 cloud seeding missions per year.",
-                        stat: "🌧️ Cloud seeding increases UAE rainfall by up to 30%"
+                        stat: "🌧️ Cloud seeding increases UAE rainfall by up to 30%",
+                        hotspots: [
+                            { left: 45, top: 35, text: "Cloud seeding plane altitude: 3km" },
+                            { left: 75, top: 55, text: "Special salt crystals seed clouds" }
+                        ]
                     }
                 ],
                 quiz: [
@@ -3019,19 +3603,31 @@
                         number: "01",
                         title: "UAE's National AI Strategy",
                         body: "The UAE was the first country in the world to appoint a Minister of Artificial Intelligence. The UAE National AI Strategy 2031 aims to make the UAE a global leader in AI across all sectors.",
-                        stat: "🤖 AI could add $96 billion to UAE economy by 2030"
+                        stat: "🤖 AI could add $96 billion to UAE economy by 2030",
+                        hotspots: [
+                            { left: 30, top: 50, text: "UAE AI Minister: Omar Al Olama" },
+                            { left: 68, top: 38, text: "AI used in 50+ UAE government services" }
+                        ]
                     },
                     {
                         number: "02",
                         title: "AI in UAE Schools",
                         body: "AI is already being used in UAE classrooms to personalise learning for each student, detect when students struggle, and recommend content at the right difficulty level automatically.",
-                        stat: "📚 UAE introduced AI as a school subject in 2019"
+                        stat: "📚 UAE introduced AI as a school subject in 2019",
+                        hotspots: [
+                            { left: 35, top: 52, text: "AI adapts to each student's level" },
+                            { left: 72, top: 40, text: "Introduced in UAE schools: 2019" }
+                        ]
                     },
                     {
                         number: "03",
                         title: "Ethics of AI",
                         body: "As AI grows more powerful, ensuring it is fair, transparent and safe becomes critical. The UAE has developed an AI Ethics Guidelines framework to make sure AI systems respect human rights and cultural values.",
-                        stat: "⚖️ UAE AI ethics covers fairness, privacy and accountability"
+                        stat: "⚖️ UAE AI ethics covers fairness, privacy and accountability",
+                        hotspots: [
+                            { left: 40, top: 48, text: "Fairness is the #1 AI rule" },
+                            { left: 70, top: 55, text: "UAE AI Ethics covers 6 core values" }
+                        ]
                     }
                 ],
                 quiz: [
@@ -3086,19 +3682,31 @@
                         number: "01",
                         title: "What Is a Carbon Footprint?",
                         body: "A carbon footprint measures the total greenhouse gases produced by human activities. In the UAE, the average person produces around 20 tonnes of CO₂ per year — one of the highest rates in the world due to energy and cooling needs.",
-                        stat: "🌍 Global average is 4 tonnes per person per year"
+                        stat: "🌍 Global average is 4 tonnes per person per year",
+                        hotspots: [
+                            { left: 33, top: 52, text: "Transport = 24% of UAE emissions" },
+                            { left: 68, top: 40, text: "UAE average: 20 tonnes CO₂/year" }
+                        ]
                     },
                     {
                         number: "02",
                         title: "UAE Net Zero 2050",
                         body: "The UAE was the first Middle Eastern country to commit to Net Zero emissions by 2050. This means balancing the amount of carbon produced with the amount removed — a massive national transformation.",
-                        stat: "🎯 UAE Net Zero target set at COP26 in 2021"
+                        stat: "🎯 UAE Net Zero target set at COP26 in 2021",
+                        hotspots: [
+                            { left: 38, top: 48, text: "Net Zero set at COP26, Glasgow 2021" },
+                            { left: 74, top: 38, text: "UAE invested $163B in clean energy" }
+                        ]
                     },
                     {
                         number: "03",
                         title: "What You Can Do",
                         body: "Small daily actions add up. Taking public transport, eating less meat, reducing screen time on high-energy devices, and buying local products all reduce your personal carbon footprint significantly.",
-                        stat: "🚌 Public transport cuts your carbon footprint by 45%"
+                        stat: "🚌 Public transport cuts your carbon footprint by 45%",
+                        hotspots: [
+                            { left: 30, top: 55, text: "Metro reduces 200,000 car trips daily" },
+                            { left: 65, top: 42, text: "1 tree absorbs 22kg CO₂ per year" }
+                        ]
                     }
                 ],
                 quiz: [
@@ -3176,16 +3784,17 @@
             document.getElementById('mission-screen-title').textContent = mission.title;
             document.getElementById('total-xp').textContent = mission.xpTotal;
             
-            // Load Learn cards as vertical stack
+            // Load Learn cards as vertical stack with premium effects
             const learnCardsContainer = document.getElementById('learn-cards');
             learnCardsContainer.innerHTML = '';
             mission.learn.forEach((card, idx) => {
                 const cardEl = document.createElement('div');
-                cardEl.className = 'learn-card';
+                cardEl.className = 'learn-card entering';
                 cardEl.setAttribute('data-card-index', idx);
+                cardEl.setAttribute('data-fact-revealed', 'false');
                 const factId = `fact-${mission.id}-${idx}`;
                 // Extract emoji and fact text - format: "🌍 Did you know? Fact text here"
-                let factShort = 'Fun Fact';
+                let factShort = 'Did you know?';
                 let factDetail = card.fact || 'No fact available';
                 if (card.fact) {
                     const match = card.fact.match(/^([^?]+)\?\s*(.+)$/);
@@ -3195,42 +3804,188 @@
                     }
                 }
                 
+                // Generate hotspot HTML
+                let hotspotsHtml = '';
+                if (card.hotspots && card.hotspots.length > 0) {
+                    hotspotsHtml = card.hotspots.map((hotspot, hIdx) => `
+                        <div class="image-hotspot" style="left: ${hotspot.left}%; top: ${hotspot.top}%;" data-hotspot="${hIdx}">
+                            <div class="hotspot-tooltip">${hotspot.text}</div>
+                        </div>
+                    `).join('');
+                }
+                
+                // Handle stat display (some cards use 'stat', others use 'statValue' + 'statLabel')
+                let statHtml = '';
+                if (card.statValue !== undefined && card.statLabel) {
+                    statHtml = `<span class="learn-card-stat"><span class="stat-number" data-target="${card.statValue}">0</span>${card.statLabel}</span>`;
+                } else if (card.stat) {
+                    statHtml = `<span class="learn-card-stat">${card.stat}</span>`;
+                }
+                
                 cardEl.innerHTML = `
+                    <div class="card-glare"></div>
                     <div class="learn-card-image-wrapper">
-                        ${card.image ? `<img src="${card.image}" alt="${card.title}" class="learn-card-image">` : ''}
+                        ${card.image ? `<img src="${card.image}" alt="${card.title}" class="learn-card-image" data-parallax="true">` : ''}
                         <div class="learn-card-badge">${card.number}</div>
+                        ${hotspotsHtml}
                     </div>
                     <div class="learn-card-content">
                         <h3 class="learn-card-title">${card.title}</h3>
                         <p class="learn-card-body">${card.body}</p>
-                        <div class="fun-fact-card" onclick="toggleFunFact('${factId}')">
-                            <div class="fun-fact-icon">💡</div>
-                            <div class="fun-fact-text-block">
-                                <div class="fun-fact-header">Fun Fact</div>
-                                <div class="fun-fact-text">${factShort}</div>
+                        <div class="fun-fact-zone" id="zone-${factId}" data-fact-id="${factId}">
+                            <div class="fun-fact-content">
+                                <div class="fun-fact-icon">💡</div>
+                                <div class="fun-fact-text-block">
+                                    <div class="fun-fact-header">Fun Fact</div>
+                                    <div class="fun-fact-text">${factShort}</div>
+                                </div>
+                                <div class="fun-fact-expanded" id="${factId}">
+                                    <div class="fun-fact-did-you-know">Did you know?</div>
+                                    <div class="fun-fact-detail">${factDetail}</div>
+                                </div>
                             </div>
-                            <div class="fun-fact-expanded" id="${factId}">
-                                <div class="fun-fact-did-you-know">Did you know?</div>
-                                <div class="fun-fact-detail">${factDetail}</div>
+                            <div class="fun-fact-overlay">
+                                <span class="fun-fact-overlay-text">Move your cursor here to reveal</span>
+                                <span class="fun-fact-cursor">↗</span>
                             </div>
                         </div>
-                        <span class="learn-card-stat"><span class="stat-number" data-target="${card.statValue || 0}">0</span>${card.statLabel}</span>
+                        ${statHtml}
                     </div>
                 `;
                 learnCardsContainer.appendChild(cardEl);
+                
+                // Remove entering class after animation
+                setTimeout(() => {
+                    cardEl.classList.remove('entering');
+                }, 600 + (idx * 150));
             });
             
-            // Setup IntersectionObserver for progress dots
-            setupLearnProgressObserver();
-            
-            // Animate all visible stats
-            setTimeout(startAllLearnStatAnimations, 300);
+            // Setup all interactive effects
+            setTimeout(() => {
+                setupCardTiltEffects();
+                setupImageParallaxEffects();
+                setupMagneticFunFactEffects();
+                setupLearnProgressObserver();
+                setupStatCounterObserver();
+            }, 100);
 
             // Load Quiz
             loadQuiz(mission);
 
             // Load Challenge
             loadChallenge(mission);
+        }
+
+        // Effect 1: 3D Card Tilt with Glare
+        function setupCardTiltEffects() {
+            const cards = document.querySelectorAll('.learn-card');
+            cards.forEach(card => {
+                const glare = card.querySelector('.card-glare');
+                
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    const rotateX = (-y / rect.height) * 12;
+                    const rotateY = (x / rect.width) * 12;
+                    
+                    card.classList.add('tilting');
+                    card.classList.remove('resetting');
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                    
+                    // Update glare position
+                    if (glare) {
+                        const mouseXPercent = ((e.clientX - rect.left) / rect.width) * 100;
+                        const mouseYPercent = ((e.clientY - rect.top) / rect.height) * 100;
+                        glare.style.background = `radial-gradient(circle at ${mouseXPercent}% ${mouseYPercent}%, rgba(255,255,255,0.08) 0%, transparent 60%)`;
+                    }
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.classList.remove('tilting');
+                    card.classList.add('resetting');
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+                });
+            });
+        }
+
+        // Effect 2: Image Parallax Window
+        function setupImageParallaxEffects() {
+            const cards = document.querySelectorAll('.learn-card');
+            cards.forEach(card => {
+                const image = card.querySelector('.learn-card-image[data-parallax="true"]');
+                if (!image) return;
+                
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    const moveX = (x / rect.width) * 20;
+                    const moveY = (y / rect.height) * 20;
+                    
+                    image.classList.add('parallaxing');
+                    image.classList.remove('resetting');
+                    image.style.transform = `scale(1.12) translate(${-moveX}px, ${-moveY}px)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    image.classList.remove('parallaxing');
+                    image.classList.add('resetting');
+                    image.style.transform = 'scale(1.12) translate(0,0)';
+                });
+            });
+        }
+
+        // Effect 4: Magnetic Fun Fact Reveal
+        function setupMagneticFunFactEffects() {
+            const zones = document.querySelectorAll('.fun-fact-zone');
+            zones.forEach(zone => {
+                const overlay = zone.querySelector('.fun-fact-overlay');
+                const factId = zone.getAttribute('data-fact-id');
+                
+                zone.addEventListener('mousemove', (e) => {
+                    const rect = zone.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    const dx = e.clientX - centerX;
+                    const dy = e.clientY - centerY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const maxDist = 120;
+                    const opacity = Math.min(distance / maxDist, 1);
+                    
+                    overlay.style.opacity = opacity;
+                    overlay.style.backdropFilter = `blur(${opacity * 8}px)`;
+                    
+                    if (opacity < 0.1) {
+                        zone.classList.add('revealed');
+                        const factEl = document.getElementById(factId);
+                        if (factEl) factEl.classList.add('show');
+                        const card = zone.closest('.learn-card');
+                        if (card) card.setAttribute('data-fact-revealed', 'true');
+                    }
+                });
+                
+                zone.addEventListener('mouseleave', () => {
+                    overlay.style.transition = 'opacity 0.8s ease, backdrop-filter 0.8s ease';
+                    overlay.style.opacity = '1';
+                    overlay.style.backdropFilter = 'blur(8px)';
+                    setTimeout(() => {
+                        overlay.style.transition = 'opacity 0.3s ease, backdrop-filter 0.3s ease';
+                    }, 800);
+                });
+                
+                // Touch support - tap to toggle
+                zone.addEventListener('click', () => {
+                    zone.classList.toggle('revealed');
+                    const factEl = document.getElementById(factId);
+                    if (factEl) factEl.classList.toggle('show');
+                    const card = zone.closest('.learn-card');
+                    if (card) {
+                        const isRevealed = zone.classList.contains('revealed');
+                        card.setAttribute('data-fact-revealed', isRevealed ? 'true' : 'false');
+                    }
+                });
+            });
         }
 
         // Track which cards have been viewed for completion
@@ -3274,6 +4029,49 @@
             });
         }
 
+        // Effect 5: Animated Stat Counter
+        function setupStatCounterObserver() {
+            const statObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statEl = entry.target;
+                        if (statEl.animated) return;
+                        
+                        const target = parseInt(statEl.dataset.target) || 0;
+                        if (target === 0) {
+                            statEl.animated = true;
+                            return;
+                        }
+                        
+                        statEl.classList.add('animating');
+                        const duration = 1500;
+                        const start = performance.now();
+                        
+                        const update = (time) => {
+                            const progress = Math.min((time - start) / duration, 1);
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            const current = Math.round(eased * target);
+                            statEl.textContent = current.toLocaleString();
+                            
+                            if (progress < 1) {
+                                requestAnimationFrame(update);
+                            } else {
+                                statEl.textContent = target.toLocaleString();
+                                statEl.classList.remove('animating');
+                                statEl.animated = true;
+                            }
+                        };
+                        requestAnimationFrame(update);
+                        statObserver.unobserve(statEl);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            document.querySelectorAll('.stat-number[data-target]').forEach(statEl => {
+                statObserver.observe(statEl);
+            });
+        }
+
         function updateProgressDots(activeIndex) {
             const dots = document.querySelectorAll('.progress-dot');
             dots.forEach((dot, idx) => {
@@ -3298,6 +4096,7 @@
 
         function unlockQuizTab() {
             const quizTab = document.querySelector('.mission-tab[data-tab="quiz"]');
+            if (quizTab.classList.contains('unlocked')) return;
             quizTab.classList.add('unlocked');
             // Pulse animation
             quizTab.style.animation = 'tabGlow 0.6s ease';
@@ -3306,38 +4105,21 @@
             }, 600);
         }
 
+        // Legacy function for compatibility
         function toggleFunFact(factId) {
             const factEl = document.getElementById(factId);
             if (factEl) {
                 factEl.classList.toggle('show');
-                // Also mark this card's fun fact as expanded
-                const card = factEl.closest('.learn-card');
-                if (card) {
-                    card.setAttribute('data-fact-expanded', 'true');
+                const zone = document.querySelector(`[data-fact-id="${factId}"]`);
+                if (zone) {
+                    zone.classList.toggle('revealed');
+                    const card = zone.closest('.learn-card');
+                    if (card) {
+                        const isRevealed = zone.classList.contains('revealed');
+                        card.setAttribute('data-fact-revealed', isRevealed ? 'true' : 'false');
+                    }
                 }
             }
-        }
-
-        function startAllLearnStatAnimations() {
-            const statEls = document.querySelectorAll('.learn-card .stat-number');
-            statEls.forEach(statEl => {
-                if (statEl.animated) return;
-                const target = parseInt(statEl.dataset.target) || 0;
-                let current = 0;
-                const increment = target / 30;
-                statEl.textContent = '0';
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) { 
-                        statEl.textContent = target.toLocaleString(); 
-                        clearInterval(timer); 
-                        statEl.animated = true; 
-                    }
-                    else { 
-                        statEl.textContent = Math.floor(current).toLocaleString(); 
-                    }
-                }, 50);
-            });
         }
 
         function switchTab(tabName) {
@@ -3370,66 +4152,207 @@
             document.getElementById('current-xp').textContent = totalXP;
         }
 
+        // Quiz answer tracking
+        let quizAnswers = [];
+        let quizTimer = null;
+        let quizStartTime = null;
+
         function loadQuiz(mission) {
             currentQuestionIndex = 0;
+            quizAnswers = [];
             renderQuizQuestion(mission);
         }
 
         function renderQuizQuestion(mission) {
             const container = document.getElementById('quiz-container');
             const q = mission.quiz[currentQuestionIndex];
+            quizStartTime = Date.now();
+            
+            // Build score dots
+            let scoreDotsHtml = '';
+            for (let i = 0; i < mission.quiz.length; i++) {
+                if (i < quizAnswers.length) {
+                    const dotClass = quizAnswers[i] ? 'correct' : 'wrong';
+                    scoreDotsHtml += `<div class="quiz-score-dot ${dotClass}"></div>`;
+                } else {
+                    scoreDotsHtml += `<div class="quiz-score-dot"></div>`;
+                }
+            }
+            
+            // Motivational line
+            const motivations = [
+                "First question — you've got this!",
+                "Halfway there, keep going!",
+                "Last one — finish strong!"
+            ];
+            const motivationText = motivations[currentQuestionIndex] || '';
             
             container.innerHTML = `
                 <div class="quiz-question">
-                    <div class="quiz-question-number">Question ${currentQuestionIndex + 1} of ${mission.quiz.length}</div>
-                    <h3 class="quiz-question-text">${q.question}</h3>
-                    <div class="quiz-options" id="quiz-options">
+                    <div class="quiz-header">
+                        <div class="quiz-question-number">Question ${currentQuestionIndex + 1} of ${mission.quiz.length}</div>
+                        <div class="quiz-score-dots">${scoreDotsHtml}</div>
                     </div>
+                    <div class="quiz-question-text-wrapper">
+                        <div class="quiz-question-line"></div>
+                        <h3 class="quiz-question-text">${q.question}</h3>
+                    </div>
+                    <div class="quiz-timer-wrapper">
+                        <div class="quiz-timer-bar">
+                            <div class="quiz-timer-fill" id="quiz-timer-fill"></div>
+                        </div>
+                        <div class="quiz-timer-text" id="quiz-timer-text">0:30</div>
+                        <div class="quiz-xp-pill" id="quiz-xp-pill">
+                            <span>+</span><span>10 XP</span>
+                        </div>
+                    </div>
+                    <div class="quiz-options" id="quiz-options"></div>
+                    <div class="quiz-motivation">${motivationText}</div>
                 </div>
             `;
-
+            
+            // Start timer
+            startQuizTimer(mission, q.correct, q.explanation);
+            
+            // Build options
             const optionsContainer = container.querySelector('#quiz-options');
+            const colors = ['rgba(59,130,246,0.3)', 'rgba(139,92,246,0.3)', 'rgba(249,115,22,0.3)', 'rgba(0,255,170,0.2)'];
+            
             q.options.forEach((opt, idx) => {
                 const optionEl = document.createElement('div');
                 optionEl.className = 'quiz-option';
+                optionEl.setAttribute('data-option', idx);
                 optionEl.innerHTML = `
                     <div class="quiz-option-letter">${String.fromCharCode(65 + idx)}</div>
                     <span class="quiz-option-text">${opt}</span>
                 `;
                 optionEl.addEventListener('click', () => {
-                    handleQuizAnswer(idx, q.correct, q.explanation);
+                    handleQuizAnswer(idx, q.correct, q.explanation, mission);
                 });
                 optionsContainer.appendChild(optionEl);
             });
         }
 
-        function handleQuizAnswer(selectedIdx, correctIdx, explanation) {
-            const mission = missionsData.find(m => m.id === currentMissionId);
-            const options = document.querySelectorAll('.quiz-option');
-            options.forEach(opt => opt.classList.add('disabled'));
+        function startQuizTimer(mission, correctIdx, explanation) {
+            const timerFill = document.getElementById('quiz-timer-fill');
+            const timerText = document.getElementById('quiz-timer-text');
+            const xpPill = document.getElementById('quiz-xp-pill');
+            
+            let timeLeft = 30;
+            let warningShown = false;
+            
+            quizTimer = setInterval(() => {
+                timeLeft--;
+                const seconds = Math.floor(timeLeft);
+                timerText.textContent = `0:${seconds.toString().padStart(2, '0')}`;
+                
+                // Speed bonus check at 20s remaining (answered within 10s)
+                if (timeLeft === 20 && xpPill) {
+                    xpPill.classList.add('bonus');
+                    xpPill.innerHTML = '<span>+</span><span>15 XP</span><span style="font-size:9px;margin-left:4px;">SPEED!</span>';
+                }
+                
+                // Warning at 10s
+                if (timeLeft <= 10 && !warningShown) {
+                    warningShown = true;
+                    if (timerFill) timerFill.classList.add('warning');
+                    if (timerText) timerText.classList.add('warning');
+                }
+                
+                // Time's up
+                if (timeLeft <= 0) {
+                    clearInterval(quizTimer);
+                    handleQuizAnswer(-1, correctIdx, explanation, mission); // Auto-wrong
+                }
+            }, 1000);
+        }
 
-            const isCorrect = selectedIdx === correctIdx;
-            options[selectedIdx].classList.add(isCorrect ? 'correct' : 'wrong');
-            if (!isCorrect) options[correctIdx].classList.add('correct');
-
-            const feedbackEl = document.createElement('div');
-            feedbackEl.className = `quiz-feedback ${isCorrect ? 'correct' : 'wrong'}`;
-            feedbackEl.innerHTML = isCorrect ? `✓ Correct! ${explanation}` : `✗ Not quite. The correct answer was Option ${String.fromCharCode(65 + correctIdx)}.`;
-            document.querySelector('.quiz-question').appendChild(feedbackEl);
-
-            if (isCorrect) {
-                quizXP += 10;
-                const xpEl = document.createElement('div');
-                xpEl.className = 'xp-earned';
-                xpEl.textContent = '+10 XP';
-                xpEl.style.position = 'absolute';
-                xpEl.style.left = options[selectedIdx].offsetLeft + 'px';
-                xpEl.style.top = options[selectedIdx].offsetTop + 'px';
-                options[selectedIdx].parentElement.appendChild(xpEl);
+        function handleQuizAnswer(selectedIdx, correctIdx, explanation, mission) {
+            // Clear timer
+            if (quizTimer) {
+                clearInterval(quizTimer);
+                quizTimer = null;
             }
-
+            
+            const options = document.querySelectorAll('.quiz-option');
+            const isCorrect = selectedIdx === correctIdx;
+            const answeredFast = quizStartTime && (Date.now() - quizStartTime) < 10000;
+            
+            // Track answer
+            quizAnswers.push(isCorrect);
+            
+            // Disable all options
+            options.forEach(opt => opt.classList.add('disabled'));
+            
+            // Handle correct/wrong styling
+            if (isCorrect) {
+                options[selectedIdx].classList.add('correct');
+                
+                // XP calculation
+                const xpEarned = answeredFast ? 15 : 10;
+                quizXP += xpEarned;
+                
+                // XP float animation
+                const xpEl = document.createElement('div');
+                xpEl.className = 'xp-float';
+                xpEl.textContent = `+${xpEarned} XP`;
+                const clickedOption = options[selectedIdx];
+                const rect = clickedOption.getBoundingClientRect();
+                const containerRect = document.querySelector('.quiz-question').getBoundingClientRect();
+                xpEl.style.left = (rect.left - containerRect.left + rect.width / 2 - 30) + 'px';
+                xpEl.style.top = (rect.top - containerRect.top) + 'px';
+                document.querySelector('.quiz-question').appendChild(xpEl);
+                
+                // Add explanation
+                setTimeout(() => {
+                    const explanationEl = document.createElement('div');
+                    explanationEl.className = 'quiz-explanation';
+                    explanationEl.innerHTML = `
+                        <div class="quiz-explanation-label correct">✓ CORRECT</div>
+                        <div class="quiz-explanation-text">${explanation}</div>
+                    `;
+                    document.querySelector('.quiz-question').appendChild(explanationEl);
+                }, 400);
+                
+            } else {
+                // Wrong answer or timeout
+                if (selectedIdx >= 0) {
+                    options[selectedIdx].classList.add('wrong');
+                }
+                
+                // Highlight correct answer
+                options[correctIdx].classList.add('correct');
+                
+                // Fade wrong options
+                options.forEach((opt, idx) => {
+                    if (idx !== correctIdx && idx !== selectedIdx) {
+                        opt.classList.add('faded');
+                    }
+                });
+                
+                // Add explanation
+                setTimeout(() => {
+                    const explanationEl = document.createElement('div');
+                    explanationEl.className = 'quiz-explanation wrong';
+                    const labelText = selectedIdx === -1 ? "⏱ TIME'S UP" : "✗ NOT QUITE";
+                    explanationEl.innerHTML = `
+                        <div class="quiz-explanation-label wrong">${labelText}</div>
+                        <div class="quiz-explanation-text">
+                            ${selectedIdx !== correctIdx ? `<div class="correct-answer-label">Correct answer →</div>` : ''}
+                            ${explanation}
+                        </div>
+                    `;
+                    document.querySelector('.quiz-question').appendChild(explanationEl);
+                }, 400);
+            }
+            
+            // Remove motivation line
+            const motivation = document.querySelector('.quiz-motivation');
+            if (motivation) motivation.remove();
+            
             updateProgressBar();
-
+            
+            // Delay before next question
             setTimeout(() => {
                 currentQuestionIndex++;
                 if (currentQuestionIndex < mission.quiz.length) {
@@ -3437,20 +4360,26 @@
                 } else {
                     showQuizSummary(mission);
                 }
-            }, 1500);
+            }, 2200);
         }
 
         function showQuizSummary(mission) {
-            const stars = quizXP === 30 ? 3 : quizXP === 20 ? 2 : 1;
+            const stars = quizXP === 30 ? 3 : quizXP >= 20 ? 2 : 1;
+            const totalXP = 30;
+            
+            let starsHtml = '';
+            for (let i = 0; i < 3; i++) {
+                starsHtml += `<div class="quiz-star ${i < stars ? '' : 'empty'}"></div>`;
+            }
+            
             document.getElementById('quiz-container').innerHTML = `
-                <div class="quiz-question">
-                    <div class="quiz-question-text" style="text-align: center; margin-bottom: 24px;">
-                        You scored ${quizXP}/30 XP this round
+                <div class="quiz-summary">
+                    <div class="quiz-summary-title">Quiz Complete!</div>
+                    <div class="quiz-stars">${starsHtml}</div>
+                    <div class="quiz-score-text">
+                        <span class="quiz-score-xp">${quizXP}</span> / ${totalXP} XP earned
                     </div>
-                    <div style="text-align: center; font-size: 24px; margin-bottom: 24px;">
-                        ${Array(stars).fill('⭐').join('')}${Array(3 - stars).fill('☆').join('')}
-                    </div>
-                    <button class="mission-next-btn" onclick="switchTab('challenge')" style="width: 100%;">
+                    <button class="mission-next-btn" onclick="switchTab('challenge')">
                         Continue to Challenge →
                     </button>
                 </div>
