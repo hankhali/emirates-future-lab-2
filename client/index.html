@@ -2110,6 +2110,7 @@
         let mouseX = heroCanvas.width / 2;
         let mouseY = heroCanvas.height / 2;
         const sheikhaRegion = { x: 0.355, y: 0.545, width: 0.096, height: 0.21 };
+        const zayedRegion = { x: 0.549, y: 0.545, width: 0.096, height: 0.21 };
         const heroBgImage = new Image();
 
         function getRegionRect(region) {
@@ -2200,6 +2201,7 @@
             const clickX = e.clientX - bounds.left;
             const clickY = e.clientY - bounds.top;
             const sheikhaRect = getRegionRect(sheikhaRegion);
+            const zayedRect = getRegionRect(zayedRegion);
 
             if (
                 clickX >= sheikhaRect.left &&
@@ -2208,6 +2210,16 @@
                 clickY <= sheikhaRect.top + sheikhaRect.height
             ) {
                 chooseGuide('sheika');
+                return;
+            }
+
+            if (
+                clickX >= zayedRect.left &&
+                clickX <= zayedRect.left + zayedRect.width &&
+                clickY >= zayedRect.top &&
+                clickY <= zayedRect.top + zayedRect.height
+            ) {
+                chooseGuide('zayed');
             }
         });
 

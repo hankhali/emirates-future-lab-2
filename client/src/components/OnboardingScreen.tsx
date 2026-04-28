@@ -9,10 +9,13 @@
  * - Responsive design: desktop (side-by-side) to mobile (stacked)
  */
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Leaf, Globe, Beaker, Award, MapPin } from 'lucide-react';
 
 export default function OnboardingScreen() {
+  const [selectedGuide, setSelectedGuide] = useState<'ayla' | 'zayd' | null>(null);
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -116,7 +119,10 @@ export default function OnboardingScreen() {
         <motion.div className="w-full max-w-6xl" variants={itemVariants}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 items-center mb-12">
             {/* Ayla Guide */}
-            <motion.div className="flex flex-col items-center text-center">
+            <motion.div
+              className="flex flex-col items-center text-center cursor-pointer"
+              onClick={() => setSelectedGuide('ayla')}
+            >
               <motion.div
                 className="relative mb-6"
                 animate="animate"
@@ -137,7 +143,13 @@ export default function OnboardingScreen() {
                 />
 
                 {/* Avatar */}
-                <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-emerald-400 overflow-hidden">
+                <div
+                  className={`relative w-32 h-32 md:w-40 md:h-40 rounded-full border-2 overflow-hidden transition-all duration-300 ${
+                    selectedGuide === 'ayla'
+                      ? 'border-emerald-300 shadow-[0_0_25px_rgba(16,185,129,0.75)]'
+                      : 'border-emerald-400'
+                  }`}
+                >
                   <img
                     src="https://d2xsxph8kpxj0f.cloudfront.net/310519663602508230/LKMVMGnoWF9gkc4U4pNwZq/ayla-avatar-7qKzNZ8MuDms3XukoSyrS4.webp"
                     alt="Ayla - AI Sustainability Guide"
@@ -155,6 +167,13 @@ export default function OnboardingScreen() {
                 <p className="text-xs text-gray-500">
                   Curious • Smart • Compassionate
                 </p>
+                <button
+                  type="button"
+                  onClick={() => setSelectedGuide('ayla')}
+                  className="mt-4 px-4 py-2 text-xs font-semibold tracking-wide uppercase rounded-full border border-emerald-400/70 text-emerald-300 hover:bg-emerald-500/15 transition-colors"
+                >
+                  {selectedGuide === 'ayla' ? 'Ayla Selected' : 'Choose Ayla'}
+                </button>
               </div>
             </motion.div>
 
@@ -175,10 +194,20 @@ export default function OnboardingScreen() {
                 <span>AI Guides</span>
                 <span className="h-px w-10 bg-cyan-400/40" />
               </div>
+              {selectedGuide && (
+                <p className="mt-6 text-sm text-gray-200 font-medium">
+                  {selectedGuide === 'ayla'
+                    ? 'Ayla selected. Your sustainability mission begins now.'
+                    : 'Zayd selected. Your innovation mission begins now.'}
+                </p>
+              )}
             </motion.div>
 
             {/* Zayd Guide */}
-            <motion.div className="flex flex-col items-center text-center md:col-span-1 order-2 md:order-3">
+            <motion.div
+              className="flex flex-col items-center text-center md:col-span-1 order-2 md:order-3 cursor-pointer"
+              onClick={() => setSelectedGuide('zayd')}
+            >
               <motion.div
                 className="relative mb-6"
                 animate="animate"
@@ -199,7 +228,13 @@ export default function OnboardingScreen() {
                 />
 
                 {/* Avatar */}
-                <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-cyan-400 overflow-hidden">
+                <div
+                  className={`relative w-32 h-32 md:w-40 md:h-40 rounded-full border-2 overflow-hidden transition-all duration-300 ${
+                    selectedGuide === 'zayd'
+                      ? 'border-cyan-300 shadow-[0_0_25px_rgba(6,182,212,0.75)]'
+                      : 'border-cyan-400'
+                  }`}
+                >
                   <img
                     src="https://d2xsxph8kpxj0f.cloudfront.net/310519663602508230/LKMVMGnoWF9gkc4U4pNwZq/zayd-avatar-JiXf2oQSZWxGQhAQCEhPmj.webp"
                     alt="Zayd - AI Innovation Guide"
@@ -217,6 +252,13 @@ export default function OnboardingScreen() {
                 <p className="text-xs text-gray-500">
                   Brave • Creative • Driven
                 </p>
+                <button
+                  type="button"
+                  onClick={() => setSelectedGuide('zayd')}
+                  className="mt-4 px-4 py-2 text-xs font-semibold tracking-wide uppercase rounded-full border border-cyan-400/70 text-cyan-300 hover:bg-cyan-500/15 transition-colors"
+                >
+                  {selectedGuide === 'zayd' ? 'Zayd Selected' : 'Choose Zayd'}
+                </button>
               </div>
             </motion.div>
           </div>
