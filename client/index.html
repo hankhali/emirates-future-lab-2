@@ -3076,13 +3076,13 @@
                         
                         <!-- Draggable Emirate Tokens -->
                         <div class="emirate-tokens" id="emirate-tokens">
-                            <div class="emirate-token" draggable="true" data-emirate="abu-dhabi" data-x="15" data-y="40">Abu Dhabi</div>
-                            <div class="emirate-token" draggable="true" data-emirate="dubai" data-x="35" data-y="45">Dubai</div>
-                            <div class="emirate-token" draggable="true" data-emirate="sharjah" data-x="42" data-y="38">Sharjah</div>
-                            <div class="emirate-token" draggable="true" data-emirate="ajman" data-x="40" data-y="32">Ajman</div>
-                            <div class="emirate-token" draggable="true" data-emirate="umm-al-quwain" data-x="38" data-y="25">Umm Al Quwain</div>
-                            <div class="emirate-token" draggable="true" data-emirate="ras-al-khaimah" data-x="45" data-y="18">Ras Al Khaimah</div>
-                            <div class="emirate-token" draggable="true" data-emirate="fujairah" data-x="55" data-y="35">Fujairah</div>
+                            <div class="emirate-token" draggable="true" data-emirate="abu-dhabi">Abu Dhabi</div>
+                            <div class="emirate-token" draggable="true" data-emirate="dubai">Dubai</div>
+                            <div class="emirate-token" draggable="true" data-emirate="sharjah">Sharjah</div>
+                            <div class="emirate-token" draggable="true" data-emirate="ajman">Ajman</div>
+                            <div class="emirate-token" draggable="true" data-emirate="umm-al-quwain">Umm Al Quwain</div>
+                            <div class="emirate-token" draggable="true" data-emirate="ras-al-khaimah">Ras Al Khaimah</div>
+                            <div class="emirate-token" draggable="true" data-emirate="fujairah">Fujairah</div>
                         </div>
                     </div>
                     
@@ -3352,7 +3352,6 @@
 
         function chooseGuide(guide) {
             chosenGuide = guide;
-            console.log(`Selected: ${guide}`);
             const color = guide === 'sheika' ? 'rgba(0, 255, 170, 0.15)' : 'rgba(0, 150, 255, 0.15)';
             triggerFlash(color);
             
@@ -4491,19 +4490,15 @@
             const tokens = document.querySelectorAll('.emirate-token');
             const placeholders = document.querySelectorAll('.emirate-placeholder');
 
-            console.log('Initializing bonus game, tokens:', tokens.length, 'placeholders:', placeholders.length);
-
             tokens.forEach(token => {
                 token.addEventListener('dragstart', handleDragStart);
                 token.addEventListener('dragend', handleDragEnd);
-                console.log('Added drag events to:', token.textContent);
             });
 
             placeholders.forEach(placeholder => {
                 placeholder.addEventListener('dragover', handleDragOver);
                 placeholder.addEventListener('dragleave', handleDragLeave);
                 placeholder.addEventListener('drop', handleDropOnPlaceholder);
-                console.log('Added drop events to placeholder:', placeholder.dataset.emirate);
             });
         }
 
@@ -4531,8 +4526,6 @@
 
         function handleDragStart(e) {
             e.dataTransfer.setData('text/plain', e.target.dataset.emirate);
-            e.dataTransfer.setData('data-x', e.target.dataset.x);
-            e.dataTransfer.setData('data-y', e.target.dataset.y);
             e.dataTransfer.effectAllowed = 'move';
             e.target.classList.add('dragging');
         }
@@ -4563,8 +4556,6 @@
             if (!token || placeholder.classList.contains('filled') || token.classList.contains('placed')) {
                 return;
             }
-
-            console.log('Dropped', emirateId, 'on', targetEmirate);
 
             if (emirateId === targetEmirate) {
                 // Correct match!
