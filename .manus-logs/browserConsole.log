@@ -70,3 +70,17 @@
 [2026-04-28T18:46:40.297Z] {"timestamp":1777401999851,"level":"LOG","args":["Selected: sheika"],"stack":null}
 [2026-04-28T18:46:53.541Z] {"timestamp":1777402011532,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
 [2026-04-28T18:46:53.541Z] {"timestamp":1777402011555,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T18:47:55.149Z] {"timestamp":1777402072251,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T18:47:55.149Z] {"timestamp":1777402072264,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T18:48:40.255Z] {"timestamp":1777402118702,"level":"LOG","args":["Selected: sheika"],"stack":null}
+[2026-04-28T19:03:42.105Z] {"timestamp":1777403020095,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T19:03:42.105Z] {"timestamp":1777403020134,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T19:03:42.105Z] {"timestamp":1777403021883,"level":"LOG","args":["Selected: sheika"],"stack":null}
+[2026-04-28T19:04:03.467Z] {"timestamp":1777403041348,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T19:04:03.467Z] {"timestamp":1777403041371,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T19:04:37.351Z] {"timestamp":1777403077256,"level":"LOG","args":["Selected: sheika"],"stack":null}
+[2026-04-28T19:05:07.550Z] {"timestamp":1777403105547,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T19:05:07.550Z] {"timestamp":1777403105554,"level":"DEBUG","args":["[vite] connected."],"stack":null}
+[2026-04-28T19:05:57.550Z] {"timestamp":1777403157106,"level":"LOG","args":["Selected: zayed"],"stack":null}
+[2026-04-28T19:06:50.182Z] {"timestamp":1777403207588,"level":"DEBUG","args":["[Manus] Debug collector initialized (no rrweb, UI events only)"],"stack":null}
+[2026-04-28T19:06:50.182Z] {"timestamp":1777403207595,"level":"DEBUG","args":["[vite] connected."],"stack":null}

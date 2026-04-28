@@ -1141,8 +1141,58 @@
         }
 
         .mission-tab.active {
-            color: #10b981;
-            border-bottom-color: #10b981;
+            color: #00ffaa;
+            border-bottom-color: #00ffaa;
+        }
+
+        .mission-tab[data-tab="learn"].active {
+            color: #00ffaa;
+            border-bottom-color: #00ffaa;
+            text-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
+        }
+
+        .mission-tab[data-tab="learn"].completed {
+            color: #00ffaa;
+        }
+
+        .mission-tab .tab-check {
+            margin-left: 6px;
+            font-size: 12px;
+        }
+
+        .mission-tab[data-tab="quiz"]:not(.unlocked),
+        .mission-tab[data-tab="challenge"]:not(.unlocked) {
+            color: rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .mission-tab[data-tab="quiz"]:not(.unlocked)::after,
+        .mission-tab[data-tab="challenge"]:not(.unlocked)::after {
+            content: '🔒 3 questions';
+            display: block;
+            font-size: 10px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.2);
+            margin-top: 2px;
+        }
+
+        .mission-tab[data-tab="challenge"]:not(.unlocked)::after {
+            content: '🔒 1 challenge';
+        }
+
+        .mission-tab.unlocked {
+            color: rgba(255, 255, 255, 0.7);
+            animation: tabGlow 0.8s ease;
+        }
+
+        .mission-tab.unlocked:hover {
+            color: #00ffaa;
+        }
+
+        @keyframes tabGlow {
+            0% { box-shadow: 0 0 0 rgba(0, 255, 170, 0); }
+            50% { box-shadow: 0 0 30px rgba(0, 255, 170, 0.5), inset 0 0 20px rgba(0, 255, 170, 0.1); }
+            100% { box-shadow: 0 0 0 rgba(0, 255, 170, 0); }
         }
 
         .mission-tab:hover {
@@ -1172,246 +1222,265 @@
             max-height: 100%;
         }
 
-        /* LEARN TAB */
-        .learn-carousel {
-            position: relative;
-            margin: 80px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
-            max-width: 1000px;
-            width: 100%;
-            padding: 0 20px;
-            box-sizing: border-box;
+        /* LEARN TAB - Kid-Friendly Vertical Stack Design */
+        .learn-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        .learn-header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 24px;
+            text-transform: uppercase;
         }
 
         .learn-cards {
-            flex: 1;
-            max-width: 650px;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            height: 800px;
+            flex-direction: column;
+            gap: 24px;
         }
 
         .learn-card {
-            background: rgba(5, 20, 40, 0.85);
+            background: rgba(5, 20, 40, 0.9);
             border: 2px solid rgba(0, 255, 170, 0.2);
-            border-radius: 24px;
+            border-radius: 16px;
             backdrop-filter: blur(20px);
-            padding: 32px 36px;
-            position: absolute;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             width: 100%;
-            max-width: 600px;
-            opacity: 0;
-            transition: all 0.5s ease;
-            cursor: pointer;
-            overflow: visible;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .learn-card.active {
-            opacity: 1;
-            z-index: 10;
-            animation: slideUpIn 0.6s ease forwards;
-            transform: translate(-50%, -50%);
+        .learn-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 255, 170, 0.1);
         }
 
-        .learn-card.hidden {
-            opacity: 0;
-            z-index: 0;
-            visibility: hidden;
-            transform: translate(-50%, -50%);
-        }
-
-        @keyframes slideUpIn {
-            from { opacity: 0; transform: translate(-50%, -40%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-
-        .learn-carousel-button {
-            background: rgba(0, 255, 170, 0.2);
-            border: 2px solid rgba(0, 255, 170, 0.4);
-            color: #00ffaa;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 32px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .learn-carousel-button:hover:not(:disabled) {
-            background: rgba(0, 255, 170, 0.35);
-            box-shadow: 0 0 30px rgba(0, 255, 170, 0.5);
-            transform: scale(1.1);
-        }
-
-        .learn-carousel-button:disabled {
-            opacity: 0.2;
-            cursor: not-allowed;
-        }
-
-        .learn-carousel-counter {
-            position: absolute;
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 14px;
-            color: rgba(0, 255, 170, 0.6);
-            text-align: center;
+        .learn-card-image-wrapper {
+            position: relative;
             width: 100%;
-            font-weight: 600;
+            height: 220px;
+            overflow: hidden;
         }
 
         .learn-card-image {
-            width: calc(100% + 72px);
-            height: 280px;
-            margin: -32px -36px 24px -36px;
-            object-fit: cover;
-            border-radius: 22px 22px 0 0;
-            display: block;
-        }
-
-        .learn-card-reveal {
-            display: inline-block;
-            background: rgba(0, 255, 170, 0.15);
-            border: 1px solid rgba(0, 255, 170, 0.3);
-            border-radius: 50px;
-            padding: 6px 14px;
-            font-size: 11px;
-            color: #00ffaa;
-            cursor: pointer;
-            margin-top: 8px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
-        .learn-card-reveal:hover {
-            background: rgba(16, 185, 129, 0.25);
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
-        }
-
-        .learn-card-fact {
-            display: none;
-            background: rgba(16, 185, 129, 0.08);
-            border-left: 3px solid #10b981;
-            padding: 12px 14px;
-            border-radius: 6px;
-            margin-top: 12px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.8);
-            animation: slideDown 0.3s ease;
-        }
-
-        .learn-card-fact.revealed {
-            display: block;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .learn-card::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(#10b981, #0366d6);
-            border-radius: 12px 0 0 12px;
+            object-fit: cover;
+            border-radius: 16px 16px 0 0;
+            display: block;
         }
 
-        .learn-card:nth-child(1) { animation-delay: 0ms; }
-        .learn-card:nth-child(2) { animation-delay: 150ms; }
-        .learn-card:nth-child(3) { animation-delay: 300ms; }
+        .learn-card-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(0, 255, 170, 0.9);
+            color: #051428;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 8px 14px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 170, 0.6), 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: badgeGlow 2s ease-in-out infinite;
+            z-index: 10;
+        }
 
-        .learn-card-number {
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            color: rgba(16, 185, 129, 0.7);
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+        @keyframes badgeGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 170, 0.6), 0 4px 15px rgba(0, 0, 0, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(0, 255, 170, 0.9), 0 4px 15px rgba(0, 0, 0, 0.3); }
+        }
+
+        .learn-card-content {
+            padding: 24px 28px;
+            position: relative;
+            border-left: 4px solid #00ffaa;
         }
 
         .learn-card-title {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
             color: white;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             letter-spacing: -0.3px;
         }
 
         .learn-card-body {
             font-family: 'Inter', sans-serif;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 400;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.75);
             line-height: 1.7;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
+        }
+
+        /* Fun Fact Card - Interactive */
+        .fun-fact-card {
+            background: rgba(255, 200, 0, 0.15);
+            border: 1px solid rgba(255, 200, 0, 0.4);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin: 16px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .fun-fact-card:hover {
+            background: rgba(255, 200, 0, 0.25);
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(255, 200, 0, 0.2);
+        }
+
+        .fun-fact-icon {
+            font-size: 24px;
+            line-height: 1;
+            animation: pulseBulb 1.5s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulseBulb {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .fun-fact-header {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffc800;
+            margin-bottom: 2px;
+        }
+
+        .fun-fact-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        .fun-fact-expanded {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 200, 0, 0.3);
+        }
+
+        .fun-fact-expanded.show {
+            display: block;
+            animation: expandFact 0.3s ease;
+        }
+
+        @keyframes expandFact {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fun-fact-did-you-know {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffc800;
+            margin-bottom: 6px;
+        }
+
+        .fun-fact-detail {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
         }
 
         .learn-card-stat {
             display: inline-block;
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 6px;
-            padding: 6px 12px;
-            font-size: 12px;
+            background: rgba(0, 255, 170, 0.15);
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 13px;
             font-weight: 600;
-            color: #10b981;
+            color: #00ffaa;
             font-family: 'Inter', sans-serif;
         }
 
-        .mission-next-btn {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
+        /* Progress Dots */
+        .learn-progress-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin: 32px 0;
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            width: 10px;
+            height: 10px;
+            background: #00ffaa;
+            box-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
+        }
+
+        /* CTA Button */
+        .learn-cta-button {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 32px auto 0;
+            background: linear-gradient(135deg, #00ffaa, #00cc88);
+            color: #051428;
             border: none;
-            border-radius: 8px;
-            padding: 12px 28px;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0;
+            border-radius: 12px;
+            padding: 0;
+            height: 56px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.4);
             position: relative;
             overflow: hidden;
-            text-transform: none;
         }
 
-        .mission-next-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
+        .learn-cta-button:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 0 40px rgba(0, 255, 170, 0.6);
+        }
+
+        .learn-cta-button-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: shimmer 2s infinite;
         }
 
-        .mission-next-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+        .learn-cta-arrow {
+            animation: bounceArrow 1s ease-in-out infinite;
+        }
+
+        @keyframes bounceArrow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(4px); }
         }
 
         /* QUIZ TAB */
@@ -2137,7 +2206,7 @@
             <div class="mission-back-btn" onclick="backToDashboard()">
                 ← <span>Dashboard</span>
             </div>
-            <h2 id="mission-title" class="mission-top-title">Mission Title</h2>
+            <h2 id="mission-screen-title" class="mission-top-title">Mission Title</h2>
             <div class="mission-xp-counter">
                 ⭐ <span id="current-xp">0</span> / <span id="total-xp">45</span> XP
             </div>
@@ -2153,13 +2222,20 @@
         <div class="mission-content">
             <!-- LEARN TAB -->
             <div class="mission-tab-content active" id="learn-tab">
-                <div class="learn-carousel">
-                    <button class="learn-carousel-button" id="learn-prev" onclick="prevLearnCard()">←</button>
+                <div class="learn-container">
+                    <div class="learn-header">📖 Read all 3 facts to unlock the Quiz</div>
                     <div class="learn-cards" id="learn-cards"></div>
-                    <button class="learn-carousel-button" id="learn-next" onclick="nextLearnCard()">→</button>
+                    <div class="learn-progress-dots" id="learn-progress-dots">
+                        <div class="progress-dot active" data-card="0"></div>
+                        <div class="progress-dot" data-card="1"></div>
+                        <div class="progress-dot" data-card="2"></div>
+                    </div>
+                    <button class="learn-cta-button" id="learn-cta" onclick="switchTab('quiz')">
+                        <div class="learn-cta-button-content">
+                            Ready for the Quiz? <span class="learn-cta-arrow">→</span>
+                        </div>
+                    </button>
                 </div>
-                <div class="learn-carousel-counter"><span id="learn-counter">1 / 3</span></div>
-                <button class="mission-next-btn" onclick="switchTab('quiz')">Next: Take the Quiz →</button>
             </div>
 
             <!-- QUIZ TAB -->
@@ -3088,35 +3164,67 @@
                 
                 // Switch to Learn tab
                 switchTab('learn');
+                
+                // Lock quiz and challenge tabs initially
+                document.querySelector('.mission-tab[data-tab="quiz"]').classList.remove('unlocked');
+                document.querySelector('.mission-tab[data-tab="challenge"]').classList.remove('unlocked');
             }
         }
 
         function loadMissionContent(mission) {
             // Update top bar
-            document.getElementById('mission-title').textContent = mission.title;
+            document.getElementById('mission-screen-title').textContent = mission.title;
             document.getElementById('total-xp').textContent = mission.xpTotal;
             
-            // Load Learn cards as carousel
+            // Load Learn cards as vertical stack
             const learnCardsContainer = document.getElementById('learn-cards');
             learnCardsContainer.innerHTML = '';
-            currentLearnCardIndex = 0;
             mission.learn.forEach((card, idx) => {
                 const cardEl = document.createElement('div');
-                cardEl.className = `learn-card ${idx === 0 ? 'active' : 'hidden'}`;
-                const factId = `fact-${card.number}`;
+                cardEl.className = 'learn-card';
+                cardEl.setAttribute('data-card-index', idx);
+                const factId = `fact-${mission.id}-${idx}`;
+                // Extract emoji and fact text - format: "🌍 Did you know? Fact text here"
+                let factShort = 'Fun Fact';
+                let factDetail = card.fact || 'No fact available';
+                if (card.fact) {
+                    const match = card.fact.match(/^([^?]+)\?\s*(.+)$/);
+                    if (match) {
+                        factShort = match[1] + '?';
+                        factDetail = match[2];
+                    }
+                }
+                
                 cardEl.innerHTML = `
-                    ${card.image ? `<img src="${card.image}" alt="${card.title}" class="learn-card-image">` : ''}
-                    <div class="learn-card-number">${card.number}</div>
-                    <h3 class="learn-card-title">${card.title}</h3>
-                    <p class="learn-card-body">${card.body}</p>
-                    <button class="learn-card-reveal" onclick="toggleFact('${factId}')">💡 Fun Fact</button>
-                    <div class="learn-card-fact" id="${factId}">${card.fact}</div>
-                    <span class="learn-card-stat"><span class="stat-number" data-target="${card.statValue || 0}">0</span>${card.statLabel}</span>
+                    <div class="learn-card-image-wrapper">
+                        ${card.image ? `<img src="${card.image}" alt="${card.title}" class="learn-card-image">` : ''}
+                        <div class="learn-card-badge">${card.number}</div>
+                    </div>
+                    <div class="learn-card-content">
+                        <h3 class="learn-card-title">${card.title}</h3>
+                        <p class="learn-card-body">${card.body}</p>
+                        <div class="fun-fact-card" onclick="toggleFunFact('${factId}')">
+                            <div class="fun-fact-icon">💡</div>
+                            <div class="fun-fact-text-block">
+                                <div class="fun-fact-header">Fun Fact</div>
+                                <div class="fun-fact-text">${factShort}</div>
+                            </div>
+                            <div class="fun-fact-expanded" id="${factId}">
+                                <div class="fun-fact-did-you-know">Did you know?</div>
+                                <div class="fun-fact-detail">${factDetail}</div>
+                            </div>
+                        </div>
+                        <span class="learn-card-stat"><span class="stat-number" data-target="${card.statValue || 0}">0</span>${card.statLabel}</span>
+                    </div>
                 `;
                 learnCardsContainer.appendChild(cardEl);
             });
-            updateLearnCarouselUI(mission.learn.length);
-            startLearnStatAnimation();
+            
+            // Setup IntersectionObserver for progress dots
+            setupLearnProgressObserver();
+            
+            // Animate all visible stats
+            setTimeout(startAllLearnStatAnimations, 300);
 
             // Load Quiz
             loadQuiz(mission);
@@ -3125,60 +3233,111 @@
             loadChallenge(mission);
         }
 
-        let currentLearnCardIndex = 0;
-        let currentMissionLearnCards = [];
+        // Track which cards have been viewed for completion
+        let viewedCards = new Set();
+        let learnProgressObserver = null;
 
-        function toggleFact(factId) {
-            const factEl = document.getElementById(factId);
-            if (factEl) factEl.classList.toggle('revealed');
+        function setupLearnProgressObserver() {
+            // Reset viewed cards
+            viewedCards = new Set();
+            updateProgressDots(0);
+            updateLearnTabStatus();
+            
+            // Disconnect previous observer if exists
+            if (learnProgressObserver) {
+                learnProgressObserver.disconnect();
+            }
+            
+            // Create new observer
+            learnProgressObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const cardIndex = parseInt(entry.target.getAttribute('data-card-index'));
+                        viewedCards.add(cardIndex);
+                        updateProgressDots(cardIndex);
+                        updateLearnTabStatus();
+                        
+                        // Check if all cards viewed
+                        if (viewedCards.size === 3) {
+                            unlockQuizTab();
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.5,
+                rootMargin: '-20% 0px -20% 0px'
+            });
+            
+            // Observe all cards
+            document.querySelectorAll('.learn-card').forEach(card => {
+                learnProgressObserver.observe(card);
+            });
         }
 
-        function updateLearnCarouselUI(totalCards) {
-            const cards = document.querySelectorAll('.learn-card');
-            cards.forEach((card, idx) => {
-                card.classList.remove('active', 'hidden');
-                if (idx === currentLearnCardIndex) {
-                    card.classList.add('active');
+        function updateProgressDots(activeIndex) {
+            const dots = document.querySelectorAll('.progress-dot');
+            dots.forEach((dot, idx) => {
+                if (idx <= activeIndex) {
+                    dot.classList.add('active');
                 } else {
-                    card.classList.add('hidden');
+                    dot.classList.remove('active');
                 }
             });
-            document.getElementById('learn-counter').textContent = `${currentLearnCardIndex + 1} / ${totalCards}`;
-            document.getElementById('learn-prev').disabled = currentLearnCardIndex === 0;
-            document.getElementById('learn-next').disabled = currentLearnCardIndex === totalCards - 1;
-            startLearnStatAnimation();
         }
 
-        function nextLearnCard() {
-            const totalCards = document.querySelectorAll('.learn-card').length;
-            if (currentLearnCardIndex < totalCards - 1) {
-                currentLearnCardIndex++;
-                updateLearnCarouselUI(totalCards);
+        function updateLearnTabStatus() {
+            const learnTab = document.querySelector('.mission-tab[data-tab="learn"]');
+            if (viewedCards.size === 3) {
+                learnTab.innerHTML = '📖 Learn <span class="tab-check">✓</span>';
+                learnTab.classList.add('completed');
+            } else {
+                learnTab.innerHTML = '📖 Learn';
+                learnTab.classList.remove('completed');
             }
         }
 
-        function prevLearnCard() {
-            if (currentLearnCardIndex > 0) {
-                currentLearnCardIndex--;
-                updateLearnCarouselUI(document.querySelectorAll('.learn-card').length);
+        function unlockQuizTab() {
+            const quizTab = document.querySelector('.mission-tab[data-tab="quiz"]');
+            quizTab.classList.add('unlocked');
+            // Pulse animation
+            quizTab.style.animation = 'tabGlow 0.6s ease';
+            setTimeout(() => {
+                quizTab.style.animation = '';
+            }, 600);
+        }
+
+        function toggleFunFact(factId) {
+            const factEl = document.getElementById(factId);
+            if (factEl) {
+                factEl.classList.toggle('show');
+                // Also mark this card's fun fact as expanded
+                const card = factEl.closest('.learn-card');
+                if (card) {
+                    card.setAttribute('data-fact-expanded', 'true');
+                }
             }
         }
 
-        function startLearnStatAnimation() {
-            const activeCard = document.querySelectorAll('.learn-card.active')[0];
-            if (!activeCard) return;
-            const statEl = activeCard.querySelector('.stat-number');
-            if (statEl && !statEl.animated) {
+        function startAllLearnStatAnimations() {
+            const statEls = document.querySelectorAll('.learn-card .stat-number');
+            statEls.forEach(statEl => {
+                if (statEl.animated) return;
                 const target = parseInt(statEl.dataset.target) || 0;
                 let current = 0;
                 const increment = target / 30;
                 statEl.textContent = '0';
                 const timer = setInterval(() => {
                     current += increment;
-                    if (current >= target) { statEl.textContent = target; clearInterval(timer); statEl.animated = true; }
-                    else { statEl.textContent = Math.floor(current); }
+                    if (current >= target) { 
+                        statEl.textContent = target.toLocaleString(); 
+                        clearInterval(timer); 
+                        statEl.animated = true; 
+                    }
+                    else { 
+                        statEl.textContent = Math.floor(current).toLocaleString(); 
+                    }
                 }, 50);
-            }
+            });
         }
 
         function switchTab(tabName) {
